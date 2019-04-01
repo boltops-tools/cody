@@ -11,10 +11,6 @@ module Codebuild
       puts "Hello #{name}"
     end
 
-    desc "sub SUBCOMMAND", "sub subcommands"
-    long_desc Help.text(:sub)
-    subcommand "sub", Sub
-
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text("completion")
     def completion(*params)
