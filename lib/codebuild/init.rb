@@ -11,9 +11,32 @@ module Codebuild
     end
     cli_options.each { |o| class_option(*o) }
 
+    def setup_template_repo
+      return unless @options[:template]&.include?('/')
+
+      sync_template_repo
+    end
+
+    def set_source_path
+      return unless @options[:template]
+
+      custom_template = "#{ENV['HOME']}/.codebuild/templates/#{@options[:template]}"
+
+      if @options[:template_mode] == "replace" # replace the template entirely
+        override_source_paths(custom_template)
+      else # additive: modify on top of default template
+        default_template = File.expand_path("../../template", __FILE__)
+        override_source_paths([custom_template, default_template])
+      end
+    end
+
     def copy_project
       puts "Initialize codebuild project in .codebuild"
-      directory "."
+      if @options[:template]
+        directory ".", ".codebuild", exclude_pattern: /.git/
+      else
+        directory ".", exclude_pattern: /.git/
+      end
     end
 
   private
