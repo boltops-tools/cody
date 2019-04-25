@@ -3,7 +3,7 @@
 name("<%= project_name %>")
 github_url("<%= project_github_url %>")
 github_token(ssm("/codebuild/github/oauth_token")) # Note: you have to set this parameter in your own accounts ssm parameter store
-linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+linux_image("<%= lookup_managed_image(/ruby:/) %>")
 environment_variables(
   UFO_ENV: "development",
   # Example of ssm parameter for enviroment variables, this is different because it's part of the cloudformatio template

@@ -30,5 +30,23 @@ module Codebuild
       url = url.sub('git@github.com:','https://github.com/')
       url == '' ? default : url
     end
+
+    def lookup_managed_image(pattern=/ruby:/)
+      resp = codebuild.list_curated_environment_images
+
+      # Helpful for debugging:
+      #   aws codebuild list-curated-environment-images | jq -r '.platforms[].languages[].images[].versions[]' | sort
+
+      versions = []
+      resp.platforms.each do |platform|
+        platform.languages.each do |lang|
+          lang.images.each do |image|
+            versions += image.versions.compact
+          end
+        end
+      end
+      versions = versions.select { |v| v =~ pattern }
+      versions.sort.last # IE: aws/codebuild/ruby:2.5.3-1.7.0
+    end
   end
 end

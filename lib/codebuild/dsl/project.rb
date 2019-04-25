@@ -90,10 +90,5 @@ module Codebuild::Dsl
       @properties[:environment] ||= {}
       @properties[:environment][:environment_variables] = @mapped_env_vars
     end
-
-    # def managed_image(search_pattern)
-    #   TODO: use aws codebuild list-curated-environment-images
-    #   for convenience lookup method
-    # end
   end
 end
