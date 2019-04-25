@@ -1,3 +1,5 @@
+require "aws-sdk-ssm"
+
 module Codebuild::Dsl
   module Project
     PROPERTIES = %w[
@@ -42,8 +44,12 @@ module Codebuild::Dsl
       @properties[:source] = source
     end
 
-    def ruby_environment(options={})
-      # TODO: maybe use aws codebuild list-curated-environment-images
+    # def managed_image(search_pattern)
+    #   TODO: use aws codebuild list-curated-environment-images
+    #   for convenience lookup method
+    # end
+
+    def linux_environment(options={})
       image = options[:image] || "aws/codebuild/ruby:2.5.3-1.7.0"
       environment = {
         compute_type: options[:compute_type] || "BUILD_GENERAL1_SMALL",
@@ -70,8 +76,15 @@ module Codebuild::Dsl
       @properties[:environment][:environment_variables] = @mapped_env_vars
     end
 
-    def ssm(key)
-      "" # TODO: remove hard code
+    def ssm(name, with_decryption: true)
+      response = ssm_client.get_parameter(name: name, with_decryption: with_decryption)
+      response.parameter.value
+    rescue Aws::SSM::Errors::ParameterNotFound
+      puts "WARN: #{name} found on AWS SSM.".color(:yellow)
+    end
+
+    def ssm_client
+      @ssm_client ||= Aws::SSM::Client.new
     end
   end
 end

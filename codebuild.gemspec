@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activesupport"
   spec.add_dependency "aws-sdk-cloudformation"
-  spec.add_dependency "aws-sdk-codebuild"
+  spec.add_dependency "aws-sdk-ssm"
   spec.add_dependency "cfn_camelizer"
   spec.add_dependency "rainbow"
   spec.add_dependency "thor"
