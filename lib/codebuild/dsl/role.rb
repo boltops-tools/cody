@@ -14,5 +14,10 @@ module Codebuild::Dsl
         @properties[prop.to_sym] = v
       end
     end
+
+    # convenience wrapper methods
+    def iam_statement(statement)
+      @iam_statement = statement
+    end
   end
 end

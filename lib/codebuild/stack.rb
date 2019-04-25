@@ -10,10 +10,13 @@ module Codebuild
 
     def run
       project = Project.new(@options).run
-      role = Role.new(@options).run
-      @template["Resources"]
-        .merge!(project)
-        .merge!(role)
+      @template["Resources"].merge!(project)
+
+      if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
+        role = Role.new(@options).run
+        @template["Resources"].merge!(role)
+      end
+
       puts YAML.dump(@template)
       return if @options[:noop]
 
