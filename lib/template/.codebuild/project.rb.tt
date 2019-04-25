@@ -1,7 +1,7 @@
 # For all methods, refer to the properties of the CloudFormation CodeBuild::Project https://amzn.to/2UTeNlr
 
-name("demo")
-github_location("https://github.com/tongueroo/demo-ufo")
+name("<%= project_name %>")
+github_url("<%= project_github_url %>")
 github_token(ssm("/codebuild/github/oauth_token")) # Note: you have to set this parameter in your own accounts ssm parameter store
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
