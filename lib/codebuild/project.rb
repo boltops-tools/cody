@@ -8,7 +8,11 @@ module Codebuild
     def initialize(options={})
       @options = options
       @project_path = options[:project_path] || ".codebuild/project.rb"
-      @properties = {}
+      # These defaults make it the project.rb simpler
+      @properties = {
+        artifacts: { type: "NO_ARTIFACTS" },
+        service_role: { ref: "IamRole" },
+      }
     end
 
     def run

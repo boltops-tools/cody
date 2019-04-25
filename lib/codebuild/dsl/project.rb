@@ -2,6 +2,9 @@ require "aws-sdk-ssm"
 
 module Codebuild::Dsl
   module Project
+    autoload :Ssm, "codebuild/dsl/project/ssm"
+    include Ssm
+
     PROPERTIES = %w[
       artifacts
       badge_enabled
@@ -13,7 +16,7 @@ module Codebuild::Dsl
       name
       queued_timeout_in_minutes
       secondary_artifacts
-      secondary_sources:
+      secondary_sources
       service_role
       source
       tags
@@ -74,17 +77,6 @@ module Codebuild::Dsl
       }
       @properties[:environment] ||= {}
       @properties[:environment][:environment_variables] = @mapped_env_vars
-    end
-
-    def ssm(name, with_decryption: true)
-      response = ssm_client.get_parameter(name: name, with_decryption: with_decryption)
-      response.parameter.value
-    rescue Aws::SSM::Errors::ParameterNotFound
-      puts "WARN: #{name} found on AWS SSM.".color(:yellow)
-    end
-
-    def ssm_client
-      @ssm_client ||= Aws::SSM::Client.new
     end
   end
 end
