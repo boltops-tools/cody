@@ -13,7 +13,6 @@ module Codebuild
     end
 
     def run
-      puts "Evaluating .codebuild/project.rb DSL"
       evaluate(@project_path)
       resource = {
         code_build: {

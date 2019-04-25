@@ -10,6 +10,12 @@ Tool creates a CodeBuild project with some reasonable defaults. It provides a DS
 
 ## Usage
 
+1. **init**: generate starter .codebuild files.
+2. **deploy**: deploy the CodeBuild project on AWS.
+3. **start**: kick off a CodeBuild project run.
+
+### Init
+
 First, run `codebuild init` to generate a starter .codebuild structure.
 
     $ tree .codebuild
@@ -21,8 +27,33 @@ First, run `codebuild init` to generate a starter .codebuild structure.
 File | Description
 --- | ---
 buildspec.yml | The build commands to run.
-project.rb | The DSL that defines the codebuild project.
-role.rb | The DSL that defines the IAM role assocaited with the codebuild project.
+project.rb | The codebuild project defined as a DSL.
+role.rb | The IAM role assocaited with the codebuild project defined as a DSL.
+
+### Deploy
+
+Adjust the files in `.codebuild` to you needs. When you're read deploy the CodeBuild project with:
+
+    codebuild deploy STACK_NAME
+
+More examples:
+
+    codebuild deploy # infers the CloudFormation name from the parent folder
+    codebuild deploy stack-name # explicitly specify stack name
+
+It is useful to just see the generated CloudFormation template with `--noop` mode:
+
+    codebuild deploy --noop # see generated CloudFormation template
+
+### Start
+
+When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
+
+    codebuild start # infers the name from the parent folder
+    codebuild start stack-name # looks up project via CloudFormation stack
+    codebuild start demo-project # looks up project via codebuild project name
+
+The `codebuild start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or codebuild directly.
 
 ## Project DSL
 
@@ -32,7 +63,7 @@ The tool provides a DSL to create a codebuild project.  Here's an example.
 
 ```ruby
 name("demo")
-github_location("https://github.com/tongueroo/demo-ufo")
+github_url("https://github.com/tongueroo/demo-ufo")
 github_token(ssm("/codebuild/demo/oauth_token"))
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
@@ -52,7 +83,13 @@ The codebuild tool can create the IAM service role associated with the codebuild
 .codebuild/role.rb:
 
 ```ruby
-iam_statement(
+iam_policy("logs", "ssm")
+```
+
+For a longer form:
+
+```ruby
+iam_policy(
   action: [
     "logs:CreateLogGroup",
     "logs:CreateLogStream",
@@ -66,9 +103,7 @@ iam_statement(
 
 ## Full DSL
 
-The convenience is shorter and cleaner, however you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).
-
-Refer the the [Full DSL docs](readme/full_dsl.md) for more info.
+The convenience methods are shorter and cleaner, however you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the the [Full DSL docs](readme/full_dsl.md) for more info.
 
 # Installation
 

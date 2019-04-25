@@ -9,16 +9,16 @@ module Codebuild
       @options = options
       @role_path = options[:role_path] || ".codebuild/role.rb"
       @properties = default_properties
+      @iam_policy = {}
     end
 
     def run
-      puts "Evaluating .codebuild/role.rb DSL"
       evaluate(@role_path)
       @properties[:policies] = [{
         policy_name: "CodeBuildAccess",
         policy_document: {
           version: "2012-10-17",
-          statement: [derived_statement]
+          statement: derived_iam_statements
         }
       }]
       resource = {
@@ -47,17 +47,23 @@ module Codebuild
       }
     end
 
-    def derived_statement
-      @iam_statement || {
+    def derived_iam_statements
+      @iam_statements || default_iam_statements
+    end
+
+    def default_iam_statements
+      [{
         action: [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
-          "ssm:*",
+          "ssm:DescribeDocumentParameters",
+          "ssm:DescribeParameters",
+          "ssm:GetParameter*",
         ],
         effect: "Allow",
         resource: "*"
-      }
+      }]
     end
   end
 end

@@ -30,7 +30,7 @@ module Codebuild::Dsl
 
     # convenience wrapper methods
 
-    def github_location(url)
+    def github_url(url)
       # Sets a baseline default first
       github_source(location: url) unless @properties[:source]
       # Always overrides

@@ -19,6 +19,7 @@ module Codebuild
         @template["Resources"].merge!(role)
       end
 
+      puts "Generated CloudFormation template:"
       puts YAML.dump(@template)
       return if @options[:noop]
 

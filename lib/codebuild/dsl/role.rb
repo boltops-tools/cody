@@ -16,8 +16,25 @@ module Codebuild::Dsl
     end
 
     # convenience wrapper methods
-    def iam_statement(statement)
-      @iam_statement = statement
+    def iam_policy(*definitions)
+      @iam_statements = definitions.map { |definition| standardize(definition) }
     end
+
+    # Returns standarized IAM statement
+    def standardize(definition)
+      case definition
+      when String
+        # Expands simple string from: logs => logs:*
+        definition = "#{definition}:*" unless definition.include?(':')
+        {
+          action: [definition],
+          effect: "Allow",
+          resource: "*",
+        }
+      when Hash
+        definition
+      end
+    end
+
   end
 end
