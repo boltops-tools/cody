@@ -15,6 +15,6 @@ phases:
       - echo Build started on `date`
       - echo Building project...
       - uptime
-artifacts:
-  files:
-    - result.txt
+# artifacts:
+#   files:
+#     - result.txt

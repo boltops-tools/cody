@@ -5,8 +5,33 @@ module Codebuild
 
     desc "init", "Initialize project with .codebuild files"
     long_desc Help.text(:init)
-    def init
-      puts "init called"
+    Init.cli_options.each do |args|
+      option(*args)
+    end
+    register(Init, "init", "init", "Set up initial ufo files.")
+
+    desc "evaluate", "Evaluate the .codebuild/project.rb DSL."
+    long_desc Help.text("evaluate")
+    def evaluate
+      Dsl.new(options).evaluate
+    end
+
+    desc "create", "Create codebuild project."
+    long_desc Help.text("create")
+    def create(stack_name=nil)
+      Create.new(options.merge(stack_name: stack_name)).run
+    end
+
+    desc "update", "Update codebuild project."
+    long_desc Help.text("update")
+    def update(stack_name=nil)
+      Update.new(options.merge(stack_name: stack_name)).run
+    end
+
+    desc "deploy", "Deploy codebuild project."
+    long_desc Help.text("deploy")
+    def deploy(stack_name=nil)
+      Deploy.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."

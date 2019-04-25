@@ -3,7 +3,9 @@ PATH
   specs:
     codebuild (0.1.0)
       activesupport
+      aws-sdk-cloudformation
       aws-sdk-codebuild
+      cfn_camelizer
       rainbow
       thor
 
@@ -15,12 +17,15 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    aws-eventstream (1.0.2)
-    aws-partitions (1.148.0)
+    aws-eventstream (1.0.3)
+    aws-partitions (1.152.0)
+    aws-sdk-cloudformation (1.19.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
+      aws-sigv4 (~> 1.1)
     aws-sdk-codebuild (1.32.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.48.3)
+    aws-sdk-core (3.48.5)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -28,6 +33,10 @@ GEM
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     byebug (11.0.1)
+    cfn_camelizer (0.2.0)
+      activesupport
+      memoist
+      rainbow
     cli_markdown (0.1.0)
     codeclimate-test-reporter (1.0.9)
       simplecov (<= 0.13)
@@ -38,6 +47,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
     json (2.2.0)
+    memoist (0.16.0)
     minitest (5.11.3)
     rainbow (3.0.0)
     rake (12.3.2)
@@ -47,7 +57,7 @@ GEM
       rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
-    rspec-expectations (3.8.2)
+    rspec-expectations (3.8.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-mocks (3.8.0)
