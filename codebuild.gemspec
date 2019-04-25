@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Codebuild::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Generated with cli-template tool. Please write a gem summary"
-  spec.description   = "Generated with cli-template tool. Write a longer description or delete this line."
-  spec.homepage      = ""
+  spec.summary       = "Codebuild tool"
+  spec.homepage      = "https://github.com/tongueroo/codebuild"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -22,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "rainbow"
   spec.add_dependency "thor"
+  spec.add_dependency "aws-sdk-codebuild"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "byebug"

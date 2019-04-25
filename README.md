@@ -6,6 +6,7 @@ CodeBuild tool.
 
     codebuild init
     codebuild create
+    codebuild update
     codebuild start
 
 ## Installation

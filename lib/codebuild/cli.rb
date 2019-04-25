@@ -3,12 +3,10 @@ module Codebuild
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "hello NAME", "Say hello to NAME."
-    long_desc Help.text(:hello)
-    option :from, desc: "from person"
-    def hello(name="you")
-      puts "from: #{options[:from]}" if options[:from]
-      puts "Hello #{name}"
+    desc "init", "Initialize project with .codebuild files"
+    long_desc Help.text(:init)
+    def init
+      puts "init called"
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."

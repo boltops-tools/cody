@@ -1,4 +1,5 @@
 $:.unshift(File.expand_path("../", __FILE__))
+require "aws-sdk-codebuild"
 require "codebuild/version"
 require "rainbow/ext/string"
 
