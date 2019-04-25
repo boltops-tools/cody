@@ -15,6 +15,8 @@ module Codebuild
         .merge!(project)
         .merge!(role)
       puts YAML.dump(@template)
+      return if @options[:noop]
+
       begin
         perform
       rescue Aws::CloudFormation::Errors::ValidationError => e

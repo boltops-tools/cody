@@ -16,7 +16,7 @@ module Codebuild
       begin
         # When the stack does not exist an exception is raised. Example:
         # Aws::CloudFormation::Errors::ValidationError: Stack with id blah does not exist
-        resp = cfn.describe_stacks(stack_name: stack_name)
+        cfn.describe_stacks(stack_name: stack_name)
         exist = true
       rescue Aws::CloudFormation::Errors::ValidationError => e
         if e.message =~ /does not exist/
