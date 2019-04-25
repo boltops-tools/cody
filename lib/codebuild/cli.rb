@@ -34,6 +34,13 @@ module Codebuild
       Deploy.new(options.merge(stack_name: stack_name)).run
     end
 
+    desc "start", "start codebuild project."
+    long_desc Help.text("start")
+    option :source_version, default: "master", desc: "git branch"
+    def start(identifier=nil)
+      Start.new(options.merge(identifier: identifier)).run
+    end
+
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text("completion")
     def completion(*params)

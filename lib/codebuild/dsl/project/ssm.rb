@@ -1,3 +1,5 @@
+require "aws-sdk-ssm"
+
 module Codebuild::Dsl::Project
   module Ssm
     def ssm(name)

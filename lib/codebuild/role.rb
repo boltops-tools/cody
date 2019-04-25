@@ -53,6 +53,7 @@ module Codebuild
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
+          "ssm:*",
         ],
         effect: "Allow",
         resource: "*"

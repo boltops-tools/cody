@@ -1,5 +1,3 @@
-require "aws-sdk-ssm"
-
 module Codebuild::Dsl
   module Project
     autoload :Ssm, "codebuild/dsl/project/ssm"
@@ -31,6 +29,21 @@ module Codebuild::Dsl
     end
 
     # convenience wrapper methods
+
+    def github_location(url)
+      # Sets a baseline default first
+      github_source(location: url) unless @properties[:source]
+      # Always overrides
+      @properties[:source][:location] = url
+    end
+
+    def github_token(token)
+      # Sets a baseline default first
+      github_source(oauth_token: token) unless @properties[:source]
+      # Always overrides
+      @properties[:source][:auth][:resource] = token
+    end
+
     def github_source(options={})
       source = {
         type: "GITHUB",
@@ -47,10 +60,9 @@ module Codebuild::Dsl
       @properties[:source] = source
     end
 
-    # def managed_image(search_pattern)
-    #   TODO: use aws codebuild list-curated-environment-images
-    #   for convenience lookup method
-    # end
+    def linux_image(name)
+      linux_environment(image: name)
+    end
 
     def linux_environment(options={})
       image = options[:image] || "aws/codebuild/ruby:2.5.3-1.7.0"
@@ -78,5 +90,10 @@ module Codebuild::Dsl
       @properties[:environment] ||= {}
       @properties[:environment][:environment_variables] = @mapped_env_vars
     end
+
+    # def managed_image(search_pattern)
+    #   TODO: use aws codebuild list-curated-environment-images
+    #   for convenience lookup method
+    # end
   end
 end
