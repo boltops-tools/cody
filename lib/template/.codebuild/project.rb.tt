@@ -1,20 +1,17 @@
 # For methods, refer to the properties of the CloudFormation CodeBuild::Project https://amzn.to/2UTeNlr
 # For convenience methods, refer to the source https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb
 
-# Note: for the oauth_token, you have to set this parameter in ssm parameter store
-# One way to create an GitHub oauth token:
-# Go to GitHub / Settings / Developer Settings / Personal access tokens
-# If using webhook, the oauth token needs admin:repo_hook
-
 name("<%= project_name %>")
 github_url("<%= project_github_url %>")
 linux_image("<%= lookup_managed_image(/ruby:/) %>")
 environment_variables(
-  RAILS_ENV: "test",
-  # Example of ssm parameter for enviroment variables, this is different because it's part of the cloudformatio template
-  # API_KEY: "ssm:/codebuild/demo/api_key"
+  JETS_ENV: "test",
+  # API_KEY: "ssm:/codebuild/demo/api_key" # Example of ssm parameter
 )
+
 # Uncomment to enable github webhook, the GitHub oauth token needs admin:repo_hook permissions
+# Refer to https://github.com/tongueroo/codebuild/blob/master/readme/github_oauth.md
 # triggers(webhook: true)
+
 # Shorthand to enable all local cache modes
 # local_cache(true)

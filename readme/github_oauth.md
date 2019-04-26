@@ -24,3 +24,14 @@ Import the source credential into codebuild.
     EOL
     aws codebuild import-source-credentials --cli-input-json file:///tmp/codebuild-source-credentials.json
     aws codebuild list-source-credentials
+
+## Creating the GitHub Oauth Token
+
+One way to create an GitHub oauth token:
+
+1. Go to GitHub
+2. Settings
+3. Developer Settings
+4. Personal access tokens
+
+If using webhook, the oauth token needs `admin:repo_hook` also.

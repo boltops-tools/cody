@@ -13,7 +13,7 @@ module Codebuild
     end
 
     def run
-      evaluate(@role_path)
+      evaluate(@role_path) if File.exist?(@role_path)
       @properties[:policies] = [{
         policy_name: "CodeBuildAccess",
         policy_document: {
