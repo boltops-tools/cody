@@ -6,15 +6,11 @@
 # Go to GitHub / Settings / Developer Settings / Personal access tokens
 # If using webhook, the oauth token needs admin:repo_hook
 
-name("<%= project_name %>")
-github_url("<%= project_github_url %>")
-linux_image("<%= lookup_managed_image(/ruby:/) %>")
+name("codebuild")
+github_url("https://github.com/tongueroo/codebuild")
+linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
-  RAILS_ENV: "test",
-  # Example of ssm parameter for enviroment variables, this is different because it's part of the cloudformatio template
-  # API_KEY: "ssm:/codebuild/demo/api_key"
+  JETS_ENV: "test",
 )
-# Uncomment to enable github webhook, the GitHub oauth token needs admin:repo_hook permissions
-# triggers(webhook: true)
-# Shorthand to enable all local cache modes
-# local_cache(true)
+triggers(webhook: true)
+local_cache(false)

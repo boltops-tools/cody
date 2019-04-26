@@ -1,8 +1,10 @@
 # Codebuild
 
-Tool creates a CodeBuild project with some reasonable defaults. It provides a DSL that can be used to create and override any setting required.
+![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoidHFFaithL1pLZWFEUzBXbk5LY05Mc0FrZW56NDVJWTArbUlOdzBUalVPWWZ5a1ZYUEFtTkhlbFBjeURRZEd1Q292WTI1RUJwWkcvdEgxUXhSYnBqVU9VPSIsIml2UGFyYW1ldGVyU3BlYyI6IjJ0dnpqMC9XMzQ4VExCMGgiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
-## Summarized Usage
+Tool creates a CodeBuild project with some reasonable defaults. It provides a DSL that can be used to create and override setting if required.
+
+## Quick Start
 
     codebuild init
     codebuild deploy
@@ -32,7 +34,7 @@ role.rb | The IAM role assocaited with the codebuild project defined as a DSL.
 
 ### Deploy
 
-Adjust the files in `.codebuild` to you needs. When you're read deploy the CodeBuild project with:
+Adjust the files in `.codebuild` to fit your needs. When you're ready, deploy the CodeBuild project with:
 
     codebuild deploy STACK_NAME
 
@@ -45,15 +47,19 @@ It is useful to just see the generated CloudFormation template with `--noop` mod
 
     codebuild deploy --noop # see generated CloudFormation template
 
+For more help:
+
+    codebuild deploy -h
+
 ### Start
 
 When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
 
     codebuild start # infers the name from the parent folder
     codebuild start stack-name # looks up project via CloudFormation stack
-    codebuild start demo-project # looks up project via codebuild project name
+    codebuild start demo-project # looks up project via CodeBuild project name
 
-The `codebuild start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or codebuild directly.
+The `codebuild start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
 
 ## Project DSL
 
@@ -64,7 +70,6 @@ The tool provides a DSL to create a codebuild project.  Here's an example.
 ```ruby
 name("demo")
 github_url("https://github.com/tongueroo/demo-ufo")
-github_token(ssm("/codebuild/demo/oauth_token"))
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
   UFO_ENV: "development",
@@ -72,9 +77,18 @@ environment_variables(
 )
 ```
 
-The Project DSL methods are defined in the [lib/codebuild/dsl/project.rb](lib/codebuild/dsl/project.rb) class.
+Here's a list of some of the convenience shorthand DSL methods:
 
-More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see "Full DSL".
+* github_url(url)
+* github_source(options={})
+* linux_image(name)
+* linux_environment(options={})
+* environment_variables(vars)
+* local_cache(enable=true)
+
+Please refer to [lib/codebuild/dsl/project.rb](lib/codebuild/dsl/project.rb) for the full list.
+
+More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [Full DSL docs](readme/full_dsl.md).
 
 ## IAM Role DSL
 
@@ -86,7 +100,7 @@ The codebuild tool can create the IAM service role associated with the codebuild
 iam_policy("logs", "ssm")
 ```
 
-For a longer form:
+For more control, here's a longer form:
 
 ```ruby
 iam_policy(
@@ -103,7 +117,7 @@ iam_policy(
 
 ## Full DSL
 
-The convenience methods are shorter and cleaner, however, you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the the [Full DSL docs](readme/full_dsl.md) for more info.
+The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [Full DSL docs](readme/full_dsl.md) for more info.
 
 ## Lookup Paths
 

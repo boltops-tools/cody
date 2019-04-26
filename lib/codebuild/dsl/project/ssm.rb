@@ -2,6 +2,8 @@ require "aws-sdk-ssm"
 
 module Codebuild::Dsl::Project
   module Ssm
+    # This method grabs the ssm parameter store value at "compile" time vs
+    # CloudFormation run time. In case we need it as part of the DSL compile phase.
     def ssm(name)
       resp = ssm_client.get_parameter(name: name)
       if resp.parameter.type == "SecureString"

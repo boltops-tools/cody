@@ -26,9 +26,7 @@ module Codebuild::AwsServices
     end
 
     def inferred_stack_name
-      name = File.basename(Dir.pwd).gsub('_','-').gsub(/[^0-9a-zA-Z,-]/, '')
-      name += "-codebuild" unless name.include?("-codebuild")
-      name
+      File.basename(Dir.pwd).gsub('_','-').gsub(/[^0-9a-zA-Z,-]/, '')
     end
 
     def are_you_sure?(stack_name, action)

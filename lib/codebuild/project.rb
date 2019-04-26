@@ -35,24 +35,17 @@ module Codebuild
             # the default log group name is thankfully the project name
           }
         },
-        cache: {
-          type: "LOCAL",
-          modes: [
-              "LOCAL_DOCKER_LAYER_CACHE",
-              "LOCAL_SOURCE_CACHE",
-              "LOCAL_CUSTOM_CACHE"
-          ]
-        },
         source: {
           type: "GITHUB",
           # location: "", # required
           git_clone_depth: 1,
           git_submodules_config: { fetch_submodules: true },
           build_spec: build_spec,
-          auth: {
-            type: "OAUTH",
-            resource: "", # required
-          },
+          # auth doesnt seem to work, refer to https://github.com/tongueroo/codebuild/blob/master/readme/github_oauth.md
+          # auth: {
+          #   type: "OAUTH",
+          #   # resource: "", # required
+          # },
           report_build_status: true,
         }
       }

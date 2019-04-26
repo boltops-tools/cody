@@ -1,0 +1,26 @@
+# GitHub Oauth Token
+
+Thought that we need to set the oauth token as part of the CloudFormation template source property under [AWS CodeBuild Project SourceAuth](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html). However, that did not seem to work.
+
+Instead this guide [Using Access Tokens with Your Source Provider in CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-access-tokens.html) with [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) worked.
+
+## Commands
+
+Here are the commands for posterity.
+
+Save the GitHub oauth token to parameter store, in case we need it in the future.
+
+    aws ssm put-parameter --name /codebuild/github/oauth_token --value secret-token-value --type SecureString
+
+Import the source credential into codebuild.
+
+    TOKEN=$(aws ssm get-parameter --name /codebuild/github/oauth_token --with-decryption | jq -r '.Parameter.Value')
+    cat > /tmp/codebuild-source-credentials.json <<EOL
+    {
+        "token": "$TOKEN",
+        "serverType": "GITHUB",
+        "authType": "PERSONAL_ACCESS_TOKEN"
+    }
+    EOL
+    aws codebuild import-source-credentials --cli-input-json file:///tmp/codebuild-source-credentials.json
+    aws codebuild list-source-credentials

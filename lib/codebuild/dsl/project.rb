@@ -33,6 +33,12 @@ module Codebuild::Dsl
       @properties[:source][:location] = url
     end
 
+    # So it looks like the auth resource property doesnt really get used.
+    # Instead an account level credential is worked.  Refer to:
+    # https://github.com/tongueroo/codebuild/blob/master/readme/github_oauth.md
+    #
+    # Keeping this method around in case the CloudFormation method works one day,
+    # or end up figuring out to use it properly.
     def github_token(token)
       @properties[:source][:auth][:resource] = token
     end
@@ -44,12 +50,16 @@ module Codebuild::Dsl
         git_clone_depth: 1,
         git_submodules_config: { fetch_submodules: true },
         build_spec: options[:buildspec] || ".codebuild/buildspec.yml",
-        auth: {
-          type: "OAUTH",
-          resource: options[:oauth_token],
-        },
         report_build_status: true,
       }
+
+      if options[:oauth_token]
+        source[:auth] = {
+          type: "OAUTH",
+          resource: options[:oauth_token],
+        }
+      end
+
       @properties[:source] = source
     end
 
@@ -85,6 +95,22 @@ module Codebuild::Dsl
       }
       @properties[:environment] ||= {}
       @properties[:environment][:environment_variables] = @mapped_env_vars
+    end
+
+    def local_cache(enable=true)
+      cache = if enable
+        {
+          type: "LOCAL",
+          modes: [
+              "LOCAL_DOCKER_LAYER_CACHE",
+              "LOCAL_SOURCE_CACHE",
+              "LOCAL_CUSTOM_CACHE"
+          ]
+        }
+      else
+        {type: "NO_CACHE"}
+      end
+      @properties[:cache] = cache
     end
   end
 end
