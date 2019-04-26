@@ -2,7 +2,7 @@
 
 ## Project DSL
 
-The convenience is shorter and cleaner, however you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  If you wanted to set the CloudFormation properties more directly, here's an example of using the "Full" DSL.
+The convenience methods are shorter and cleaner. However, you have access to a "Full" DSL if needed. The Full DSL are merely the properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  Here's an example.
 
 .codebuild/project.rb:
 
