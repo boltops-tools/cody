@@ -2,7 +2,7 @@ require "yaml"
 
 module Codebuild
   class Project
-    include Codebuild::Dsl::Project
+    include Dsl::Project
     include Evaluate
 
     def initialize(options={})
@@ -43,6 +43,18 @@ module Codebuild
               "LOCAL_CUSTOM_CACHE"
           ]
         },
+        source: {
+          type: "GITHUB",
+          # location: "", # required
+          git_clone_depth: 1,
+          git_submodules_config: { fetch_submodules: true },
+          build_spec: ".codebuild/buildspec.yml",
+          auth: {
+            type: "OAUTH",
+            resource: "", # required
+          },
+          report_build_status: true,
+        }
       }
     end
   end

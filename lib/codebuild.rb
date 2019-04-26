@@ -12,6 +12,7 @@ module Codebuild
   autoload :Completer, "codebuild/completer"
   autoload :Completion, "codebuild/completion"
   autoload :Create, "codebuild/create"
+  autoload :Delete, "codebuild/delete"
   autoload :Deploy, "codebuild/deploy"
   autoload :Dsl, "codebuild/dsl"
   autoload :Evaluate, "codebuild/evaluate"

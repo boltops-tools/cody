@@ -1,4 +1,4 @@
-iam_statement(
+iam_policy(
   action: [
     "logs:CreateLogGroup",
     "logs:CreateLogStream",

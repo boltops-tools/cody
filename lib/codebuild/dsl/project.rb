@@ -28,19 +28,12 @@ module Codebuild::Dsl
       end
     end
 
-    # convenience wrapper methods
-
+    # Convenience wrapper methods
     def github_url(url)
-      # Sets a baseline default first
-      github_source(location: url) unless @properties[:source]
-      # Always overrides
       @properties[:source][:location] = url
     end
 
     def github_token(token)
-      # Sets a baseline default first
-      github_source(oauth_token: token) unless @properties[:source]
-      # Always overrides
       @properties[:source][:auth][:resource] = token
     end
 
@@ -66,15 +59,18 @@ module Codebuild::Dsl
 
     def linux_environment(options={})
       image = options[:image] || "aws/codebuild/ruby:2.5.3-1.7.0"
-      environment = {
+      env = {
         compute_type: options[:compute_type] || "BUILD_GENERAL1_SMALL",
         image_pull_credentials_type: "CODEBUILD", # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-imagepullcredentialstype
         privileged_mode: true,
         image: image,
         type: "LINUX_CONTAINER"
       }
-      environment[:environment_variables] = @mapped_env_vars if @mapped_env_vars
-      @properties[:environment] = environment
+      # @mapped_env_vars is in memory
+      env[:environment_variables] = @mapped_env_vars if @mapped_env_vars
+      # options has highest precedence
+      env[:environment_variables] = options[:environment_variables] if options[:environment_variables]
+      @properties[:environment] = env
     end
 
     def environment_variables(vars)
