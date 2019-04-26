@@ -7,7 +7,7 @@ module Codebuild
 
     def initialize(options={})
       @options = options
-      @role_path = options[:role_path] || ".codebuild/role.rb"
+      @role_path = options[:role_path] || get_role_path
       @properties = default_properties
       @iam_policy = {}
     end
@@ -31,6 +31,10 @@ module Codebuild
     end
 
   private
+    def get_role_path
+      lookup_codebuild_file("role.rb")
+    end
+
     def default_properties
       {
         assume_role_policy_document: {

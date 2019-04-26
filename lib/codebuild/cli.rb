@@ -16,26 +16,34 @@ module Codebuild
       Dsl.new(options).evaluate
     end
 
+    deploy_options = Proc.new do
+      option :lookup, desc: "folder to use within .codebuild folder for extra lookups of files"
+    end
+
     desc "create", "Create codebuild project."
     long_desc Help.text(:create)
+    deploy_options.call
     def create(stack_name=nil)
       Create.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "update", "Update codebuild project."
     long_desc Help.text(:update)
+    deploy_options.call
     def update(stack_name=nil)
       Update.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "deploy", "Deploy codebuild project."
     long_desc Help.text(:deploy)
+    deploy_options.call
     def deploy(stack_name=nil)
       Deploy.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "delete", "Delete codebuild project."
     long_desc Help.text(:delete)
+    option :sure, desc: "Bypass are you sure prompt"
     def delete(stack_name=nil)
       Delete.new(options.merge(stack_name: stack_name)).run
     end

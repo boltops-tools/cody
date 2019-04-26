@@ -103,9 +103,13 @@ iam_policy(
 
 ## Full DSL
 
-The convenience methods are shorter and cleaner, however you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the the [Full DSL docs](readme/full_dsl.md) for more info.
+The convenience methods are shorter and cleaner, however, you have access to a "Full" DSL if needed. The convenience methods merely wrap properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the the [Full DSL docs](readme/full_dsl.md) for more info.
 
-# Installation
+## Lookup Paths
+
+By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the lookup logic with the `--lookup` option.  More info [Lookup docs](readme/lookup.md).
+
+## Installation
 
 Add this line to your application's Gemfile:
 

@@ -7,7 +7,7 @@ module Codebuild
 
     def initialize(options={})
       @options = options
-      @project_path = options[:project_path] || ".codebuild/project.rb"
+      @project_path = options[:project_path] || get_project_path
       # These defaults make it the project.rb simpler
       @properties = default_properties
     end
@@ -48,7 +48,7 @@ module Codebuild
           # location: "", # required
           git_clone_depth: 1,
           git_submodules_config: { fetch_submodules: true },
-          build_spec: ".codebuild/buildspec.yml",
+          build_spec: build_spec,
           auth: {
             type: "OAUTH",
             resource: "", # required
@@ -56,6 +56,14 @@ module Codebuild
           report_build_status: true,
         }
       }
+    end
+
+    def get_project_path
+      lookup_codebuild_file("project.rb")
+    end
+
+    def build_spec
+      lookup_codebuild_file("buildspec.yml")
     end
   end
 end

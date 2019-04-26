@@ -39,5 +39,14 @@ module Codebuild
         end
       end
     end
+
+    def lookup_codebuild_file(name)
+      folder_path = [".codebuild", @options[:lookup], name].compact.join("/")
+      if File.exist?(folder_path)
+        folder_path
+      else
+        ".codebuild/#{name}" # default
+      end
+    end
   end
 end
