@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Codebuild::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Codebuild tool"
+  spec.summary       = "CodeBuild DSL Tool to Quickly Create CodeBuild Project"
   spec.homepage      = "https://github.com/tongueroo/codebuild"
   spec.license       = "MIT"
 
