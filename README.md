@@ -10,6 +10,10 @@ The codebuild tool provides a DSL to create a CodeBuild project with some reason
     codebuild deploy
     codebuild start
 
+## Private Repo
+
+IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to [github_oauth.md](readme/github_oauth.md) for more info.
+
 ## Usage
 
 1. **init**: generate starter .codebuild files.

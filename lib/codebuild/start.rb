@@ -8,9 +8,10 @@ module Codebuild
     end
 
     def run
-      resp = codebuild.start_build(
+      source_version = @options[:branch] || @options[:source_version] || 'master'
+      codebuild.start_build(
         project_name: project_name,
-        source_version: @options[:source_version] || 'master'
+        source_version: source_version
       )
       puts "Build started for project: #{project_name}"
     end
