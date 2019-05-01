@@ -20,7 +20,7 @@ module Codebuild
     def set_source_path
       return unless @options[:template]
 
-      custom_template = "#{ENV['HOME']}/.codebuild/templates/#{@options[:template]}"
+      custom_template = "#{ENV['HOME']}/.codebuild/templates/#{full_repo_name}"
 
       if @options[:template_mode] == "replace" # replace the template entirely
         override_source_paths(custom_template)
@@ -32,7 +32,11 @@ module Codebuild
 
     def copy_project
       puts "Initialize codebuild project in .codebuild"
-      directory ".", exclude_pattern: /.git/
+      if @options[:template]
+        directory ".", ".codebuild", exclude_pattern: /.git/
+      else
+        directory ".", exclude_pattern: /.git/
+      end
     end
 
   private
