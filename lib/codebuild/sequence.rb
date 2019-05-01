@@ -29,7 +29,11 @@ module Codebuild
         abort "Unable to detect git installation on your system.  Git needs to be installed in order to use the --template option."
       end
 
-      template_path = "#{ENV['HOME']}/.codebuild/templates/#{options[:template]}"
+      full_repo = options[:template].split("/")[-2..-1].join("/")
+      full_repo = full_repo.split(":").last
+      full_repo.sub!(".git", "")
+
+      template_path = "#{ENV['HOME']}/.codebuild/templates/#{full_repo}"
       if File.exist?(template_path)
         sh("cd #{template_path} && git pull")
       else

@@ -14,6 +14,7 @@ module Codebuild
         source_version: source_version
       )
       puts "Build started for project: #{project_name}"
+      puts "Please check the CodeBuild console for the status."
     end
 
     def project_name

@@ -4,12 +4,12 @@ version: 0.2
 # Edit to fit your needs
 
 phases:
-  pre_build:
+  install:
     commands:
       - uname -a
       - pwd
       - ls
-      - env
+      - env | sort
       - ls /etc/*release*
       - cat /etc/*release*
       - whoami
