@@ -32,11 +32,7 @@ module Codebuild
 
     def copy_project
       puts "Initialize codebuild project in .codebuild"
-      if @options[:template]
-        directory ".", ".codebuild", exclude_pattern: /.git/
-      else
-        directory ".", exclude_pattern: /.git/
-      end
+      directory ".", exclude_pattern: /.git/
     end
 
   private
