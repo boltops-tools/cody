@@ -51,7 +51,7 @@ module Codebuild
     desc "start", "start codebuild project."
     long_desc Help.text(:start)
     option :source_version, default: "master", desc: "git branch"
-    option :branch, default: "master", desc: "git branch"
+    option :branch, aliases: "b", default: "master", desc: "git branch"
     def start(identifier=nil)
       Start.new(options.merge(identifier: identifier)).run
     end
