@@ -1,1 +1,2 @@
-iam_policy("logs", "ssm")
+# Example:
+# iam_policy("logs", "ssm")

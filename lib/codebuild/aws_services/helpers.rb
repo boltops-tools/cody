@@ -26,7 +26,7 @@ module Codebuild::AwsServices
     end
 
     def inferred_stack_name
-      File.basename(Dir.pwd).gsub('_','-').gsub(/[^0-9a-zA-Z,-]/, '')
+      File.basename(Dir.pwd).gsub('_','-').gsub(/\.+/,'-').gsub(/[^0-9a-zA-Z,-]/, '')
     end
 
     def are_you_sure?(stack_name, action)
