@@ -32,3 +32,15 @@ Lookup order with `--lookup deploy` for `buildspec.yml`:
 2. .codebuild/buildspec.yml
 
 The same goes other files in the `.codebuild` like `project.rb` and `role.rb`.
+
+## Lookup Stack Name
+
+The CloudFormation stack name is appended with the name of the lookup option. So if you project folder is `demo` and the lookup option is `unit`.
+
+    cd demo # project folder
+    codebuild deploy --lookup unit
+
+It produces an inferred stack name of `demo-unit`.  You can override the CloudFormation stack name by specifying the name explicitly.
+
+    cd demo # project folder
+    codebuild deploy my-stack-name --lookup unit

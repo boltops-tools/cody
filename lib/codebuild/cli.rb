@@ -16,27 +16,27 @@ module Codebuild
       Dsl.new(options).evaluate
     end
 
-    deploy_options = Proc.new do
+    lookup_option = Proc.new do
       option :lookup, desc: "folder to use within .codebuild folder for extra lookups of files"
     end
 
     desc "create", "Create codebuild project."
     long_desc Help.text(:create)
-    deploy_options.call
+    lookup_option.call
     def create(stack_name=nil)
       Create.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "update", "Update codebuild project."
     long_desc Help.text(:update)
-    deploy_options.call
+    lookup_option.call
     def update(stack_name=nil)
       Update.new(options.merge(stack_name: stack_name)).run
     end
 
     desc "deploy", "Deploy codebuild project."
     long_desc Help.text(:deploy)
-    deploy_options.call
+    lookup_option.call
     def deploy(stack_name=nil)
       Deploy.new(options.merge(stack_name: stack_name)).run
     end
@@ -44,6 +44,7 @@ module Codebuild
     desc "delete", "Delete codebuild project."
     long_desc Help.text(:delete)
     option :sure, desc: "Bypass are you sure prompt"
+    lookup_option.call
     def delete(stack_name=nil)
       Delete.new(options.merge(stack_name: stack_name)).run
     end
@@ -52,6 +53,7 @@ module Codebuild
     long_desc Help.text(:start)
     option :source_version, default: "master", desc: "git branch"
     option :branch, aliases: "b", default: "master", desc: "git branch"
+    lookup_option.call
     def start(identifier=nil)
       Start.new(options.merge(identifier: identifier)).run
     end

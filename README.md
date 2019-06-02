@@ -77,7 +77,7 @@ github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
   UFO_ENV: "development",
-  API_KEY: "ssm:/codebuild/demo/api_key"
+  API_KEY: "ssm:/codebuild/demo/api_key" # ssm param example
 )
 ```
 
