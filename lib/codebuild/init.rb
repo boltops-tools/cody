@@ -69,7 +69,9 @@ module Codebuild
         end
       end
       versions = versions.select { |v| v =~ pattern }
-      versions.sort.last # IE: aws/codebuild/ruby:2.5.3-1.7.0
+      # IE: aws/codebuild/ruby:2.5.3-1.7.0
+      # Falls back to hard-coded image name since the API changed and looks like it's returning no ruby images
+      versions.sort.last || "aws/codebuild/ruby:2.5.3-1.7.0"
     end
   end
 end
