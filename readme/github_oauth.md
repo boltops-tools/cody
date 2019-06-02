@@ -13,7 +13,7 @@ One way to create an GitHub oauth token:
 3. Developer Settings
 4. Personal access tokens
 
-If using webhook, the oauth token needs `admin:repo_hook` also.
+IMPORTANT: If using webhook, the oauth token needs `admin:repo_hook` also.  To check this, you can log into the github, go to the repo and see if you have access to the "Settings" tab.
 
 ## Commands
 
