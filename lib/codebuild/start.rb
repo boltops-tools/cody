@@ -9,12 +9,14 @@ module Codebuild
 
     def run
       source_version = @options[:branch] || @options[:source_version] || 'master'
-      codebuild.start_build(
+      resp = codebuild.start_build(
         project_name: project_name,
         source_version: source_version
       )
       puts "Build started for project: #{project_name}"
       puts "Please check the CodeBuild console for the status."
+      puts "Codebuild Log Url:"
+      puts codebuild_log_url(resp.build.id)
     end
 
     def project_name
@@ -33,6 +35,12 @@ module Codebuild
     end
 
   private
+    def codebuild_log_url(build_id)
+      build_id = build_id.split(':').last
+      region = `aws configure get region`.strip rescue "us-east-1"
+      "https://#{region}.console.aws.amazon.com/codesuite/codebuild/projects/#{project_name}/build/#{project_name}%3A#{build_id}/log"
+    end
+
     def project_exists?(name)
       resp = codebuild.batch_get_projects(names: [name])
       resp.projects.size > 0
