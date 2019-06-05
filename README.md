@@ -94,7 +94,7 @@ Here's a list of some of the convenience shorthand DSL methods:
 
 Please refer to [lib/codebuild/dsl/project.rb](lib/codebuild/dsl/project.rb) for the full list.
 
-More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [Full DSL docs](readme/full_dsl.md).
+More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [DSL docs](docs/dsl).
 
 ## IAM Role DSL
 
@@ -129,7 +129,7 @@ managed_iam_policy("AmazonS3ReadOnlyAccess")
 
 ## Full DSL
 
-The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [Full DSL docs](readme/full_dsl.md) for more info.
+The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](docs/dsl) for more info.
 
 ## Type Option
 
