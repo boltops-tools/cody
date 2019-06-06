@@ -1,6 +1,5 @@
 module Codebuild::Dsl
   module Project
-    autoload :Ssm, "codebuild/dsl/project/ssm"
     include Ssm
 
     PROPERTIES = %w[

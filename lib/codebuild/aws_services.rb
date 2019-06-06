@@ -3,7 +3,6 @@ require "aws-sdk-cloudformation"
 
 module Codebuild
   module AwsServices
-    autoload :Helpers, "codebuild/aws_services/helpers"
     include Helpers
 
     def codebuild
