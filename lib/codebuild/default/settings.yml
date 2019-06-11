@@ -1,0 +1,3 @@
+base:
+  stack_naming:
+    append_env: true

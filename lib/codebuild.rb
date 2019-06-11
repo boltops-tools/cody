@@ -13,4 +13,8 @@ require "cfn/status"
 
 module Codebuild
   class Error < StandardError; end
+  extend Core
 end
+
+
+Codebuild.set_aws_profile!

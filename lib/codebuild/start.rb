@@ -4,7 +4,8 @@ module Codebuild
 
     def initialize(options)
       @options = options
-      @identifier = options[:identifier] || inferred_stack_name # CloudFormation stack or CodeBuild project name
+      @project_name = options[:project_name] || inferred_project_name
+      @full_project_name = project_name_convention(@project_name)
     end
 
     def run
@@ -20,14 +21,14 @@ module Codebuild
     end
 
     def project_name
-      if stack_exists?(@identifier)
-        resp = cfn.describe_stack_resources(stack_name: @identifier)
+      if project_exists?(@full_project_name)
+        @full_project_name
+      elsif stack_exists?(@project_name) # allow `cb start STACK_NAME` to work too
+        resp = cfn.describe_stack_resources(stack_name: @project_name)
         resource = resp.stack_resources.find do |r|
           r.logical_resource_id == "CodeBuild"
         end
         resource.physical_resource_id # codebuild project name
-      elsif project_exists?(@identifier)
-        @identifier
       else
         puts "ERROR: Unable to find the codebuild project with identifier #@identifier".color(:red)
         exit 1

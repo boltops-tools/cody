@@ -10,52 +10,33 @@ module Codebuild
     end
     register(Init, "init", "init", "Set up initial ufo files.")
 
-    desc "evaluate", "Evaluate the .codebuild/project.rb DSL."
-    long_desc Help.text(:evaluate)
-    def evaluate
-      Dsl.new(options).evaluate
-    end
-
-    lookup_option = Proc.new do
-      option :lookup, desc: "folder to use within .codebuild folder for extra lookups of files"
-    end
-
-    desc "create", "Create codebuild project."
-    long_desc Help.text(:create)
-    lookup_option.call
-    def create(stack_name=nil)
-      Create.new(options.merge(stack_name: stack_name)).run
-    end
-
-    desc "update", "Update codebuild project."
-    long_desc Help.text(:update)
-    lookup_option.call
-    def update(stack_name=nil)
-      Update.new(options.merge(stack_name: stack_name)).run
+    common_options = Proc.new do
+      option :type, desc: "folder to use within .codebuild folder for different build types"
+      option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
     end
 
     desc "deploy", "Deploy codebuild project."
     long_desc Help.text(:deploy)
-    lookup_option.call
-    def deploy(stack_name=nil)
-      Deploy.new(options.merge(stack_name: stack_name)).run
+    common_options.call
+    def deploy(project_name=nil)
+      Deploy.new(options.merge(project_name: project_name)).run
     end
 
     desc "delete", "Delete codebuild project."
     long_desc Help.text(:delete)
     option :sure, desc: "Bypass are you sure prompt"
-    lookup_option.call
-    def delete(stack_name=nil)
-      Delete.new(options.merge(stack_name: stack_name)).run
+    common_options.call
+    def delete(project_name=nil)
+      Delete.new(options.merge(project_name: project_name)).run
     end
 
     desc "start", "start codebuild project."
     long_desc Help.text(:start)
     option :source_version, default: "master", desc: "git branch"
     option :branch, aliases: "b", default: "master", desc: "git branch"
-    lookup_option.call
-    def start(identifier=nil)
-      Start.new(options.merge(identifier: identifier)).run
+    common_options.call
+    def start(project_name=nil)
+      Start.new(options.merge(project_name: project_name)).run
     end
 
     desc "completion *PARAMS", "Prints words for auto-completion."

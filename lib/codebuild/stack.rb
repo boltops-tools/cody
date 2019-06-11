@@ -6,12 +6,28 @@ module Codebuild
 
     def initialize(options)
       @options = options
-      @stack_name = options[:stack_name] || inferred_stack_name
-      @template = {"Resources" => {} }
+      @project_name = @options[:project_name] || inferred_project_name
+      @stack_name = options[:stack_name] || inferred_stack_name(@project_name)
+
+      @full_project_name = project_name_convention(@project_name)
+      @template = {
+        "Description" => "CodeBuild Project: #{@full_project_name}",
+        "Resources" => {}
+      }
     end
 
     def run
-      project = Project.new(@options).run
+      options = @options.merge(
+        project_name: @project_name,
+        full_project_name: @full_project_name,
+      )
+      project_builder = Project.new(options)
+      unless project_builder.exist?
+        puts "ERROR: Codebuild project does not exist: #{project_builder.project_path}".color(:red)
+        exit 1
+        return
+      end
+      project = project_builder.run
       @template["Resources"].merge!(project)
 
       if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
@@ -24,6 +40,7 @@ module Codebuild
       IO.write(template_path, YAML.dump(@template))
       puts "Generated CloudFormation template at #{template_path.color(:green)}"
       return if @options[:noop]
+      puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
 
       begin
         perform
@@ -31,8 +48,12 @@ module Codebuild
         status.wait
         exit 2 unless status.success?
       rescue Aws::CloudFormation::Errors::ValidationError => e
-        puts "ERROR: #{e.message}".color(:red)
-        exit 1
+        if e.message.include?("No updates") # No updates are to be performed.
+          puts "WARN: #{e.message}".color(:yellow)
+        else
+          puts "ERROR: #{e.message}".color(:red)
+          exit 1
+        end
       end
     end
 

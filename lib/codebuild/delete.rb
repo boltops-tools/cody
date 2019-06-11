@@ -4,7 +4,8 @@ module Codebuild
 
     def initialize(options)
       @options = options
-      @stack_name = options[:stack_name] || inferred_stack_name
+      @project_name = options[:project_name] || inferred_project_name
+      @stack_name = options[:stack_name] || inferred_stack_name(@project_name)
     end
 
     def run
