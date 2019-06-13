@@ -23,7 +23,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "aws-sdk-codebuild"
   spec.add_dependency "aws-sdk-ssm"
   spec.add_dependency "cfn_camelizer"
+  spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
+  spec.add_dependency "render_me_pretty"
   spec.add_dependency "thor"
 
   spec.add_development_dependency "bundler"

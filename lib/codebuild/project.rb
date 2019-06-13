@@ -5,11 +5,18 @@ module Codebuild
     include Dsl::Project
     include Evaluate
 
+    attr_reader :project_name, :full_project_name, :project_path
     def initialize(options={})
       @options = options
+      @project_name = options[:project_name]
+      @full_project_name = options[:full_project_name] # includes -development at the end
       @project_path = options[:project_path] || get_project_path
       # These defaults make it the project.rb simpler
       @properties = default_properties
+    end
+
+    def exist?
+      File.exist?(@project_path)
     end
 
     def run
@@ -25,6 +32,8 @@ module Codebuild
 
     def default_properties
       {
+        name: @full_project_name,
+        description: @full_project_name,
         artifacts: { type: "NO_ARTIFACTS" },
         service_role: { ref: "IamRole" },
         badge_enabled: true,

@@ -25,9 +25,25 @@ module Codebuild::AwsServices
       exist
     end
 
-    def inferred_stack_name
-      basename = File.basename(Dir.pwd).gsub('_','-').gsub(/\.+/,'-').gsub(/[^0-9a-zA-Z,-]/, '')
-      [basename, @options[:lookup]].compact.join('-')
+    def project_name_convention(name_base)
+      [@project_name, @options[:type], Codebuild.env, Codebuild.env_extra].reject(&:blank?).compact.join("-")
+    end
+
+    def inferred_project_name
+      # Essentially the project's parent folder
+      File.basename(Dir.pwd).gsub('_','-').gsub(/\.+/,'-').gsub(/[^0-9a-zA-Z,-]/, '')
+    end
+
+    # Examples:
+    #
+    #     myapp-ci-deploy # with Settings stack_naming append_env set to false.
+    #     myapp-ci-deploy-development
+    #     myapp-ci-deploy-development-2
+    #
+    def inferred_stack_name(project_name)
+      items = [project_name, "cb", @options[:type], Codebuild.env_extra]
+      items.insert(3, Codebuild.env) if Codebuild.settings.dig(:stack_naming, :append_env)
+      items.reject(&:blank?).compact.join("-")
     end
 
     def are_you_sure?(stack_name, action)
