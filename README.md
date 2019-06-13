@@ -4,7 +4,7 @@
 
 The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults.
 
-The codebuild tool installs `cb` and `codebuild` executables. Both of them do the same thing, `cb` is just a shorter to type.
+The codebuild tool installs `cb` and `codebuild` executables. Both of them do the same thing, `cb` is just shorter to type.
 
 ## Quick Start
 
@@ -35,8 +35,8 @@ First, run `codebuild init` to generate a starter .codebuild structure.
 File | Description
 --- | ---
 buildspec.yml | The build commands to run.
-project.rb | The codebuild project defined as a DSL.
-role.rb | The IAM role assocaited with the codebuild project defined as a DSL.
+project.rb | The codebuild project written as a DSL.
+role.rb | The IAM role associated with the codebuild project written as a DSL.
 
 ### Deploy
 
