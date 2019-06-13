@@ -4,11 +4,13 @@
 
 The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults.
 
+The codebuild tool installs `cb` and `codebuild` executables. Both of them do the same thing, `cb` is just a shorter to type.
+
 ## Quick Start
 
-    codebuild init
-    codebuild deploy
-    codebuild start
+    cb init
+    cb deploy
+    cb start
 
 ## Private Repo
 
@@ -40,30 +42,30 @@ role.rb | The IAM role assocaited with the codebuild project defined as a DSL.
 
 Adjust the files in `.codebuild` to fit your needs. When you're ready, deploy the CodeBuild project with:
 
-    codebuild deploy STACK_NAME
+    cb deploy STACK_NAME
 
 More examples:
 
-    codebuild deploy # infers the CloudFormation name from the parent folder
-    codebuild deploy stack-name # explicitly specify stack name
+    cb deploy # infers the CloudFormation name from the parent folder
+    cb deploy stack-name # explicitly specify stack name
 
 It is useful to just see the generated CloudFormation template with `--noop` mode:
 
-    codebuild deploy --noop # see generated CloudFormation template
+    cb deploy --noop # see generated CloudFormation template
 
 For more help:
 
-    codebuild deploy -h
+    cb deploy -h
 
 ### Start
 
 When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
 
-    codebuild start # infers the name from the parent folder
-    codebuild start stack-name # looks up project via CloudFormation stack
-    codebuild start demo-project # looks up project via CodeBuild project name
+    cb start # infers the name from the parent folder
+    cb start stack-name # looks up project via CloudFormation stack
+    cb start demo-project # looks up project via CodeBuild project name
 
-The `codebuild start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
+The `cb start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
 
 ## Project DSL
 
@@ -72,7 +74,7 @@ The tool provides a DSL to create a codebuild project.  Here's an example.
 .codebuild/project.rb:
 
 ```ruby
-name("demo")
+# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
@@ -123,9 +125,9 @@ iam_policy(
 
 The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [Full DSL docs](readme/full_dsl.md) for more info.
 
-## Lookup Paths
+## Type Option
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the lookup logic with the `--lookup` option.  More info [Lookup docs](readme/lookup.md).
+By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](readme/type.md).
 
 ## Installation
 
