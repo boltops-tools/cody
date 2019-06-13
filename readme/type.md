@@ -1,4 +1,4 @@
-# Type Options
+# Type Option
 
 By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the lookup logic with the `--type` option.
 
