@@ -111,5 +111,9 @@ module Codebuild::Dsl
       end
       @properties[:cache] = cache
     end
+
+    def type
+      @options[:type]
+    end
   end
 end

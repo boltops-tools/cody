@@ -26,7 +26,9 @@ module Codebuild::AwsServices
     end
 
     def project_name_convention(name_base)
-      [@project_name, @options[:type], Codebuild.env, Codebuild.env_extra].reject(&:blank?).compact.join("-")
+      items = [@project_name, @options[:type], Codebuild.env_extra]
+      items.insert(2, Codebuild.env) if Codebuild.settings.dig(:stack_naming, :append_env)
+      items.reject(&:blank?).compact.join("-")
     end
 
     def inferred_project_name

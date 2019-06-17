@@ -1,5 +1,6 @@
 require 'pathname'
 require 'yaml'
+require 'active_support/core_ext/string'
 
 module Codebuild
   module Core
@@ -14,7 +15,7 @@ module Codebuild
       # 2-way binding
       cb_env = env_from_profile || 'development'
       cb_env = ENV['CB_ENV'] if ENV['CB_ENV'] # highest precedence
-      cb_env
+      ActiveSupport::StringInquirer.new(cb_env)
     end
     memoize :env
 
