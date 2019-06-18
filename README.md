@@ -1,6 +1,6 @@
 # Codebuild
 
-![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoidHFFaithL1pLZWFEUzBXbk5LY05Mc0FrZW56NDVJWTArbUlOdzBUalVPWWZ5a1ZYUEFtTkhlbFBjeURRZEd1Q292WTI1RUJwWkcvdEgxUXhSYnBqVU9VPSIsIml2UGFyYW1ldGVyU3BlYyI6IjJ0dnpqMC9XMzQ4VExCMGgiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSUFzNE9RV3ROWmNKOHh2NG1wTjNmRlV4dnlOTnVrK3U2UFMrOEJRUGE2WS9mcjRWS0o1bjdSZlN5bG1tR1YyYVFlNkErTGdkbThsWExUaVJvWU1PRUY4PSIsIml2UGFyYW1ldGVyU3BlYyI6InppWWxJRGFiWHN1bEtYSzIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults.
 
