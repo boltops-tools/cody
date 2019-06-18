@@ -12,12 +12,30 @@ module Codebuild
       source_version = @options[:branch] || @options[:source_version] || 'master'
       resp = codebuild.start_build(
         project_name: project_name,
-        source_version: source_version
+        source_version: source_version,
+        environment_variables_override: environment_variables_override,
       )
       puts "Build started for project: #{project_name}"
       puts "Please check the CodeBuild console for the status."
       puts "Codebuild Log Url:"
       puts codebuild_log_url(resp.build.id)
+    end
+
+    def environment_variables_override
+      @options[:env_vars].map do |s|
+        k, v = s.split('=')
+        ssm = false
+        if /^ssm:(.*)/.match(v)
+          v = $1
+          ssm = true
+        end
+
+        {
+          name: k,
+          value: v,
+          type: ssm ? "PARAMETER_STORE" : "PLAINTEXT"
+        }
+      end
     end
 
     def project_name
@@ -30,7 +48,7 @@ module Codebuild
         end
         resource.physical_resource_id # codebuild project name
       else
-        puts "ERROR: Unable to find the codebuild project with identifier #@identifier".color(:red)
+        puts "ERROR: Unable to find the codebuild project with either full_project_name: #{@full_project_name} or project_name: #{@project_name}".color(:red)
         exit 1
       end
     end

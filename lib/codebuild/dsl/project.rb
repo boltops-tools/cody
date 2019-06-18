@@ -83,9 +83,9 @@ module Codebuild::Dsl
     end
 
     def environment_variables(vars)
-      @env_vars = vars
-      @mapped_env_vars = @env_vars.map { |k,v|
-        k = k.to_s
+      # Storing @mapped_env_vars as instance variable for later usage in linux_environment
+      @mapped_env_vars = vars.map { |k,v|
+        k, v = k.to_s, v.to_s
         if v =~ /^ssm:/
           { type: "PARAMETER_STORE", name: k, value: v.sub('ssm:','') }
         else
