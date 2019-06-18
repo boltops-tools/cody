@@ -17,11 +17,11 @@ module Codebuild::Dsl
 
     # convenience wrapper methods
     def iam_policy(*definitions)
-      @iam_statements = definitions.map { |definition| standardize(definition) }
+      @iam_statements = definitions.map { |definition| standardize_iam_policy(definition) }
     end
 
     # Returns standarized IAM statement
-    def standardize(definition)
+    def standardize_iam_policy(definition)
       case definition
       when String
         # Expands simple string from: logs => logs:*
@@ -36,5 +36,15 @@ module Codebuild::Dsl
       end
     end
 
+    def managed_iam_policy(*definitions)
+      @managed_policy_arns = definitions.map { |definition| standardize_managed_iam_policy(definition) }
+    end
+
+    # AmazonEC2ReadOnlyAccess => arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+    def standardize_managed_iam_policy(definition)
+      return definition if definition.include?('iam::aws:policy')
+
+      "arn:aws:iam::aws:policy/#{definition}"
+    end
   end
 end

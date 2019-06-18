@@ -20,7 +20,10 @@ module Codebuild
           version: "2012-10-17",
           statement: derived_iam_statements
         }
-      }]
+      }] unless @iam_statements.empty?
+
+      @properties[:managed_policy_arns] = @managed_policy_arns unless @managed_policy_arns.empty?
+
       resource = {
         IamRole: {
           type: "AWS::IAM::Role",
