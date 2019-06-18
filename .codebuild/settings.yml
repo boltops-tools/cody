@@ -1,0 +1,13 @@
+base:
+  # stack_naming:
+  #   append_env: true # default false
+
+development:
+  # cluster: development
+  # The aws_profile tightly binds CB_ENV to AWS_PROFILE and vice-versa.
+  # aws_profile: dev_profile
+
+production:
+  # cluster: production
+  # The aws_profile tightly binds CB_ENV to AWS_PROFILE and vice-versa.
+  # aws_profile: prod_profile
