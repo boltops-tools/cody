@@ -22,7 +22,7 @@ module Codebuild
         }
       }] unless @iam_statements.empty?
 
-      @properties[:managed_policy_arns] = @managed_policy_arns unless @managed_policy_arns.empty?
+      @properties[:managed_policy_arns] = @managed_policy_arns if !@managed_policy_arns&.empty?
 
       resource = {
         IamRole: {
