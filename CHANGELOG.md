@@ -3,11 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.4.0]
+- Add managed_iam_policy support
+- #2 Add schedule dsl
+- starter template fix: add settings.yml for correct cb project detection
+
 ## [0.3.0]
-* rework cb cli interface
-* project_name as cli main parameter
-* type option for subprojects in .codebuild folder
-* update to zeitwerk for autoloading
+- rework cb cli interface
+- project_name as cli main parameter
+- type option for subprojects in .codebuild folder
+- update to zeitwerk for autoloading
 
 ## [0.2.0]
 - First good release.
