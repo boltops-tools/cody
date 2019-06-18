@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.5.0]
+- add --wait option
+- change default append_env setting to false
+- fix default iam policy
+
 ## [0.4.0]
 - Add managed_iam_policy support
 - #2 Add schedule dsl
