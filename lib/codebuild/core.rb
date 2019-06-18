@@ -45,9 +45,9 @@ module Codebuild
     memoize :settings
 
     def check_codebuild_project!
-      check_path = "#{Codebuild.root}/.codebuild/settings.yml"
+      check_path = "#{Codebuild.root}/.codebuild"
       unless File.exist?(check_path)
-        puts "ERROR: No settings file at #{check_path}.  Are you sure you are in a project with codebuild setup?".color(:red)
+        puts "ERROR: No .codebuild folder found.  Are you sure you are in a project with codebuild setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
         puts "If you want to set up codebuild for this prjoect, please create a settings file via: codebuild init"
         exit 1 unless ENV['TEST']

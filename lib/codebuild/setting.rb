@@ -11,9 +11,8 @@ module Codebuild
     # data contains the settings.yml config.  The order or precedence for settings
     # is the project ufo/settings.yml and then the ~/.codebuild/settings.yml.
     def data
-      if @check_codebuild_project && !File.exist?(project_settings_path)
-        Codebuild.check_codebuild_project!
-      end
+      Codebuild.check_codebuild_project! if @check_codebuild_project
+      return {} unless File.exist?(project_settings_path)
 
       # project based settings files
       project = load_file(project_settings_path)
