@@ -1,6 +1,6 @@
 base:
   # stack_naming:
-  #   append_env: false # default true
+  #   append_env: true # default false
 
 development:
   # cluster: development
