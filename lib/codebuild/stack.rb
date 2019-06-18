@@ -31,9 +31,12 @@ module Codebuild
       @template["Resources"].merge!(project)
 
       if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
-        role = Role.new(@options).run
+        role = Role.new(options).run
         @template["Resources"].merge!(role)
       end
+
+      schedule = Schedule.new(options).run
+      @template["Resources"].merge!(schedule) if schedule
 
       template_path = "/tmp/codebuild.yml"
       FileUtils.mkdir_p(File.dirname(template_path))
