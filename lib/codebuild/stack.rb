@@ -48,6 +48,7 @@ module Codebuild
       begin
         perform
         url_info
+        return unless @options[:wait]
         status.wait
         exit 2 unless status.success?
       rescue Aws::CloudFormation::Errors::ValidationError => e

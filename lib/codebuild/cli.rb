@@ -13,6 +13,7 @@ module Codebuild
     common_options = Proc.new do
       option :type, desc: "folder to use within .codebuild folder for different build types"
       option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
+      option :wait, type: :boolean, default: true, desc: "Wait for operation to complete"
     end
 
     desc "deploy", "Deploy codebuild project."
