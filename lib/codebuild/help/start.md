@@ -9,4 +9,4 @@
 You can override env variables at runtime with `--env-vars`. Examples:
 
     cb start --type vpc --env-vars K1=v1 K2=v2
-    cb start --type vpc --env-vars K1=v1 K2=ssm:v2
+    cb start --type vpc --env-vars K1=v1 K2=ssm:v2 # support for PARAMETER_STORE

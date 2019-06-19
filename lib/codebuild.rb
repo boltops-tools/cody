@@ -19,5 +19,4 @@ module Codebuild
   extend Core
 end
 
-
 Codebuild.set_aws_profile!

@@ -22,7 +22,7 @@ IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild
 2. **deploy**: deploy the CodeBuild project on AWS.
 3. **start**: kick off a CodeBuild project run.
 
-### Init
+### Init and Structure
 
 First, run `codebuild init` to generate a starter .codebuild structure.
 

@@ -11,8 +11,7 @@ module Codebuild
       @project_name = options[:project_name]
       @full_project_name = options[:full_project_name] # includes -development at the end
       @project_path = options[:project_path] || get_project_path
-      # These defaults make it the project.rb simpler
-      @properties = default_properties
+      @properties = default_properties # defaults make project.rb simpler
     end
 
     def exist?

@@ -10,11 +10,12 @@ module Codebuild
 
     def run
       source_version = @options[:branch] || @options[:source_version] || 'master'
-      resp = codebuild.start_build(
+      params = {
         project_name: project_name,
-        source_version: source_version,
-        environment_variables_override: environment_variables_override,
-      )
+        source_version: source_version
+      }
+      params[:environment_variables_override] = environment_variables_override if @options[:env_vars]
+      resp = codebuild.start_build(params)
       puts "Build started for project: #{project_name}"
       puts "Please check the CodeBuild console for the status."
       puts "Codebuild Log Url:"
