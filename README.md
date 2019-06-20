@@ -127,6 +127,14 @@ You can also create managed iam policy.
 managed_iam_policy("AmazonS3ReadOnlyAccess")
 ```
 
+## Schedule Support
+
+.codebuild/schedule.rb:
+
+```ruby
+rate "1 day"
+```
+
 ## Full DSL
 
 The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](docs/dsl) for more info.

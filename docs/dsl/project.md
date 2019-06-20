@@ -1,5 +1,30 @@
 # Project DSL
 
+The tool provides a DSL to create a codebuild project.  Here's an example.
+
+.codebuild/project.rb:
+
+```ruby
+# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
+github_url("https://github.com/tongueroo/demo-ufo")
+linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+environment_variables(
+  UFO_ENV: "development",
+  API_KEY: "ssm:/codebuild/demo/api_key" # ssm param example
+)
+```
+
+Here's a list of some of the convenience shorthand DSL methods:
+
+* github_url(url)
+* github_source(options={})
+* linux_image(name)
+* linux_environment(options={})
+* environment_variables(vars)
+* local_cache(enable=true)
+
+## Under the Hood
+
 The convenience methods are shorter and cleaner. However, you have access to a "Full" DSL if needed. The Full DSL are merely the properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  Here's an example.
 
 .codebuild/project.rb:

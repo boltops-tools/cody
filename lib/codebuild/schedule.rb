@@ -13,9 +13,12 @@ module Codebuild
     def run
       return unless File.exist?(@schedule_path)
 
+      old_properties = @properties.clone
       evaluate(@schedule_path)
+
       @properties[:schedule_expression] = @schedule_expression if @schedule_expression
       set_rule_event! if @rule_event_props
+      return if old_properties == @properties # empty schedule.rb file
 
       resource = {
         events_rule: {
