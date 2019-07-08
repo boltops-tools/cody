@@ -2,6 +2,7 @@ module Codebuild
   class Schedule
     include Codebuild::Dsl::Schedule
     include Evaluate
+    include Variables
 
     def initialize(options={})
       @options = options
@@ -14,6 +15,7 @@ module Codebuild
       return unless File.exist?(@schedule_path)
 
       old_properties = @properties.clone
+      load_variables
       evaluate(@schedule_path)
 
       @properties[:schedule_expression] = @schedule_expression if @schedule_expression

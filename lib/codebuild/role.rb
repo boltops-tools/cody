@@ -4,6 +4,7 @@ module Codebuild
   class Role
     include Codebuild::Dsl::Role
     include Evaluate
+    include Variables
 
     def initialize(options={})
       @options = options
@@ -13,6 +14,7 @@ module Codebuild
     end
 
     def run
+      load_variables
       evaluate(@role_path) if File.exist?(@role_path)
       @properties[:policies] = [{
         policy_name: "CodeBuildAccess",

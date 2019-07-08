@@ -4,6 +4,7 @@ module Codebuild
   class Project
     include Dsl::Project
     include Evaluate
+    include Variables
 
     attr_reader :project_name, :full_project_name, :project_path
     def initialize(options={})
@@ -19,6 +20,7 @@ module Codebuild
     end
 
     def run
+      load_variables
       evaluate(@project_path)
       resource = {
         code_build: {
