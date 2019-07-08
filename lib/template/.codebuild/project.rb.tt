@@ -16,6 +16,14 @@ environment_variables(
 # Uncomment to enable github webhook, the GitHub oauth token needs admin:repo_hook permissions
 # Refer to https://github.com/tongueroo/codebuild/blob/master/readme/github_oauth.md
 # triggers(webhook: true)
+# Another example:
+# Docs: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html
+# {type: "EVENT", pattern: "PUSH"} is required
+# Also, note the extra brackets: [[]] is actually the proper format. I know weird.
+# triggers(
+#   webhook: true,
+#   filter_groups: [[{type: "HEAD_REF", pattern: "my-branch"}, {type: "EVENT", pattern: "PUSH"}]]
+# )
 
 # Shorthand to enable all local cache modes
 # local_cache(true)

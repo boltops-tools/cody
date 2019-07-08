@@ -8,7 +8,7 @@ module Codebuild
     Init.cli_options.each do |args|
       option(*args)
     end
-    register(Init, "init", "init", "Set up initial ufo files.")
+    register(Init, "init", "init", "Set up initial .codebuild files.")
 
     common_options = Proc.new do
       option :type, desc: "folder to use within .codebuild folder for different build types"

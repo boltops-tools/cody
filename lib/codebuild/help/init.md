@@ -11,7 +11,7 @@ If you would like the `cb init` command to use your own custom templates, you ca
 
 This will clone the repo on GitHub into the `~/.codebuild/templates/tongueroo/codebuild-custom-template` and use that as an additional template source.  The default `--template-mode=additive` mode means that if there's a file in `tongueroo/codebuild-custom-template` that exists it will use that in place of the default template files.
 
-If you do not want to use any of the original default template files within the ufo gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
+If you do not want to use any of the original default template files within the codebuild gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
 
     cb init --template=tongueroo/codebuild-custom-template --template-mode=replace
 
