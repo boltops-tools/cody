@@ -1,0 +1,86 @@
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>The Code</h2>
+                <p class="text-muted">Easy to learn</p>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Overview</h3>
+                                <div class="commands">
+{% highlight sh %}
+cb init
+cb deploy
+cb start
+cb delete
+{% endhighlight %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>Structure</h3>
+                                <div class="commands">
+{% highlight sh %}
+.codebuild
+├── buildspec.yml
+├── role.rb
+├── project.rb
+└── schedule.rb
+{% endhighlight %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Usage</h3>
+                                <div class="commands">
+{% highlight sh %}
+cb deploy # infers the CloudFormation name from the parent folder
+cb deploy stack-name # explicitly specify stack name
+
+cb start # infers the name from the parent folder
+cb start stack-name # looks up project via CloudFormation stack
+cb start demo-project # looks up project via CodeBuild project name
+{% endhighlight %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>project.rb</h3>
+                                <div class="commands">
+{% highlight ruby %}
+github_url("https://github.com/tongueroo/demo-ufo")
+linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+environment_variables(
+  UFO_ENV: "development",
+  API_KEY: "ssm:/codebuild/demo/api_key" # ssm param example
+)
+{% endhighlight %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>role.rb</h3>
+                                <div class="commands">
+{% highlight ruby %}
+iam_policy("logs", "ssm")
+{% endhighlight %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>schedule.rb</h3>
+                                <div class="commands">
+{% highlight ruby %}
+rate "1 day"
+{% endhighlight %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

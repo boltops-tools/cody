@@ -3,10 +3,11 @@ module Codebuild
     # Ugly, this is how I can get the options from to match with this Thor::Group
     def self.cli_options
       [
-        [:name, desc: "CodeBuild project name."],
-        [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files."],
-        [:template, desc: "Custom template to use."],
-        [:template_mode, desc: "Template mode: replace or additive."],
+        [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files"],
+        [:name, desc: "CodeBuild project name"],
+        [:template, desc: "Custom template to use"],
+        [:template_mode, desc: "Template mode: replace or additive"],
+        [:type, desc: "Type option creates a subfolder under .codebuild"],
       ]
     end
     cli_options.each { |o| class_option(*o) }
@@ -26,17 +27,22 @@ module Codebuild
         override_source_paths(custom_template)
       else # additive: modify on top of default template
         default_template = File.expand_path("../../template", __FILE__)
+        puts "default_template: #{default_template}"
         override_source_paths([custom_template, default_template])
       end
     end
 
+    def copy_top_level
+      puts "Initialize codebuild top-level folder"
+      dest = ".codebuild"
+      directory "top", dest, exclude_pattern: /.git/
+    end
+
     def copy_project
       puts "Initialize codebuild project in .codebuild"
-      if @options[:template]
-        directory ".", ".codebuild", exclude_pattern: /.git/
-      else
-        directory ".", exclude_pattern: /.git/
-      end
+      dest = ".codebuild"
+      dest = "#{dest}/#{@options[:type]}" if @options[:type]
+      directory "project", dest, exclude_pattern: /.git/
     end
 
   private

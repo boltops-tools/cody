@@ -43,7 +43,7 @@ module Codebuild::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(project_name)
-      items = [project_name, "cb", @options[:type], Codebuild.env_extra]
+      items = [project_name, @options[:type], Codebuild.env_extra, "cb"]
       items.insert(3, Codebuild.env) if Codebuild.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end

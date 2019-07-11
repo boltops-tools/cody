@@ -1,3 +1,16 @@
+---
+title: codebuild init
+reference: true
+---
+
+## Usage
+
+    codebuild init
+
+## Description
+
+Set up initial .codebuild files.
+
 ## Examples
 
     cb init # infers the name from the parent folder
@@ -58,3 +71,17 @@ You can also specific the full GitHub url. Example:
 If you would like to use a local template that is not on GitHub, then created a top-level folder in `~/.codebuild/templates` without a subfolder. Example:
 
     cb init --template=my-custom # uses ~/.codebuild/templates/my-custom
+
+
+## Options
+
+```
+[--force]                        # Bypass overwrite are you sure prompt for existing files
+[--name=NAME]                    # CodeBuild project name
+[--template=TEMPLATE]            # Custom template to use
+[--template-mode=TEMPLATE_MODE]  # Template mode: replace or additive
+[--type=TYPE]                    # Type option creates a subfolder under .codebuild
+[--verbose], [--no-verbose]      
+[--noop], [--no-noop]            
+```
+
