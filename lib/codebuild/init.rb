@@ -8,6 +8,7 @@ module Codebuild
         [:template, desc: "Custom template to use"],
         [:template_mode, desc: "Template mode: replace or additive"],
         [:type, desc: "Type option creates a subfolder under .codebuild"],
+        [:variables, type: :boolean, default: true, desc: "Create variables starter files"],
       ]
     end
     cli_options.each { |o| class_option(*o) }
@@ -35,7 +36,10 @@ module Codebuild
     def copy_top_level
       puts "Initialize codebuild top-level folder"
       dest = ".codebuild"
-      directory "top", dest, exclude_pattern: /.git/
+      excludes = %w[.git]
+      excludes << %w[variables] unless @options[:variables]
+      pattern = Regexp.new(excludes.join('|'))
+      directory "top", dest, exclude_pattern: pattern
     end
 
     def copy_project
