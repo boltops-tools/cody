@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.6.0]
+- named stack with -cb at the very end
+- add docs
+- cb init --no-variables option
+
 ## [0.5.0]
 - add --wait option
 - change default append_env setting to false
