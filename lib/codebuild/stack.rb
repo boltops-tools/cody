@@ -45,15 +45,6 @@ module Codebuild
       return if @options[:noop]
       puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
 
-      @stack = find_stack(@stack_name)
-      if @stack && rollback_complete?(@stack)
-        puts "Existing stack in ROLLBACK_COMPLETE state. Deleting stack before continuing."
-        cfn.delete_stack(stack_name: @stack_name)
-        status.wait
-        status.reset
-        @stack = nil # at this point stack has been deleted
-      end
-
       begin
         perform
         url_info
@@ -64,7 +55,7 @@ module Codebuild
         if e.message.include?("No updates") # No updates are to be performed.
           puts "WARN: #{e.message}".color(:yellow)
         else
-          puts "ERROR: #{e.message}".color(:red)
+          puts "ERROR ValidationError: #{e.message}".color(:red)
           exit 1
         end
       end
