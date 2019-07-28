@@ -67,7 +67,12 @@ iam_policy(
 )
 ```
 
-Here's also example Github repo: [tongueroo/jets-codebuild](https://github.com/tongueroo/jets-codebuild).
+Here's also Github repo with CodeBuild examples with Jets: [tongueroo/jets-codebuild](https://github.com/tongueroo/jets-codebuild).  The example on the master branch is a similar simple approach with 1 CodeBuild project.
+
+You may be interested in the [separate-unit-and-deploy branch](https://github.com/tongueroo/jets-codebuild/tree/separate-unit-and-deploy). The example shows how to set up 2 separate CodeBuild projects. Some advantages:
+
+* The projects are decoupled and you can run them separately.
+* Only the deploy project requires IAM access to create the AWS resources.
 
 {% include examples-steps.md %}
 
