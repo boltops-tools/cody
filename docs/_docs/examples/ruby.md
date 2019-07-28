@@ -5,7 +5,7 @@ categories: example
 nav_order: 18
 ---
 
-This examples show to run ruby unit tests.
+This examples show to run Ruby unit tests.
 
 Here's the project DSL.
 
@@ -30,15 +30,15 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get update -y && apt-get install -y rsync # prequisite for jets
+      - apt-get update -y apt-get install -y rsync
   build:
     commands:
       - echo Build started on `date`
       - sed -i '/BUNDLED WITH/Q' Gemfile.lock # hack to fix bundler issue: allow different versions of bundler to work
-      - gem install bundler:1.16.6
-      - export JETS_ENV=test
       - bundle
-      - bundle exec rspec
+      - JETS_ENV=test bundle exec rspec
 ```
+
+{% include examples-steps.md %}
 
 {% include prev_next.md %}

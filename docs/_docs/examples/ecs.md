@@ -85,6 +85,8 @@ managed_iam_policy("AmazonS3ReadOnlyAccess") # optional but common to need read 
 
 From a security perspective, using CodeBuild gives us a stronger security posture. The **only** permission the user calling [cb start]({% link _docs/start.md %}) really needs is CodeBuild access.  The permissions to create the ECS service and other deployment resources are delegated to the CodeBuild project itself. We know that the CodeBuild project will not run any arbitrary commands unless we update `buildspec.yml` and explicitly give permission to it's IAM role.
 
+{% include examples-steps.md %}
+
 ## CodePipeline ECS Deploy Action
 
 If you are using CodePipeline also, you may be wondering why not just use the provided Amazon ECS deployment action instead.  It comes down to control. With a CodeBuild project, we have full control of how we want to build and deploy the Docker image to ECS.
