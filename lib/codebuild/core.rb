@@ -32,10 +32,11 @@ module Codebuild
       return if ENV['TEST']
       return unless File.exist?("#{Codebuild.root}/.codebuild/settings.yml") # for rake docs
       return unless settings # Only load if within Codebuild project and there's a settings.yml
-      data = settings[Codebuild.env] || {}
-      if data["aws_profile"]
-        puts "Using AWS_PROFILE=#{data["aws_profile"]} from CB_ENV=#{Codebuild.env} in config/settings.yml"
-        ENV['AWS_PROFILE'] = data["aws_profile"]
+
+      data = settings || {}
+      if data[:aws_profile]
+        puts "Using AWS_PROFILE=#{data[:aws_profile]} from CB_ENV=#{Codebuild.env} in config/settings.yml"
+        ENV['AWS_PROFILE'] = data[:aws_profile]
       end
     end
 
