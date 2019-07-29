@@ -24,7 +24,11 @@ module Codebuild
         }
       }]
 
-      @properties[:managed_policy_arns] = @managed_policy_arns if @managed_policy_arns && !@managed_policy_arns.empty?
+      if @managed_policy_arns && !@managed_policy_arns.empty?
+        @properties[:managed_policy_arns] = @managed_policy_arns
+      else
+        @properties[:managed_policy_arns] = default_managed_policy_arns
+      end
 
       resource = {
         IamRole: {
@@ -73,6 +77,11 @@ module Codebuild
         effect: "Allow",
         resource: "*"
       }]
+    end
+
+    def default_managed_policy_arns
+      # Useful when using with CodePipeline
+      ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
     end
   end
 end

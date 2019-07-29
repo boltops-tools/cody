@@ -34,6 +34,12 @@ You can also create managed IAM policy.
 managed_iam_policy("AmazonS3ReadOnlyAccess")
 ```
 
+You can also add multiple managed IAM policies:
+
+```ruby
+managed_iam_policy("AmazonS3ReadOnlyAccess", "AmazonEC2ReadOnlyAccess")
+```
+
 ## Full DSL
 
 The convenience methods merely wrap properties of the [AWS::IAM::Role
