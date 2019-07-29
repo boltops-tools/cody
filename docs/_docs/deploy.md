@@ -64,6 +64,6 @@ Likewise `cb deploy PROJECT_NAME --type unit` would result in:
     .codebuild/unit/project.rb
     .codebuild/unit/role.rb
 
-Also, for help info you can check the [cb deploy]({% link _reference/codebuild-deploy.md %}) CLI reference.
+Also, for help info you can check the [cb deploy]({% link _reference/cb-deploy.md %}) CLI reference.
 
 {% include prev_next.md %}
