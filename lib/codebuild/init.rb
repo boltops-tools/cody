@@ -8,7 +8,7 @@ module Codebuild
         [:template, desc: "Custom template to use"],
         [:template_mode, desc: "Template mode: replace or additive"],
         [:type, desc: "Type option creates a subfolder under .codebuild"],
-        [:variables, type: :boolean, default: true, desc: "Create variables starter files"],
+        [:variables, type: :boolean, default: false, desc: "Create variables starter files"],
       ]
     end
     cli_options.each { |o| class_option(*o) }
