@@ -12,7 +12,7 @@ In a hurry? No problem!  Here's a quick start to get going.
     cb init # generates starter .codebuild files
     # edit .codebuild/buildspec.yml
     cb deploy # create the CodeBuild project via CloudFormation
-    cb start  # start a CodeBuild project. Runs the buildspec.ym
+    cb start  # start a CodeBuild project. Runs the buildspec.yml
 
 ## What Happened?
 

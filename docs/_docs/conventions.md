@@ -28,7 +28,7 @@ The CodeBuild project is named `my-project-unit`.
 
 ## CB_ENV_EXTRA
 
-The `CB_ENV_EXTRA` also affects the name of the CodeBuild project.  It gets appened after the type option.
+The `CB_ENV_EXTRA` also affects the name of the CodeBuild project.  It gets appended after the type option.
 
     CB_ENV_EXTRA=2 cb deploy my-project --type unit
 
