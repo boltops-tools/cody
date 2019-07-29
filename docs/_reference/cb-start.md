@@ -1,11 +1,11 @@
 ---
-title: codebuild start
+title: cb start
 reference: true
 ---
 
 ## Usage
 
-    codebuild start
+    cb start
 
 ## Description
 

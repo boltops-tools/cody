@@ -1,11 +1,11 @@
 ---
-title: codebuild version
+title: cb version
 reference: true
 ---
 
 ## Usage
 
-    codebuild version
+    cb version
 
 ## Description
 

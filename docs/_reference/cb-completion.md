@@ -1,11 +1,11 @@
 ---
-title: codebuild completion
+title: cb completion
 reference: true
 ---
 
 ## Usage
 
-    codebuild completion *PARAMS
+    cb completion *PARAMS
 
 ## Description
 

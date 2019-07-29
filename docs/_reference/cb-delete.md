@@ -1,11 +1,11 @@
 ---
-title: codebuild delete
+title: cb delete
 reference: true
 ---
 
 ## Usage
 
-    codebuild delete
+    cb delete
 
 ## Description
 

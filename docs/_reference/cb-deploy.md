@@ -1,11 +1,11 @@
 ---
-title: codebuild deploy
+title: cb deploy
 reference: true
 ---
 
 ## Usage
 
-    codebuild deploy
+    cb deploy
 
 ## Description
 

@@ -1,11 +1,11 @@
 ---
-title: codebuild completion_script
+title: cb completion_script
 reference: true
 ---
 
 ## Usage
 
-    codebuild completion_script
+    cb completion_script
 
 ## Description
 

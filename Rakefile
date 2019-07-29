@@ -9,5 +9,5 @@ require_relative "lib/codebuild"
 require "cli_markdown"
 desc "Generates cli reference docs as markdown"
 task :docs do
-  CliMarkdown::Creator.create_all(cli_class: Codebuild::CLI, cli_name: "codebuild")
+  CliMarkdown::Creator.create_all(cli_class: Codebuild::CLI, cli_name: "cb")
 end

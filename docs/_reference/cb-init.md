@@ -1,11 +1,11 @@
 ---
-title: codebuild init
+title: cb init
 reference: true
 ---
 
 ## Usage
 
-    codebuild init
+    cb init
 
 ## Description
 
@@ -81,6 +81,7 @@ If you would like to use a local template that is not on GitHub, then created a 
 [--template=TEMPLATE]            # Custom template to use
 [--template-mode=TEMPLATE_MODE]  # Template mode: replace or additive
 [--type=TYPE]                    # Type option creates a subfolder under .codebuild
+[--variables], [--no-variables]  # Create variables starter files
 [--verbose], [--no-verbose]      
 [--noop], [--no-noop]            
 ```
