@@ -6,6 +6,8 @@ The codebuild tool provides a DSL to create a CodeBuild project with some reason
 
 The codebuild tool installs `cb` and `codebuild` executables. Both of them do the same thing, `cb` is just shorter to type.
 
+The documentation site is at: [codebuild.cloud](https://codebuild.cloud/)
+
 ## Quick Start
 
     cb init
@@ -14,7 +16,7 @@ The codebuild tool installs `cb` and `codebuild` executables. Both of them do th
 
 ## Private Repo
 
-IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to [github_oauth.md](readme/github_oauth.md) for more info.
+IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to the [CodeBuilld Github Oauth/](https://codebuild.cloud/docs/github_oauth/) for more info.
 
 ## Usage
 
