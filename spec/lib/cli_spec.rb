@@ -1,12 +1,7 @@
 describe Codebuild::CLI do
   before(:all) do
     @args = "--noop"
-    @old_root = Dir.pwd
-    Dir.chdir("spec/fixtures/app")
-    @codebuild_bin = "../../../exe/codebuild"
-  end
-  after(:all) do
-    Dir.chdir(@old_root)
+    @codebuild_bin = "exe/codebuild"
   end
 
   describe "codebuild" do

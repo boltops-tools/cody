@@ -25,6 +25,7 @@ module Codebuild
     end
 
     def find_stack(stack_name)
+      return if ENV['TEST']
       resp = cfn.describe_stacks(stack_name: stack_name)
       resp.stacks.first
     rescue Aws::CloudFormation::Errors::ValidationError => e
