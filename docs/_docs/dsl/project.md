@@ -37,7 +37,7 @@ The convenience methods are shorter and cleaner. However, you have access to a F
 .codebuild/project.rb:
 
 ```ruby
-name("demo") # recommend to not set this, and let the codebuild tool set this automatically
+# name("demo") # recommend to not set, and let the codebuild tool set this automatically
 description("desc2")
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
 source(

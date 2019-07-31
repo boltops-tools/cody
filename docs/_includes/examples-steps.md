@@ -10,8 +10,8 @@ This creates the CodeBuild project as well as the necessary IAM role.
 
 To start a build:
 
-    cb start
+    cb start demo
 
 You can also start a build with a specific branch. Remember to `git push` your branch.
 
-    cb start -b mybranch
+    cb start demo -b mybranch

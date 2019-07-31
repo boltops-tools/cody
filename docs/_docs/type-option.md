@@ -3,7 +3,7 @@ title: Type Option
 nav_order: 4
 ---
 
-The `--type` option is a powerful option that allows you to create multiple codebuild projects associated with the same project.
+The `--type` option is a powerful option that allows you to create multiple codebuild projects associated with the same repo.
 
 ## Default Behavior
 

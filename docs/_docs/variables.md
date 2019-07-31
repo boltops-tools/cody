@@ -87,4 +87,31 @@ The type specific variable files override the top-level variable files. Type spe
 
 The top-level variables files are also loaded because it is common to need variables that are available to all projects.
 
+## VPC and Migrations Example
+
+An good exmaple of using variables is run migrations via codebuild and the task requires access to the VPC.
+  However, the development and production resources are on separate VPCs.  Variables can help here:
+
+.codebuild/variables/development.rb:
+
+```ruby
+@vpc_config = { vpc_id: "vpc-aaa", subnet_id: "subnet-aaa" }
+```
+
+.codebuild/variables/production.rb:
+
+```ruby
+@vpc_config = { vpc_id: "vpc-bbb", subnet_id: "subnet-bbb" }
+```
+
+You'll use then `@vpc_config` variable in the `buildspec.yml`.
+
+.codebuild/buildspec.yml:
+
+```ruby
+github_url("https://github.com/tongueroo/demo-ufo")
+linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+vpc_config @vpc_config
+```
+
 {% include prev_next.md %}

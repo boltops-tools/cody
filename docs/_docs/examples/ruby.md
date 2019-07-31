@@ -30,7 +30,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get update -y apt-get install -y rsync
+      - apt-get update -y && apt-get install -y rsync
   build:
     commands:
       - echo Build started on `date`

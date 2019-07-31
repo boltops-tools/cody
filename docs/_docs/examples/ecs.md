@@ -49,10 +49,19 @@ phases:
       - UFO_ENV=$UFO_ENV ufo ship $UFO_APP
 ```
 
-Last, here's the IAM Policy that will give CodeBuild the IAM permissions necessary to create the ECS service and other resources that ufo can create:
+The `ufo ship` command:
+
+    UFO_ENV=$UFO_ENV ufo ship $UFO_APP
+
+When codebuild actually runs, the values will be:
+
+    UFO_ENV=production ufo ship demo-web
+
+## IAM Policy
+
+The codebuild tool also can create the IAM Policy that will give CodeBuild the IAM permissions necessary to create the ECS service and other resources that `ufo ship` creates. Here are the IAM permissions as detailed on the [UFO Minimal IAM Permissions](https://ufoships.com/docs/extras/minimal-deploy-iam/) docs.
 
 .codebuild/role.rb:
-
 
 ```ruby
 iam_policy(
@@ -83,6 +92,8 @@ iam_policy(
 managed_iam_policy("AmazonS3ReadOnlyAccess") # optional but common to need read only access to s3
 ```
 
+## Security
+
 From a security perspective, using CodeBuild gives us a stronger security posture. The **only** permission the user calling [cb start]({% link _docs/start.md %}) really needs is CodeBuild access.  The permissions to create the ECS service and other deployment resources are delegated to the CodeBuild project itself. We know that the CodeBuild project will not run any arbitrary commands unless we update `buildspec.yml` and explicitly give permission to it's IAM role.
 
 {% include examples-steps.md %}
@@ -91,6 +102,6 @@ From a security perspective, using CodeBuild gives us a stronger security postur
 
 If you are using CodePipeline also, you may be wondering why not just use the provided Amazon ECS deployment action instead.  It comes down to control. With a CodeBuild project, we have full control of how we want to build and deploy the Docker image to ECS.
 
-Also, with the CodePipeline ECS deploy action, we are unable to configure a timeout.  If the ECS deployment fails due to some reasons, we're stuck waiting 60 minutes for the pipeline timeout. There's a way to hack around this by literally overriding updating the CodeBuild project. You also must do it manually and are charged for the time. With CodeBuild project, you can set the timeout value yourself. Essentially, you have more control with CodeBuild.
+Also, with the CodePipeline ECS deploy action, we are unable to configure a timeout.  If the ECS deployment fails due to some reasons, we're stuck waiting 60 minutes for the pipeline timeout. There's a way to hack around this by literally overriding updating the CodeBuild project. You also must do it manually and are charged for the time if you don't notice it. With CodeBuild project, you can set the timeout value yourself. Essentially, you have more control with CodeBuild. There's some more info here: [CodePipeline ECS Deploy vs CodeBuild ufo ship](https://codepipeline.org/docs/ecs-deploy/).
 
 {% include prev_next.md %}
