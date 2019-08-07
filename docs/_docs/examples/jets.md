@@ -20,7 +20,7 @@ environment_variables(
 )
 ```
 
-The [.codebuild/project.rb](.codebuild/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
+The [.codebuild/project.rb](https://github.com/tongueroo/jets-codebuild/blob/master/.codebuild/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
 
 Here's the buildspec:
 
