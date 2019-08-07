@@ -97,7 +97,7 @@ Here's a list of some of the convenience shorthand DSL methods:
 
 Please refer to [lib/codebuild/dsl/project.rb](lib/codebuild/dsl/project.rb) for the full list.
 
-More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [DSL docs](docs/dsl).
+More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [DSL docs](https://codebuild.cloud/docs/dsl/).
 
 ## IAM Role DSL
 
@@ -140,11 +140,11 @@ rate "1 day"
 
 ## Full DSL
 
-The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](docs/dsl) for more info.
+The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](https://codebuild.cloud/docs/dsl/) for more info.
 
 ## Type Option
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](readme/type.md).
+By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](https://codebuild.cloud/docs/type-option/).
 
 ## Installation
 
