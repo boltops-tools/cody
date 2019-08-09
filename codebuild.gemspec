@@ -12,23 +12,28 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/tongueroo/codebuild"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($/)
+  vendor_files       = Dir.glob("vendor/**/*")
+  gem_files          = `git -C "#{File.dirname(__FILE__)}" ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features|docs)/})
+  end
+  spec.files         = gem_files + vendor_files
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport"
-  spec.add_dependency "aws_data"
   spec.add_dependency "aws-sdk-cloudformation"
   spec.add_dependency "aws-sdk-codebuild"
   spec.add_dependency "aws-sdk-ssm"
-  # spec.add_dependency "cfn_camelizer" # using vendor/cfn_camelizer for now
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
   spec.add_dependency "render_me_pretty"
   spec.add_dependency "thor"
   spec.add_dependency "zeitwerk"
+
+  # spec.add_dependency "aws_data" # using vendor/cfn_camelizer for now
+  # spec.add_dependency "cfn_camelizer" # using vendor/cfn_camelizer for now
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "byebug"

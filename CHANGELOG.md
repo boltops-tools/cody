@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.6.4]
+- fix vendor gem dependencies in gem package
+
 ## [0.6.3]
 - add aws_data gem dependency
 
