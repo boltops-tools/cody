@@ -11,6 +11,7 @@ In a hurry? No problem!  Here's a quick start to get going.
     cd <your-project>
     cb init # generates starter .codebuild files
     # edit .codebuild/buildspec.yml
+    # git commit and push your changes. codebuild will git pull them down.
     cb deploy # create the CodeBuild project via CloudFormation
     cb start  # start a CodeBuild project. Runs the buildspec.yml
 
@@ -24,9 +25,9 @@ Change into your project directory.
 
     cd <your-project>
 
-If you need a demo project, you can try this demo project: [tongueroo/demo-ufo](git clone https://github.com/tongueroo/demo-ufo).
+If you do not have a project, simply create an empty folder.
 
-    git clone https://github.com/tongueroo/demo-ufo demo
+    mkdir demo
     cd demo
 
 Create the starter .codebuild files in the project.
@@ -55,7 +56,18 @@ environment_variables(
 )
 ```
 
-To define a project, it is literally 3 lines of code. You can deploy it with a single command:
+To define a project, it's only 3 lines of code.
+
+Make sure youpushed to github, since codebuild will be pulling from it.
+
+    git remote add origin git@github.com/user/repo # update with your own repo
+    git add .
+    git commit -m 'test commit'
+    git push
+
+### Deploy
+
+Now we're ready to deploy. You can deploy it with a single command:
 
     cb deploy
 
