@@ -96,7 +96,23 @@ managed_iam_policy("AmazonS3ReadOnlyAccess") # optional but common to need read 
 
 From a security perspective, using CodeBuild gives us a stronger security posture. The **only** permission the user calling [cb start]({% link _docs/start.md %}) really needs is CodeBuild access.  The permissions to create the ECS service and other deployment resources are delegated to the CodeBuild project itself. We know that the CodeBuild project will not run any arbitrary commands unless we update `buildspec.yml` and explicitly give permission to it's IAM role.
 
-{% include examples-steps.md %}
+## Create CodeBuild Project
+
+To create the CodeBuild project via CloudFormation run:
+
+    cb deploy demo-web
+
+This creates the CodeBuild project as well as the necessary IAM role.
+
+## Start Build
+
+To start a build:
+
+    cb start demo-web
+
+You can also start a build with a specific branch. Remember to `git push` your branch.
+
+    cb start demo-web -b mybranch
 
 ## CodePipeline ECS Deploy Action
 
