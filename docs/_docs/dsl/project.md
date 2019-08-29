@@ -30,6 +30,23 @@ Here's a list of some of the convenience shorthand DSL methods:
 
 Refer to the [dsl/project.rb](https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
 
+## Webhook Example
+
+If you would like for a build to run on every commit pushed.
+
+```ruby
+triggers(webhook: true)
+```
+
+For more control over the branches to run:
+
+```ruby
+triggers(
+  webhook: true,
+  filter_groups: [[{type: "HEAD_REF", pattern: "my-branch"}, {type: "EVENT", pattern: "PUSH"}]]
+)
+```
+
 ## Full DSL
 
 The convenience methods are shorter and cleaner. However, you have access to a Full DSL if needed. The Full DSL methods are merely the properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  Here's an example.

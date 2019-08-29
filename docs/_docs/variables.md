@@ -3,9 +3,9 @@ title: Variables Support
 nav_order: 5
 ---
 
-The codebuild tool supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code but use different variables.
+The codebuild tool supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code with different environmental variables.
 
-Within the `.codebuild/variables` folder, you can create variable files and the variables defined in them are made available to your `.codebuild` DSL files.  Examples:
+Within the `.codebuild/variables` folder, you can create variable files and the variables defined in them are made available to your `.codebuild` DSL files.
 
     .codebuild/project.rb
     .codebuild/role.rb
@@ -89,8 +89,7 @@ The top-level variables files are also loaded because it is common to need varia
 
 ## VPC and Migrations Example
 
-An good exmaple of using variables is run migrations via codebuild and the task requires access to the VPC.
-  However, the development and production resources are on separate VPCs.  Variables can help here:
+An good variables example is running migrations. The migration tasks usually requires access to the VPC to connect to the database. However, the development and production resources can be on separate VPCs.  Variables can help here:
 
 .codebuild/variables/development.rb:
 
