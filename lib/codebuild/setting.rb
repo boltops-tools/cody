@@ -34,10 +34,13 @@ module Codebuild
     # When ufo is determined from settings it should not called Codebuild.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def cb_env
-      settings = YAML.load_file("#{cb_root}/.codebuild/settings.yml")
-      env = settings.find do |_env, section|
-        section ||= {}
-        ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
+      path = "#{cb_root}/.codebuild/settings.yml"
+      if File.exist?(path)
+        settings = YAML.load_file(path)
+        env = settings.find do |_env, section|
+          section ||= {}
+          ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
+        end
       end
 
       cb_env = env.first if env
