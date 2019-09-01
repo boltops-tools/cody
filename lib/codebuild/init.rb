@@ -5,10 +5,10 @@ module Codebuild
       [
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files"],
         [:name, desc: "CodeBuild project name"],
+        [:mode, default: "bare", desc: "Modes: bare or full"],
         [:template, desc: "Custom template to use"],
         [:template_mode, desc: "Template mode: replace or additive"],
         [:type, desc: "Type option creates a subfolder under .codebuild"],
-        [:variables, type: :boolean, default: false, desc: "Create variables starter files"],
       ]
     end
     cli_options.each { |o| class_option(*o) }
@@ -37,7 +37,12 @@ module Codebuild
       puts "Initialize codebuild top-level folder"
       dest = ".codebuild"
       excludes = %w[.git]
-      excludes << %w[variables] unless @options[:variables]
+      if @options[:mode] == "bare"
+        excludes += %w[
+          settings.yml
+          variables
+        ]
+      end
       pattern = Regexp.new(excludes.join('|'))
       directory "top", dest, exclude_pattern: pattern
     end
@@ -46,7 +51,17 @@ module Codebuild
       puts "Initialize codebuild project in .codebuild"
       dest = ".codebuild"
       dest = "#{dest}/#{@options[:type]}" if @options[:type]
-      directory "project", dest, exclude_pattern: /.git/
+
+      excludes = %w[.git]
+      if @options[:mode] == "bare"
+        excludes += %w[
+          role.rb
+          schedule.rb
+        ]
+      end
+
+      pattern = Regexp.new(excludes.join('|'))
+      directory "project", dest, exclude_pattern: pattern
     end
 
   private

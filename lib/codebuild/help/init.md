@@ -14,9 +14,7 @@ Thi generates the cb files under the `.codebuild/unit` folder.
     .codebuild
     └── unit
         ├── buildspec.yml
-        ├── project.rb
-        ├── role.rb
-        └── schedule.rb
+        └── project.rb
 
 To tell the codebuild tool to use these files, you specify the `--type` option as a part of the other commands. Examples:
 
@@ -30,14 +28,27 @@ So if you need multiple CodeBuild projects that perform different tasks but are 
     .codebuild
     ├── deploy
     │   ├── buildspec.yml
-    │   ├── project.rb
-    │   ├── role.rb
-    │   └── schedule.rb
+    │   └── project.rb
     └── unit
         ├── buildspec.yml
-        ├── project.rb
-        ├── role.rb
-        └── schedule.rb
+        └── project.rb
+
+## Mode Option
+
+By default, `cb init` generates a very lightweight structure.  You can have it also generate a "full" structure with the `--mode` option.  Example.
+
+    $ cb init --mode full
+    $ tree .codebuild
+    .codebuild
+    ├── buildspec.yml
+    ├── project.rb
+    ├── role.rb
+    ├── schedule.rb
+    ├── settings.yml
+    └── variables
+        ├── base.rb
+        ├── development.rb
+        └── production.rb
 
 ## Custom Templates
 
