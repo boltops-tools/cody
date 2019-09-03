@@ -5,7 +5,7 @@ module Codebuild
       [
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files"],
         [:name, desc: "CodeBuild project name"],
-        [:mode, default: "bare", desc: "Modes: bare or full"],
+        [:mode, default: "light", desc: "Modes: light or full"],
         [:template, desc: "Custom template to use"],
         [:template_mode, desc: "Template mode: replace or additive"],
         [:type, desc: "Type option creates a subfolder under .codebuild"],
@@ -37,7 +37,7 @@ module Codebuild
       puts "Initialize codebuild top-level folder"
       dest = ".codebuild"
       excludes = %w[.git]
-      if @options[:mode] == "bare"
+      if @options[:mode] == "light"
         excludes += %w[
           settings.yml
           variables
@@ -53,7 +53,7 @@ module Codebuild
       dest = "#{dest}/#{@options[:type]}" if @options[:type]
 
       excludes = %w[.git]
-      if @options[:mode] == "bare"
+      if @options[:mode] == "light"
         excludes += %w[
           role.rb
           schedule.rb
