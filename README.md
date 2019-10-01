@@ -35,9 +35,9 @@ First, run `cody init` to generate a starter .cody structure.
 
 File | Description
 --- | ---
-buildspec.yml | The build commands to run.
-project.rb | The codebuild project written as a DSL.
-role.rb | The IAM role associated with the codebuild project written as a DSL.
+buildspec.yml | The build commands to run.  Here are the [buildspec.yml syntax docs](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html).
+project.rb | The codebuild project written as a DSL. Here are the [Project DSL docs](https://cody.run/docs/dsl/project/)
+role.rb | The IAM role associated with the codebuild project written as a DSL. Here are the [IAM Role DSL docs](https://cody.run/docs/dsl/role/)
 
 ### Deploy
 
@@ -75,7 +75,7 @@ The tool provides a DSL to create a codebuild project.  Here's an example.
 .cody/project.rb:
 
 ```ruby
-# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
+# name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(

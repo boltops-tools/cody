@@ -10,7 +10,7 @@ You define the CodeBuild project in `.cody/project.rb`. Here's an example of the
 .cody/project.rb:
 
 ```ruby
-# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
+# name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
