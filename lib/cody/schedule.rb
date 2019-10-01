@@ -46,10 +46,10 @@ module Cody
     end
 
     def default_properties
-      description = "CodeBuild #{@options[:full_project_name]}"
+      description = "Cody #{@options[:full_project_name]}"
       name = description.gsub(" ", "-").downcase
       {
-        description: description,
+        description: "#{description} CodeBuild project",
         # event_pattern: ,
         name: name,
         # schedule_expression: ,
