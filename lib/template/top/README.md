@@ -1,6 +1,6 @@
 # Cody Files
 
-The files in folder tell cody how to build AWS CodeBuild projects.  For more info, check out the [cody docs](https://cody.run). Here's a quick start.
+The files in folder are used by cody to build AWS CodeBuild projects.  For more info, check out the [cody docs](https://cody.run). Here's a quick start.
 
 ## Install Tool
 
