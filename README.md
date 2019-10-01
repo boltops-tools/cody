@@ -25,7 +25,7 @@ IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild
 
 ### Init and Structure
 
-First, run `cody init` to generate a starter .cody structure.
+First, run `cody init` to generate a starter `.cody` folder structure.
 
     $ tree .cody
     .cody
