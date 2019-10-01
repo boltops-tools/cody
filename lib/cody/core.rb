@@ -30,7 +30,7 @@ module Cody
     # 2-way binding.
     def set_aws_profile!
       return if ENV['TEST']
-      return unless File.exist?("#{Cody.root}/.codebuild/settings.yml") # for rake docs
+      return unless File.exist?("#{Cody.root}/.cody/settings.yml") # for rake docs
       return unless settings # Only load if within Cody project and there's a settings.yml
 
       data = settings || {}
@@ -46,9 +46,9 @@ module Cody
     memoize :settings
 
     def check_codebuild_project!
-      check_path = "#{Cody.root}/.codebuild"
+      check_path = "#{Cody.root}/.cody"
       unless File.exist?(check_path)
-        puts "ERROR: No .codebuild folder found.  Are you sure you are in a project with codebuild setup?".color(:red)
+        puts "ERROR: No .cody folder found.  Are you sure you are in a project with codebuild setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
         puts "If you want to set up codebuild for this project, please create a settings file via: cody init"
         exit 1 unless ENV['TEST']

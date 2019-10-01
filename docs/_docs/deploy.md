@@ -5,9 +5,9 @@ nav_order: 6
 
 The CodeBuild project is generated from the DSL and created with CloudFormation. By default, the files that the DSL evaluates are:
 
-    .codebuild/buildspec.yml
-    .codebuild/project.rb
-    .codebuild/role.rb
+    .cody/buildspec.yml
+    .cody/project.rb
+    .cody/role.rb
 
 To create the CodeBuild project, you run:
 
@@ -42,27 +42,27 @@ By default, the CodeBuild project name is inferred and is the parent folder that
 
 ## Types
 
-By default, cody looks up files in the `.codebuild` folder.  Example:
+By default, cody looks up files in the `.cody` folder.  Example:
 
-    .codebuild/buildspec.yml
-    .codebuild/project.rb
-    .codebuild/role.rb
+    .cody/buildspec.yml
+    .cody/project.rb
+    .cody/role.rb
 
 You can use the `--type` option to tell the tool to lookup files in a subfolder.  Here's an example.
 
     cody deploy PROJECT_NAME --type deploy
 
-This will look up `buildspec.yml`, `project.rb`, and `role.rb` files in the `.codebuild/deploy` folder. So:
+This will look up `buildspec.yml`, `project.rb`, and `role.rb` files in the `.cody/deploy` folder. So:
 
-    .codebuild/deploy/buildspec.yml
-    .codebuild/deploy/project.rb
-    .codebuild/deploy/role.rb
+    .cody/deploy/buildspec.yml
+    .cody/deploy/project.rb
+    .cody/deploy/role.rb
 
 Likewise `cody deploy PROJECT_NAME --type unit` would result in:
 
-    .codebuild/unit/buildspec.yml
-    .codebuild/unit/project.rb
-    .codebuild/unit/role.rb
+    .cody/unit/buildspec.yml
+    .cody/unit/project.rb
+    .cody/unit/role.rb
 
 Also, for help info you can check the [cody deploy]({% link _reference/cb-deploy.md %}) CLI reference.
 

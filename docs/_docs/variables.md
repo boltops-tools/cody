@@ -5,17 +5,17 @@ nav_order: 5
 
 Cody supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code with different environmental variables.
 
-Within the `.codebuild/variables` folder, you can create variable files and the variables defined in them are made available to your `.codebuild` DSL files.
+Within the `.cody/variables` folder, you can create variable files and the variables defined in them are made available to your `.cody` DSL files.
 
-    .codebuild/project.rb
-    .codebuild/role.rb
-    .codebuild/schedule.rb
+    .cody/project.rb
+    .cody/role.rb
+    .cody/schedule.rb
 
 ## Structure
 
 Here's an example variables structure:
 
-    .codebuild
+    .cody
     └── variables
         ├── base.rb
         ├── development.rb
@@ -63,27 +63,27 @@ In this case, `@myvar = "base-value"` is used, since there is no `staging.rb` fi
 
 ## Variables with -\-type Option
 
-With codebuild, we can use a `--type` option to create additional codebuild projects under the `.codebuild` folder.  Here's a short example:
+With codebuild, we can use a `--type` option to create additional codebuild projects under the `.cody` folder.  Here's a short example:
 
     cody deploy --type deploy
 
 The buildspec file it'll use is here:
 
-    .codebuild/deploy/buildspec.yml
+    .cody/deploy/buildspec.yml
 
 More info on the type option is here: [Type Option]({% link _docs/type-option.md %}).
 
 Specific project type variables can be set. For example, let's say you have a `--type=deploy`, the variable files that will be used are:
 
-    .codebuild/deploy/variables/base.rb
-    .codebuild/deploy/variables/developemnt.rb
+    .cody/deploy/variables/base.rb
+    .cody/deploy/variables/developemnt.rb
 
 The type specific variable files override the top-level variable files. Type specific variable files get loaded last so they take the highest precedence.  Example:
 
-    .codebuild/variables/base.rb - lowest precedence
-    .codebuild/variables/developemnt.rb
-    .codebuild/deploy/variables/base.rb
-    .codebuild/deploy/variables/developemnt.rb - highest precedence
+    .cody/variables/base.rb - lowest precedence
+    .cody/variables/developemnt.rb
+    .cody/deploy/variables/base.rb
+    .cody/deploy/variables/developemnt.rb - highest precedence
 
 The top-level variables files are also loaded because it is common to need variables that are available to all projects.
 
@@ -91,13 +91,13 @@ The top-level variables files are also loaded because it is common to need varia
 
 An good variables example is running migrations. The migration tasks usually requires access to the VPC to connect to the database. However, the development and production resources can be on separate VPCs.  Variables can help here:
 
-.codebuild/variables/development.rb:
+.cody/variables/development.rb:
 
 ```ruby
 @vpc_config = { vpc_id: "vpc-aaa", subnet_id: "subnet-aaa" }
 ```
 
-.codebuild/variables/production.rb:
+.cody/variables/production.rb:
 
 ```ruby
 @vpc_config = { vpc_id: "vpc-bbb", subnet_id: "subnet-bbb" }
@@ -105,7 +105,7 @@ An good variables example is running migrations. The migration tasks usually req
 
 You'll use then `@vpc_config` variable in the `buildspec.yml`.
 
-.codebuild/buildspec.yml:
+.cody/buildspec.yml:
 
 ```ruby
 github_url("https://github.com/tongueroo/demo-ufo")

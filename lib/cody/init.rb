@@ -8,7 +8,7 @@ module Cody
         [:mode, default: "light", desc: "Modes: light or full"],
         [:template, desc: "Custom template to use"],
         [:template_mode, desc: "Template mode: replace or additive"],
-        [:type, desc: "Type option creates a subfolder under .codebuild"],
+        [:type, desc: "Type option creates a subfolder under .cody"],
       ]
     end
     cli_options.each { |o| class_option(*o) }
@@ -22,7 +22,7 @@ module Cody
     def set_source_path
       return unless @options[:template]
 
-      custom_template = "#{ENV['HOME']}/.codebuild/templates/#{full_repo_name}"
+      custom_template = "#{ENV['HOME']}/.cody/templates/#{full_repo_name}"
 
       if @options[:template_mode] == "replace" # replace the template entirely
         override_source_paths(custom_template)
@@ -35,7 +35,7 @@ module Cody
 
     def copy_top_level
       puts "Initialize codebuild top-level folder"
-      dest = ".codebuild"
+      dest = ".cody"
       excludes = %w[.git]
       if @options[:mode] == "light"
         excludes += %w[
@@ -48,8 +48,8 @@ module Cody
     end
 
     def copy_project
-      puts "Initialize codebuild project in .codebuild"
-      dest = ".codebuild"
+      puts "Initialize codebuild project in .cody"
+      dest = ".cody"
       dest = "#{dest}/#{@options[:type]}" if @options[:type]
 
       excludes = %w[.git]

@@ -1,6 +1,6 @@
 describe Cody::Schedule do
   let(:schedule) do
-    Cody::Schedule.new(schedule_path: "spec/fixtures/app/.codebuild/schedule.rb")
+    Cody::Schedule.new(schedule_path: "spec/fixtures/app/.cody/schedule.rb")
   end
   context "general" do
     it "builds up the template in memory" do

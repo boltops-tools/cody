@@ -9,7 +9,7 @@ module Cody
     end
 
     # data contains the settings.yml config.  The order or precedence for settings
-    # is the project ufo/settings.yml and then the ~/.codebuild/settings.yml.
+    # is the project ufo/settings.yml and then the ~/.cody/settings.yml.
     def data
       Cody.check_codebuild_project! if @check_codebuild_project
       return {} unless File.exist?(project_settings_path)
@@ -17,7 +17,7 @@ module Cody
       # project based settings files
       project = load_file(project_settings_path)
 
-      user_file = "#{ENV['HOME']}/.codebuild/settings.yml"
+      user_file = "#{ENV['HOME']}/.cody/settings.yml"
       user = File.exist?(user_file) ? YAML.load_file(user_file) : {}
 
       default_file = File.expand_path("default/settings.yml", __dir__)
@@ -34,7 +34,7 @@ module Cody
     # When ufo is determined from settings it should not called Cody.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def cb_env
-      path = "#{cb_root}/.codebuild/settings.yml"
+      path = "#{cb_root}/.cody/settings.yml"
       if File.exist?(path)
         settings = YAML.load_file(path)
         env = settings.find do |_env, section|
@@ -72,7 +72,7 @@ module Cody
     end
 
     def project_settings_path
-      "#{cb_root}/.codebuild/settings.yml"
+      "#{cb_root}/.cody/settings.yml"
     end
 
     def cb_root

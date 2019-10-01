@@ -9,7 +9,7 @@ module Cody
     end
 
     def load_variables_file(filename, type=nil)
-      items = ["#{Cody.root}/.codebuild", type, "variables/#{filename}.rb"].compact
+      items = ["#{Cody.root}/.cody", type, "variables/#{filename}.rb"].compact
       path = items.join('/')
       instance_eval(IO.read(path), path) if File.exist?(path)
     end

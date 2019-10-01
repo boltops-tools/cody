@@ -7,11 +7,11 @@ The `--type` option is a powerful option that allows you to create multiple code
 
 ## Default Behavior
 
-By default, cody looks up files in the `.codebuild` folder.  Example:
+By default, cody looks up files in the `.cody` folder.  Example:
 
-    .codebuild/buildspec.yml
-    .codebuild/project.rb
-    .codebuild/role.rb
+    .cody/buildspec.yml
+    .cody/project.rb
+    .cody/role.rb
 
 You can affect the behavior of the lookup logic with the `--type` option.
 
@@ -19,23 +19,23 @@ You can affect the behavior of the lookup logic with the `--type` option.
 
     cody deploy --type deploy
 
-This will look up buildspec.yml, project.rb, and role.rb files in the `.codebuild/deploy` folder. So:
+This will look up buildspec.yml, project.rb, and role.rb files in the `.cody/deploy` folder. So:
 
-    .codebuild/deploy/buildspec.yml
-    .codebuild/deploy/project.rb
-    .codebuild/deploy/role.rb
+    .cody/deploy/buildspec.yml
+    .cody/deploy/project.rb
+    .cody/deploy/role.rb
 
 Likewise `cody deploy --type unit` would result in:
 
-    .codebuild/unit/buildspec.yml
-    .codebuild/unit/project.rb
-    .codebuild/unit/role.rb
+    .cody/unit/buildspec.yml
+    .cody/unit/project.rb
+    .cody/unit/role.rb
 
 ## Structure
 
 So if you need multiple CodeBuild projects that perform different tasks but are both related to the same code repo, this structure is useful:
 
-    .codebuild
+    .cody
     ├── deploy
     │   ├── buildspec.yml
     │   ├── project.rb

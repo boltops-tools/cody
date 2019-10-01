@@ -41,7 +41,7 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 ## [0.3.0]
 - rework cb cli interface
 - project_name as cli main parameter
-- type option for subprojects in .codebuild folder
+- type option for subprojects in .cody folder
 - update to zeitwerk for autoloading
 
 ## [0.2.0]

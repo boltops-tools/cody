@@ -19,16 +19,16 @@ IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild
 
 ## Usage
 
-1. **init**: generate starter .codebuild files.
+1. **init**: generate starter .cody files.
 2. **deploy**: deploy the CodeBuild project on AWS.
 3. **start**: kick off a CodeBuild project run.
 
 ### Init and Structure
 
-First, run `cody init` to generate a starter .codebuild structure.
+First, run `cody init` to generate a starter .cody structure.
 
-    $ tree .codebuild
-    .codebuild
+    $ tree .cody
+    .cody
     ├── buildspec.yml
     ├── project.rb
     └── role.rb
@@ -41,7 +41,7 @@ role.rb | The IAM role associated with the codebuild project written as a DSL.
 
 ### Deploy
 
-Adjust the files in `.codebuild` to fit your needs. When you're ready, deploy the CodeBuild project with:
+Adjust the files in `.cody` to fit your needs. When you're ready, deploy the CodeBuild project with:
 
     cody deploy STACK_NAME
 
@@ -72,7 +72,7 @@ The `cody start` command understands multiple identifiers. It will look up the c
 
 The tool provides a DSL to create a codebuild project.  Here's an example.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
 # name("demo") # recommended to leave unset and use the conventional name that cb tool sets
@@ -101,7 +101,7 @@ More slightly more control, you may be interested in the `github_source` and `li
 
 Cody can create the IAM service role associated with the codebuild project. Here's an example:
 
-.codebuild/role.rb:
+.cody/role.rb:
 
 ```ruby
 iam_policy("logs", "ssm")
@@ -130,7 +130,7 @@ managed_iam_policy("AmazonS3ReadOnlyAccess")
 
 ## Schedule Support
 
-.codebuild/schedule.rb:
+.cody/schedule.rb:
 
 ```ruby
 rate "1 day"
@@ -142,7 +142,7 @@ The convenience DSL methods shown above are short and clean.  They merely wrap a
 
 ## Type Option
 
-By default, cody looks up files in the `.codebuild` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](https://cody.run/docs/type-option/).
+By default, cody looks up files in the `.cody` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](https://cody.run/docs/type-option/).
 
 ## Installation
 

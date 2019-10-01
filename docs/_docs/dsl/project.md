@@ -5,9 +5,9 @@ categories: dsl
 nav_order: 12
 ---
 
-You define the CodeBuild project in `.codebuild/project.rb`. Here's an example of the DSL used to create a codebuild project.
+You define the CodeBuild project in `.cody/project.rb`. Here's an example of the DSL used to create a codebuild project.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
 # name("demo") # recommended to leave unset and use the conventional name that cb tool sets
@@ -51,7 +51,7 @@ triggers(
 
 The convenience methods are shorter and cleaner. However, you have access to a Full DSL if needed. The Full DSL methods are merely the properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  Here's an example.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
 # name("demo") # recommend to not set, and let cody set this automatically
@@ -62,7 +62,7 @@ source(
   location: "https://github.com/tongueroo/demo-ufo",
   git_clone_depth: 1,
   git_submodules_config: { fetch_submodules: true },
-  build_spec: ".codebuild/buildspec.yml",
+  build_spec: ".cody/buildspec.yml",
   auth: {
     type: "OAUTH",
     resource: ssm("/codebuild/demo/oauth_token"),

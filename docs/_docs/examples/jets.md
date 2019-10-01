@@ -9,7 +9,7 @@ This example shows to deploy a [Jets](https://rubyonjets.com/) application with 
 
 Here's the project DSL.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 
 ```ruby
@@ -20,11 +20,11 @@ environment_variables(
 )
 ```
 
-The [.codebuild/project.rb](https://github.com/tongueroo/jets-codebuild/blob/master/.codebuild/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
+The [.cody/project.rb](https://github.com/tongueroo/jets-codebuild/blob/master/.cody/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
 
 Here's the buildspec:
 
-.codebuild/buildspec.yml
+.cody/buildspec.yml
 
 ```yaml
 version: 0.2
@@ -50,7 +50,7 @@ phases:
 
 And here are the IAM permissions required as described in [Jets Minimal IAM Deploy Policy](https://rubyonjets.com/docs/extras/minimal-deploy-iam/).
 
-.codebuild/role.rb:
+.cody/role.rb:
 
 ```ruby
 iam_policy(

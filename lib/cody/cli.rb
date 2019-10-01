@@ -3,15 +3,15 @@ module Cody
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "init", "Initialize project with .codebuild files"
+    desc "init", "Initialize project with .cody files"
     long_desc Help.text(:init)
     Init.cli_options.each do |args|
       option(*args)
     end
-    register(Init, "init", "init", "Set up initial .codebuild files.")
+    register(Init, "init", "init", "Set up initial .cody files.")
 
     common_options = Proc.new do
-      option :type, desc: "folder to use within .codebuild folder for different build types"
+      option :type, desc: "folder to use within .cody folder for different build types"
       option :stack_name, desc: "Override the generated stack name. If you use this you must always specify it"
       option :wait, type: :boolean, default: true, desc: "Wait for operation to complete"
     end

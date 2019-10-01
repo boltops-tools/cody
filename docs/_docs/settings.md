@@ -3,7 +3,7 @@ title: Settings
 nav_order: 8
 ---
 
-The `.codebuild/settings.yml` file can be used to adjust some of the behavior of cody.  Here's an example of a settings.yml file:
+The `.cody/settings.yml` file can be used to adjust some of the behavior of cody.  Here's an example of a settings.yml file:
 
 ```yaml
 base:

@@ -9,7 +9,7 @@ This examples show to run Ruby unit tests.
 
 Here's the project DSL.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 
 ```ruby
@@ -22,7 +22,7 @@ environment_variables(
 
 Here's the buildspec:
 
-.codebuild/buildspec.yml
+.cody/buildspec.yml
 
 ```yaml
 version: 0.2

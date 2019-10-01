@@ -9,7 +9,7 @@ This example will show some powerful patterns with cody.  We'll use cody with th
 
 Here's the project DSL.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 
 ```ruby
@@ -34,7 +34,7 @@ Creates a CodeBuild project that will deploy your app to production and create a
 
 Here's the buildspec that references the environment variables set in `project.rb` earlier:
 
-.codebuild/buildspec.yml
+.cody/buildspec.yml
 
 ```yaml
 version: 0.2
@@ -61,7 +61,7 @@ When codebuild actually runs, the values will be:
 
 Cody also can create the IAM Policy that will give CodeBuild the IAM permissions necessary to create the ECS service and other resources that `ufo ship` creates. Here are the IAM permissions as detailed on the [UFO Minimal IAM Permissions](https://ufoships.com/docs/extras/minimal-deploy-iam/) docs.
 
-.codebuild/role.rb:
+.cody/role.rb:
 
 ```ruby
 iam_policy(

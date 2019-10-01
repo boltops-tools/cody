@@ -41,7 +41,7 @@ module Cody
     end
 
     def lookup_codebuild_file(name)
-      [".codebuild", @options[:type], name].compact.join("/")
+      [".cody", @options[:type], name].compact.join("/")
     end
   end
 end

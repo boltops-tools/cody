@@ -48,7 +48,7 @@ module Cody::Dsl
         location: options[:location],
         git_clone_depth: 1,
         git_submodules_config: { fetch_submodules: true },
-        build_spec: options[:buildspec] || ".codebuild/buildspec.yml", # options[:buildspec] accounts for type already
+        build_spec: options[:buildspec] || ".cody/buildspec.yml", # options[:buildspec] accounts for type already
         report_build_status: true,
       }
 
