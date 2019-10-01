@@ -5,7 +5,7 @@ categories: example
 nav_order: 16
 ---
 
-This example will show some powerful patterns with the codebuild tool.  We'll use codebuild with the [ufo](https://ufoships.com) tool to deploy an application to ECS.
+This example will show some powerful patterns with cody.  We'll use cody with the [ufo](https://ufoships.com) tool to deploy an application to ECS.
 
 Here's the project DSL.
 
@@ -23,12 +23,12 @@ environment_variables(
 
 Notice the use of `Cody.env` and `project_name` to set environment variables. The environment variables are later used in the `.buildspec.yml`.
 
-* The `Cody.env` method contains the value of `CB_ENV` when you run the `cody deploy` command.
+* The `Cody.env` method contains the value of `CODY_ENV` when you run the `cody deploy` command.
 * The `project_name` is the CodeBuild project name itself.
 
 If CodeBuild project name matches the ufo ECS service name, then it makes the commands very simple. For example.
 
-    CB_ENV=production cody deploy demo-web
+    CODY_ENV=production cody deploy demo-web
 
 Creates a CodeBuild project that will deploy your app to production and create an ECS service named `demo-web` via ufo.
 
@@ -59,7 +59,7 @@ When codebuild actually runs, the values will be:
 
 ## IAM Policy
 
-The codebuild tool also can create the IAM Policy that will give CodeBuild the IAM permissions necessary to create the ECS service and other resources that `ufo ship` creates. Here are the IAM permissions as detailed on the [UFO Minimal IAM Permissions](https://ufoships.com/docs/extras/minimal-deploy-iam/) docs.
+Cody also can create the IAM Policy that will give CodeBuild the IAM permissions necessary to create the ECS service and other resources that `ufo ship` creates. Here are the IAM permissions as detailed on the [UFO Minimal IAM Permissions](https://ufoships.com/docs/extras/minimal-deploy-iam/) docs.
 
 .codebuild/role.rb:
 

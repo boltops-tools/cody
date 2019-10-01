@@ -1,11 +1,11 @@
 ---
-title: cb version
+title: cody version
 reference: true
 ---
 
 ## Usage
 
-    cb version
+    cody version
 
 ## Description
 

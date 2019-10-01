@@ -12,12 +12,12 @@ See [the support guidelines]({% link support.md %})
 
 Whether you're a developer, an infrastructure engineer, or just an enthusiast, there are lots of ways to contribute. Here are a few ideas:
 
-* [Install CodeBuild on your computer](https://https://cody.run.com/docs/install/) and kick the tires. Does it work? Does it do what you'd expect? If not, [open an issue](https://github.com/tongueroo/codebuild/issues/new/choose) and let us know.
-* Comment on some of the project's [open issues](https://github.com/tongueroo/codebuild/issues). Have you experienced the same problem? Know a workaround? Do you have a suggestion for how the feature could be better?
+* [Install CodeBuild on your computer](https://https://cody.run.com/docs/install/) and kick the tires. Does it work? Does it do what you'd expect? If not, [open an issue](https://github.com/tongueroo/cody/issues/new/choose) and let us know.
+* Comment on some of the project's [open issues](https://github.com/tongueroo/cody/issues). Have you experienced the same problem? Know a workaround? Do you have a suggestion for how the feature could be better?
 * Read through [the documentation](https://https://cody.run.com/docs/), and click the "improve this page" button, any time you see something confusing or have a suggestion for something that could be improved.
 * Browse through the [CodeBuild Community forum](https://community.https://cody.run.com), and lend a hand answering questions. There's a good chance you've already experienced what another user is experiencing.
-* Find [an open issue](https://github.com/tongueroo/codebuild/issues) (especially [those labeled `help wanted`](https://github.com/tongueroo/codebuild/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)), and submit a proposed fix. If it's your first pull request, we promise we won't bite and are glad to answer any questions.
-* Help evaluate [open pull requests](https://github.com/tongueroo/codebuild/pulls), by testing the changes locally and reviewing what's proposed.
+* Find [an open issue](https://github.com/tongueroo/cody/issues) (especially [those labeled `help wanted`](https://github.com/tongueroo/cody/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)), and submit a proposed fix. If it's your first pull request, we promise we won't bite and are glad to answer any questions.
+* Help evaluate [open pull requests](https://github.com/tongueroo/cody/pulls), by testing the changes locally and reviewing what's proposed.
 
 ## Submitting a pull request
 
@@ -35,7 +35,7 @@ Whether you're a developer, an infrastructure engineer, or just an enthusiast, t
 
 Many small changes can be made entirely through the github.com web interface.
 
-1. Navigate to the file within [tongueroo/codebuild](https://github.com/tongueroo/codebuild) that you'd like to edit.
+1. Navigate to the file within [tongueroo/cody](https://github.com/tongueroo/cody) that you'd like to edit.
 2. Click the pencil icon in the top right corner to edit the file.
 3. Make your proposed changes.
 4. Click "Propose file change."
@@ -47,7 +47,7 @@ That's it! You'll be automatically subscribed to receive updates as others revie
 
 ### Submitting a pull request via Git command line
 
-1. Fork the project by clicking "Fork" in the top right corner of [tongueroo/codebuild](https://github.com/tongueroo/codebuild).
+1. Fork the project by clicking "Fork" in the top right corner of [tongueroo/cody](https://github.com/tongueroo/cody).
 2. Clone the repository locally `git clone https://github.com/<your-username>/codebuild`.
 3. Fetch submodules `git submodule init && git submodule update`.
 4. Create a new, descriptively named branch to contain your change ( `git checkout -b my-awesome-feature` ).
@@ -62,7 +62,7 @@ We want the CodeBuild documentation to be the best it can be. We've open-sourced
 
 ### How to submit changes
 
-You can find the documentation for [https://cody.run.com](http://https://cody.run.com) in the [docs](https://github.com/tongueroo/codebuild/tree/master/docs) directory. See the section above, [submitting a pull request](#submitting-a-pull-request) for information on how to propose a change.
+You can find the documentation for [https://cody.run.com](http://https://cody.run.com) in the [docs](https://github.com/tongueroo/cody/tree/master/docs) directory. See the section above, [submitting a pull request](#submitting-a-pull-request) for information on how to propose a change.
 
 One gotcha, all pull requests should be directed at the `master` branch (the default branch).
 

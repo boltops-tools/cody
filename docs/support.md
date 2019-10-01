@@ -11,7 +11,7 @@ If you're looking for support for codebuild, here are some options:
 
 ## Report a bug
 
-If you think you've found a bug within the codebuild repository, [open an issue](https://github.com/tongueroo/codebuild/issues/new/choose).
+If you think you've found a bug within the codebuild repository, [open an issue](https://github.com/tongueroo/cody/issues/new/choose).
 
 Happy Hackin' 😁
 

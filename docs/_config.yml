@@ -1,5 +1,5 @@
 # Site settings
-title: codebuild
+title: cody
 email: tongueroo@gmail.com
 url: https://cody.run
 description: "Cody allow you to create CodeBuild quickly with a powerful DSL"
@@ -46,7 +46,7 @@ social:
   - title: twitter
     url: http://twitter.com/tongueroo
   - title: github
-    url: https://github.com/tongueroo/codebuild
+    url: https://github.com/tongueroo/cody
 
 # Credits content
 credits:
@@ -55,7 +55,7 @@ credits:
 markdown: kramdown
 permalink: pretty
 
-gh_url: https://github.com/tongueroo/codebuild
+gh_url: https://github.com/tongueroo/cody
 
 collections:
   docs:

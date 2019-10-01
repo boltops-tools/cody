@@ -17,7 +17,7 @@ In a hurry? No problem!  Here's a quick start to get going.
 
 ## What Happened?
 
-Here are a little more details on what the summarized commands do. First, we install the codebuild tool.
+Here are a little more details on what the summarized commands do. First, we install cody tool.
 
     gem install cody
 

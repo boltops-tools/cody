@@ -10,7 +10,7 @@ For minor changes like typos, you can click **Suggest an edit to this page**, lo
 
 For larger fixes, you can run the site locally with the following:
 
-    git clone https://github.com/tongueroo/codebuild.git
+    git clone https://github.com/tongueroo/cody.git
     cd codebuild/docs
     bundle
     bin/web

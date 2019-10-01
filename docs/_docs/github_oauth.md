@@ -23,7 +23,7 @@ Here are the steps to create a GitHub oauth token:
 
 IMPORTANT: If using webhook, the oauth token needs `admin:repo_hook` also.  To check this, you can log into the github, go to the repo, and see if you have access to the "Settings" tab.
 
-![](https://raw.githubusercontent.com/tongueroo/codebuild/master/img/github-admin-settings-tab.png)
+![](https://raw.githubusercontent.com/tongueroo/cody/master/img/github-admin-settings-tab.png)
 
 ## Commands
 

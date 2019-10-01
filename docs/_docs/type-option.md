@@ -7,7 +7,7 @@ The `--type` option is a powerful option that allows you to create multiple code
 
 ## Default Behavior
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  Example:
+By default, cody looks up files in the `.codebuild` folder.  Example:
 
     .codebuild/buildspec.yml
     .codebuild/project.rb

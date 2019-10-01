@@ -5,7 +5,7 @@ categories: dsl
 nav_order: 13
 ---
 
-The codebuild tool can create the IAM service role associated with the codebuild project. Here's an example:
+Cody can create the IAM service role associated with the codebuild project. Here's an example:
 
 .codebuild/role.rb:
 

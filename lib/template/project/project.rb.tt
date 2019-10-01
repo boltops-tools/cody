@@ -1,5 +1,5 @@
 # For methods, refer to the properties of the CloudFormation CodeBuild::Project https://amzn.to/2UTeNlr
-# For convenience methods, refer to the source https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb
+# For convenience methods, refer to the source https://github.com/tongueroo/cody/blob/master/lib/codebuild/dsl/project.rb
 
 # name("example-project-name") # recommend leaving unset and codebuild will use a conventional name
 github_url("<%= project_github_url %>")

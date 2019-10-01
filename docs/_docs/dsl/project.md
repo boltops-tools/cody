@@ -28,7 +28,7 @@ Here's a list of some of the convenience shorthand DSL methods:
 * environment_variables(vars)
 * local_cache(enable=true)
 
-Refer to the [dsl/project.rb](https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
+Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
 
 ## Webhook Example
 
@@ -54,7 +54,7 @@ The convenience methods are shorter and cleaner. However, you have access to a F
 .codebuild/project.rb:
 
 ```ruby
-# name("demo") # recommend to not set, and let the codebuild tool set this automatically
+# name("demo") # recommend to not set, and let cody set this automatically
 description("desc2")
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
 source(

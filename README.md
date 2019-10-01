@@ -1,7 +1,7 @@
 # Cody
 
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSUFzNE9RV3ROWmNKOHh2NG1wTjNmRlV4dnlOTnVrK3U2UFMrOEJRUGE2WS9mcjRWS0o1bjdSZlN5bG1tR1YyYVFlNkErTGdkbThsWExUaVJvWU1PRUY4PSIsIml2UGFyYW1ldGVyU3BlYyI6InppWWxJRGFiWHN1bEtYSzIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
-[![Gem Version](https://badge.fury.io/rb/codebuild.png)](http://badge.fury.io/rb/codebuild)
+[![Gem Version](https://badge.fury.io/rb/cody.png)](http://badge.fury.io/rb/cody)
 
 Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
 

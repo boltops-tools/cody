@@ -34,7 +34,7 @@ module Cody::Dsl
 
     # So it looks like the auth resource property doesnt really get used.
     # Instead an account level credential is worked.  Refer to:
-    # https://github.com/tongueroo/codebuild/blob/master/readme/github_oauth.md
+    # https://github.com/tongueroo/cody/blob/master/readme/github_oauth.md
     #
     # Keeping this method around in case the CloudFormation method works one day,
     # or end up figuring out to use it properly.

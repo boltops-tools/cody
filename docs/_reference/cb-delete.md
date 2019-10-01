@@ -1,11 +1,11 @@
 ---
-title: cb delete
+title: cody delete
 reference: true
 ---
 
 ## Usage
 
-    cb delete
+    cody delete
 
 ## Description
 

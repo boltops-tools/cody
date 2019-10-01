@@ -1,11 +1,11 @@
 ---
-title: cb completion_script
+title: cody completion_script
 reference: true
 ---
 
 ## Usage
 
-    cb completion_script
+    cody completion_script
 
 ## Description
 

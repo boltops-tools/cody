@@ -5,7 +5,7 @@ categories: dsl
 nav_order: 14
 ---
 
-The codebuild tool supports creating a CloudWatch scheduled event rule that will trigger the codebuild project periodically.  You define the schedule in `.codebuild/schedule.rb`. Here's an example of what that looks like:
+Cody supports creating a CloudWatch scheduled event rule that will trigger the codebuild project periodically.  You define the schedule in `.codebuild/schedule.rb`. Here's an example of what that looks like:
 
 .codebuild/schedule.rb:
 

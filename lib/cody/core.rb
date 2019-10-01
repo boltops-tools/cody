@@ -14,13 +14,13 @@ module Cody
     def env
       # 2-way binding
       cb_env = env_from_profile || 'development'
-      cb_env = ENV['CB_ENV'] if ENV['CB_ENV'] # highest precedence
+      cb_env = ENV['CODY_ENV'] if ENV['CODY_ENV'] # highest precedence
       ActiveSupport::StringInquirer.new(cb_env)
     end
     memoize :env
 
     def env_extra
-      env_extra = ENV['CB_ENV_EXTRA'] if ENV['CB_ENV_EXTRA'] # highest precedence
+      env_extra = ENV['CODY_ENV_EXTRA'] if ENV['CODY_ENV_EXTRA'] # highest precedence
       return if env_extra&.empty?
       env_extra
     end
@@ -35,7 +35,7 @@ module Cody
 
       data = settings || {}
       if data[:aws_profile]
-        puts "Using AWS_PROFILE=#{data[:aws_profile]} from CB_ENV=#{Cody.env} in config/settings.yml"
+        puts "Using AWS_PROFILE=#{data[:aws_profile]} from CODY_ENV=#{Cody.env} in config/settings.yml"
         ENV['AWS_PROFILE'] = data[:aws_profile]
       end
     end

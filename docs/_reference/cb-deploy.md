@@ -22,7 +22,7 @@ It is useful to just see the generated CloudFormation template with `--noop` mod
 
 ## Types
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  Example:
+By default, cody looks up files in the `.codebuild` folder.  Example:
 
     .codebuild/buildspec.yml
     .codebuild/project.rb

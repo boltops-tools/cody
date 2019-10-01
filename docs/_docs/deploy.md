@@ -11,7 +11,7 @@ The CodeBuild project is generated from the DSL and created with CloudFormation.
 
 To create the CodeBuild project, you run:
 
-    codebuild deploy
+    cody deploy
 
 You'll see output that looks something like this:
 
@@ -42,7 +42,7 @@ By default, the CodeBuild project name is inferred and is the parent folder that
 
 ## Types
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  Example:
+By default, cody looks up files in the `.codebuild` folder.  Example:
 
     .codebuild/buildspec.yml
     .codebuild/project.rb

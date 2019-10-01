@@ -30,7 +30,7 @@ module Cody
     end
     memoize :data
 
-    # Resolves infinite problem since Cody.env can be determined from CB_ENV or settings.yml files.
+    # Resolves infinite problem since Cody.env can be determined from CODY_ENV or settings.yml files.
     # When ufo is determined from settings it should not called Cody.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def cb_env
@@ -44,7 +44,7 @@ module Cody
       end
 
       cb_env = env.first if env
-      cb_env = ENV['CB_ENV'] if ENV['CB_ENV'] # highest precedence
+      cb_env = ENV['CODY_ENV'] if ENV['CODY_ENV'] # highest precedence
       cb_env || 'development'
     end
 

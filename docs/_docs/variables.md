@@ -23,7 +23,7 @@ Here's an example variables structure:
 
 ## Layering Support
 
-The variable files are layered together. The `base.rb` and specific `CB_ENV `variable file, like `development.rb`, are combined. An example helps explain.   Let's say you have these files:
+The variable files are layered together. The `base.rb` and specific `CODY_ENV `variable file, like `development.rb`, are combined. An example helps explain.   Let's say you have these files:
 
 base.rb:
 
@@ -45,19 +45,19 @@ production.rb:
 
 Then you can do this:
 
-    cody deploy # defaults to CB_ENV=development
+    cody deploy # defaults to CODY_ENV=development
 
-Since `CB_ENV=development` is the default, this means `@myvar = "development-value"` is used.
+Since `CODY_ENV=development` is the default, this means `@myvar = "development-value"` is used.
 
-If we want to use production values, then we can set `CB_ENV=production`
+If we want to use production values, then we can set `CODY_ENV=production`
 
-    CB_ENV=production cody deploy
+    CODY_ENV=production cody deploy
 
 In this case, `@myvar = "production-value"` is used.
 
-Now if we use `CB_ENV=staging`
+Now if we use `CODY_ENV=staging`
 
-    CB_ENV=staging cody deploy
+    CODY_ENV=staging cody deploy
 
 In this case, `@myvar = "base-value"` is used, since there is no `staging.rb` file.
 

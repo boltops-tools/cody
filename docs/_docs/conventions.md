@@ -3,7 +3,7 @@ title: Naming Conventions
 nav_order: 9
 ---
 
-The codebuild tool follows a few naming conventions.
+Cody follows a few naming conventions.
 
 ## Project Name
 
@@ -26,11 +26,11 @@ If the `--type` option is used, then it is appended to the CodeBuild project nam
 
 The CodeBuild project is named `my-project-unit`.
 
-## CB_ENV_EXTRA
+## CODY_ENV_EXTRA
 
-The `CB_ENV_EXTRA` also affects the name of the CodeBuild project.  It gets appended after the type option.
+The `CODY_ENV_EXTRA` also affects the name of the CodeBuild project.  It gets appended after the type option.
 
-    CB_ENV_EXTRA=2 cody deploy my-project --type unit
+    CODY_ENV_EXTRA=2 cody deploy my-project --type unit
 
 The CodeBuild project is named `my-project-unit-2`.
 
