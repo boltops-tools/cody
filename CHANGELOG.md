@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.7.0]
+- Rename to cody
+- Breaking changes: .cody folder, CODY_ENV, -cody stack name suffix
+
 ## [0.6.6]
 - add mode option: bare and full
 

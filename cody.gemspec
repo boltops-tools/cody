@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Cody::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "Cody helps your create and AWS CodeBuild projects with a DSL"
+  spec.summary       = "Cody provides a beautiful DSL to create and manage AWS CodeBuild projects"
   spec.homepage      = "https://github.com/tongueroo/cody"
   spec.license       = "MIT"
 
