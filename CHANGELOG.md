@@ -24,7 +24,7 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 - fix handle rollback
 
 ## [0.6.0]
-- named stack with -cb at the very end
+- named stack with -cody at the very end
 - add docs
 - cody init --no-variables option
 

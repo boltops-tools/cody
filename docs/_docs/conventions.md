@@ -40,12 +40,12 @@ If the append_env is configured in the [Settings]({% link _docs/settings.md %}).
 
 ## Stack Name
 
-The CloudFormation stack name which creates the CodeBuild related resources is named the same as the project name with `-cb` appended to the stack name. Examples:
+The CloudFormation stack name which creates the CodeBuild related resources is named the same as the project name with `-cody` appended to the stack name. Examples:
 
 CodeBuild Project Name | Stack Name
 --- | ---
-demo | demo-cb
-demo-unit | demo-unit-cb
-demo-web-unit | demo-web-unit-cb
+demo | demo-cody
+demo-unit | demo-unit-cody
+demo-web-unit | demo-web-unit-cody
 
 {% include prev_next.md %}

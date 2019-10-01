@@ -61,12 +61,12 @@ It produces a CodeBuild project named `demo-unit`.  The project name is an optio
 
 ## Stack Name
 
-The stack name is the same as the CodeBuild project name with the `-cb` suffix appended to it.  Examples:
+The stack name is the same as the CodeBuild project name with the `-cody` suffix appended to it.  Examples:
 
 CodeBuild Project Name | Stack Name
 --- | ---
-demo | demo-cb
-demo-unit | demo-unit-cb
-demo-web-unit | demo-web-unit-cb
+demo | demo-cody
+demo-unit | demo-unit-cody
+demo-web-unit | demo-web-unit-cody
 
 {% include prev_next.md %}

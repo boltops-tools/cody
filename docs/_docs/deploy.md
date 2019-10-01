@@ -17,19 +17,19 @@ You'll see output that looks something like this:
 
     $ cody deploy
     Generated CloudFormation template at /tmp/codebuild.yml
-    Deploying stack demo-cb with CodeBuild project demo
-    Creating stack demo-cb. Check CloudFormation console for status.
-    Stack name demo-cb status CREATE_IN_PROGRESS
+    Deploying stack demo-cody with CodeBuild project demo
+    Creating stack demo-cody. Check CloudFormation console for status.
+    Stack name demo-cody status CREATE_IN_PROGRESS
     Here's the CloudFormation url to check for more details https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks
     Waiting for stack to complete
-    03:04:30AM CREATE_IN_PROGRESS AWS::CloudFormation::Stack demo-cb User Initiated
+    03:04:30AM CREATE_IN_PROGRESS AWS::CloudFormation::Stack demo-cody User Initiated
     03:04:34AM CREATE_IN_PROGRESS AWS::IAM::Role IamRole
     03:04:35AM CREATE_IN_PROGRESS AWS::IAM::Role IamRole Resource creation Initiated
     03:04:54AM CREATE_COMPLETE AWS::IAM::Role IamRole
     03:04:56AM CREATE_IN_PROGRESS AWS::CodeBuild::Project CodeBuild
     03:04:58AM CREATE_IN_PROGRESS AWS::CodeBuild::Project CodeBuild Resource creation Initiated
     03:04:59AM CREATE_COMPLETE AWS::CodeBuild::Project CodeBuild
-    03:05:01AM CREATE_COMPLETE AWS::CloudFormation::Stack demo-cb
+    03:05:01AM CREATE_COMPLETE AWS::CloudFormation::Stack demo-cody
     Stack success status: CREATE_COMPLETE
     Time took for stack deployment: 30s.
     $

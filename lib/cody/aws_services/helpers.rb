@@ -43,9 +43,10 @@ module Cody::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(project_name)
-      items = [project_name, @options[:type], Cody.env_extra, "cb"]
+      append_stack_name = Cody.settings.dig(:stack_naming, :append_stack_name) || "cody"
+      items = [project_name, @options[:type], Cody.env_extra, append_stack_name]
       items.insert(3, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
-      items.reject(&:blank?).compact.join("-")
+      items.reject(&:blank?).reject {|i| i == false}.compact.join("-")
     end
 
     def are_you_sure?(stack_name, action)
