@@ -13,7 +13,7 @@ class Thor
   end
 end
 
-module Codebuild
+module Cody
   class Command < Thor
     class << self
       def dispatch(m, args, options, config)

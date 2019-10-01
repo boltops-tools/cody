@@ -14,7 +14,7 @@ environment_variables(
 # puts "full_project_name #{full_project_name}" # demo-web-development
 
 # Uncomment to enable github webhook, the GitHub oauth token needs admin:repo_hook permissions
-# Refer to https://codebuild.cloud/docs/github_oauth/
+# Refer to https://cody.run/docs/github_oauth/
 # triggers(webhook: true)
 # Another example:
 # Docs: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html

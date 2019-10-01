@@ -1,11 +1,11 @@
 ---
-title: cb deploy
+title: cody deploy
 reference: true
 ---
 
 ## Usage
 
-    cb deploy
+    cody deploy
 
 ## Description
 
@@ -13,12 +13,12 @@ Deploy codebuild project.
 
 ## Examples
 
-    cb deploy PROJECT_NAME # explicitly specify project-name
-    cb deploy # infers the CodeBuild name from the parent folder
+    cody deploy PROJECT_NAME # explicitly specify project-name
+    cody deploy # infers the CodeBuild name from the parent folder
 
 It is useful to just see the generated CloudFormation template with `--noop` mode:
 
-    cb deploy PROJECT_NAME --noop # see generated CloudFormation template
+    cody deploy PROJECT_NAME --noop # see generated CloudFormation template
 
 ## Types
 
@@ -30,7 +30,7 @@ By default, the codebuild tool looks up files in the `.codebuild` folder.  Examp
 
 ### Examples
 
-    cb deploy PROJECT_NAME --type deploy
+    cody deploy PROJECT_NAME --type deploy
 
 This will look up buildspec.yml, project.rb, and role.rb files in the `.codebuild/deploy` folder. So:
 
@@ -38,7 +38,7 @@ This will look up buildspec.yml, project.rb, and role.rb files in the `.codebuil
     .codebuild/deploy/project.rb
     .codebuild/deploy/role.rb
 
-Likewise `cb deploy PROJECT_NAME --type unit` would result in:
+Likewise `cody deploy PROJECT_NAME --type unit` would result in:
 
     .codebuild/unit/buildspec.yml
     .codebuild/unit/project.rb

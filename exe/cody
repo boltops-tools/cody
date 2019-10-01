@@ -8,7 +8,7 @@ Signal.trap("INT") {
 }
 
 $:.unshift(File.expand_path("../../lib", __FILE__))
-require "codebuild"
-require "codebuild/cli"
+require "cody"
+require "cody/cli"
 
-Codebuild::CLI.start(ARGV)
+Cody::CLI.start(ARGV)

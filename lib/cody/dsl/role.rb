@@ -1,4 +1,4 @@
-module Codebuild::Dsl
+module Cody::Dsl
   module Role
     PROPERTIES = %w[
       assume_role_policy_document

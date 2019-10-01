@@ -1,6 +1,6 @@
-module Codebuild
+module Cody
   class Schedule
-    include Codebuild::Dsl::Schedule
+    include Cody::Dsl::Schedule
     include Evaluate
     include Variables
 

@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Create < Stack
     def perform
       cfn.create_stack(

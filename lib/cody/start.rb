@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Start
     include AwsServices
 
@@ -18,7 +18,7 @@ module Codebuild
       resp = codebuild.start_build(params)
       puts "Build started for project: #{project_name}"
       puts "Please check the CodeBuild console for the status."
-      puts "Codebuild Log Url:"
+      puts "Cody Log Url:"
       puts codebuild_log_url(resp.build.id)
     end
 
@@ -42,7 +42,7 @@ module Codebuild
     def project_name
       if project_exists?(@full_project_name)
         @full_project_name
-      elsif stack_exists?(@project_name) # allow `cb start STACK_NAME` to work too
+      elsif stack_exists?(@project_name) # allow `cody start STACK_NAME` to work too
         resp = cfn.describe_stack_resources(stack_name: @project_name)
         resource = resp.stack_resources.find do |r|
           r.logical_resource_id == "CodeBuild"

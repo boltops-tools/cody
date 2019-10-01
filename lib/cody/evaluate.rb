@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   module Evaluate
     def evaluate(path)
       source_code = IO.read(path)

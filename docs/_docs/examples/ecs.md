@@ -16,19 +16,19 @@ Here's the project DSL.
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
-  UFO_ENV: Codebuild.env,
+  UFO_ENV: Cody.env,
   UFO_APP: project_name,
 )
 ```
 
-Notice the use of `Codebuild.env` and `project_name` to set environment variables. The environment variables are later used in the `.buildspec.yml`.
+Notice the use of `Cody.env` and `project_name` to set environment variables. The environment variables are later used in the `.buildspec.yml`.
 
-* The `Codebuild.env` method contains the value of `CB_ENV` when you run the `cb deploy` command.
+* The `Cody.env` method contains the value of `CB_ENV` when you run the `cody deploy` command.
 * The `project_name` is the CodeBuild project name itself.
 
 If CodeBuild project name matches the ufo ECS service name, then it makes the commands very simple. For example.
 
-    CB_ENV=production cb deploy demo-web
+    CB_ENV=production cody deploy demo-web
 
 Creates a CodeBuild project that will deploy your app to production and create an ECS service named `demo-web` via ufo.
 
@@ -94,13 +94,13 @@ managed_iam_policy("AmazonS3ReadOnlyAccess") # optional but common to need read 
 
 ## Security
 
-From a security perspective, using CodeBuild gives us a stronger security posture. The **only** permission the user calling [cb start]({% link _docs/start.md %}) really needs is CodeBuild access.  The permissions to create the ECS service and other deployment resources are delegated to the CodeBuild project itself. We know that the CodeBuild project will not run any arbitrary commands unless we update `buildspec.yml` and explicitly give permission to it's IAM role.
+From a security perspective, using CodeBuild gives us a stronger security posture. The **only** permission the user calling [cody start]({% link _docs/start.md %}) really needs is CodeBuild access.  The permissions to create the ECS service and other deployment resources are delegated to the CodeBuild project itself. We know that the CodeBuild project will not run any arbitrary commands unless we update `buildspec.yml` and explicitly give permission to it's IAM role.
 
 ## Create CodeBuild Project
 
 To create the CodeBuild project via CloudFormation run:
 
-    cb deploy demo-web
+    cody deploy demo-web
 
 This creates the CodeBuild project as well as the necessary IAM role.
 
@@ -108,11 +108,11 @@ This creates the CodeBuild project as well as the necessary IAM role.
 
 To start a build:
 
-    cb start demo-web
+    cody start demo-web
 
 You can also start a build with a specific branch. Remember to `git push` your branch.
 
-    cb start demo-web -b mybranch
+    cody start demo-web -b mybranch
 
 ## CodePipeline ECS Deploy Action
 

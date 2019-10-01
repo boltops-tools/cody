@@ -1,8 +1,8 @@
 require "yaml"
 
-module Codebuild
+module Cody
   class Role
-    include Codebuild::Dsl::Role
+    include Cody::Dsl::Role
     include Evaluate
     include Variables
 

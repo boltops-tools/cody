@@ -15,7 +15,7 @@ To create the CodeBuild project, you run:
 
 You'll see output that looks something like this:
 
-    $ cb deploy
+    $ cody deploy
     Generated CloudFormation template at /tmp/codebuild.yml
     Deploying stack demo-cb with CodeBuild project demo
     Creating stack demo-cb. Check CloudFormation console for status.
@@ -38,7 +38,7 @@ You'll see output that looks something like this:
 
 By default, the CodeBuild project name is inferred and is the parent folder that you are within.  You can explicitly specify the project name as the first CLI argument:
 
-    cb deploy my-project
+    cody deploy my-project
 
 ## Types
 
@@ -50,7 +50,7 @@ By default, the codebuild tool looks up files in the `.codebuild` folder.  Examp
 
 You can use the `--type` option to tell the tool to lookup files in a subfolder.  Here's an example.
 
-    cb deploy PROJECT_NAME --type deploy
+    cody deploy PROJECT_NAME --type deploy
 
 This will look up `buildspec.yml`, `project.rb`, and `role.rb` files in the `.codebuild/deploy` folder. So:
 
@@ -58,12 +58,12 @@ This will look up `buildspec.yml`, `project.rb`, and `role.rb` files in the `.co
     .codebuild/deploy/project.rb
     .codebuild/deploy/role.rb
 
-Likewise `cb deploy PROJECT_NAME --type unit` would result in:
+Likewise `cody deploy PROJECT_NAME --type unit` would result in:
 
     .codebuild/unit/buildspec.yml
     .codebuild/unit/project.rb
     .codebuild/unit/role.rb
 
-Also, for help info you can check the [cb deploy]({% link _reference/cb-deploy.md %}) CLI reference.
+Also, for help info you can check the [cody deploy]({% link _reference/cb-deploy.md %}) CLI reference.
 
 {% include prev_next.md %}

@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Update < Stack
     def perform
       cfn.update_stack(

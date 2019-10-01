@@ -1,4 +1,4 @@
-module Codebuild::AwsServices
+module Cody::AwsServices
   module Helpers
     def stack_exists?(stack_name)
       return false if ENV['TEST']
@@ -26,8 +26,8 @@ module Codebuild::AwsServices
     end
 
     def project_name_convention(name_base)
-      items = [@project_name, @options[:type], Codebuild.env_extra]
-      items.insert(2, Codebuild.env) if Codebuild.settings.dig(:stack_naming, :append_env)
+      items = [@project_name, @options[:type], Cody.env_extra]
+      items.insert(2, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
 
@@ -43,8 +43,8 @@ module Codebuild::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(project_name)
-      items = [project_name, @options[:type], Codebuild.env_extra, "cb"]
-      items.insert(3, Codebuild.env) if Codebuild.settings.dig(:stack_naming, :append_env)
+      items = [project_name, @options[:type], Cody.env_extra, "cb"]
+      items.insert(3, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
 

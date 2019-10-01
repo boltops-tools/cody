@@ -7,19 +7,19 @@ In a hurry? No problem!  Here's a quick start to get going.
 
 ## Summary
 
-    gem install codebuild
+    gem install cody
     cd <your-project>
-    cb init # generates starter .codebuild files
+    cody init # generates starter .codebuild files
     # edit .codebuild/buildspec.yml
     # git commit and push your changes. codebuild will git pull them down.
-    cb deploy # create the CodeBuild project via CloudFormation
-    cb start  # start a CodeBuild project. Runs the buildspec.yml
+    cody deploy # create the CodeBuild project via CloudFormation
+    cody start  # start a CodeBuild project. Runs the buildspec.yml
 
 ## What Happened?
 
 Here are a little more details on what the summarized commands do. First, we install the codebuild tool.
 
-    gem install codebuild
+    gem install cody
 
 Change into your project directory.
 
@@ -32,7 +32,7 @@ If you do not have a project, simply create an empty folder.
 
 Create the starter .codebuild files in the project.
 
-    cb init # generates starter .codebuild files
+    cody init # generates starter .codebuild files
 
 An important generated file `.codebuild/buildspec.yml`. The starter file looks something like this:
 
@@ -69,13 +69,13 @@ Make sure youpushed to github, since codebuild will be pulling from it.
 
 Now we're ready to deploy. You can deploy it with a single command:
 
-    cb deploy
+    cody deploy
 
 This deploys a CloudFormation stack that creates a CodeBuild project and IAM role.  The IAM role permissions is defined in `.codebuild/role.rb` via the [IAM Role DSL]({% link _docs/dsl/role.md %}).
 
 Once the stack is complete. You can start the CodeBuild project via the CLI or the CodeBuild console.  Here is the CLI command:
 
-    cb start
+    cody start
 
 Here's what CodeBuild project output looks like:
 

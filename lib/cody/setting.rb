@@ -1,7 +1,7 @@
 require 'yaml'
 require 'render_me_pretty'
 
-module Codebuild
+module Cody
   class Setting
     extend Memoist
     def initialize(check_codebuild_project=true)
@@ -11,7 +11,7 @@ module Codebuild
     # data contains the settings.yml config.  The order or precedence for settings
     # is the project ufo/settings.yml and then the ~/.codebuild/settings.yml.
     def data
-      Codebuild.check_codebuild_project! if @check_codebuild_project
+      Cody.check_codebuild_project! if @check_codebuild_project
       return {} unless File.exist?(project_settings_path)
 
       # project based settings files
@@ -30,8 +30,8 @@ module Codebuild
     end
     memoize :data
 
-    # Resolves infinite problem since Codebuild.env can be determined from CB_ENV or settings.yml files.
-    # When ufo is determined from settings it should not called Codebuild.env since that in turn calls
+    # Resolves infinite problem since Cody.env can be determined from CB_ENV or settings.yml files.
+    # When ufo is determined from settings it should not called Cody.env since that in turn calls
     # Settings.new.data which can then cause an infinite loop.
     def cb_env
       path = "#{cb_root}/.codebuild/settings.yml"

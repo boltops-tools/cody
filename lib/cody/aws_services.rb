@@ -1,7 +1,7 @@
 require "aws-sdk-codebuild"
 require "aws-sdk-cloudformation"
 
-module Codebuild
+module Cody
   module AwsServices
     include Helpers
 

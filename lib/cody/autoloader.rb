@@ -1,6 +1,6 @@
 require "zeitwerk"
 
-module Codebuild
+module Cody
   class Autoloader
     class Inflector < Zeitwerk::Inflector
       def camelize(basename, _abspath)

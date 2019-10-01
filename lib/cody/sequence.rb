@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'thor'
 
-module Codebuild
+module Cody
   class Sequence < Thor::Group
     include AwsServices
     include Thor::Actions

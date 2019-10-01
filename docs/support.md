@@ -7,7 +7,7 @@ nav_order: 19
 
 If you're looking for support for codebuild, here are some options:
 
-* Read the [Documentation](http://https://codebuild.cloud)
+* Read the [Documentation](http://https://cody.run)
 
 ## Report a bug
 

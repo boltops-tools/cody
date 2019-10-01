@@ -17,7 +17,7 @@ You can affect the behavior of the lookup logic with the `--type` option.
 
 ## Examples
 
-    cb deploy --type deploy
+    cody deploy --type deploy
 
 This will look up buildspec.yml, project.rb, and role.rb files in the `.codebuild/deploy` folder. So:
 
@@ -25,7 +25,7 @@ This will look up buildspec.yml, project.rb, and role.rb files in the `.codebuil
     .codebuild/deploy/project.rb
     .codebuild/deploy/role.rb
 
-Likewise `cb deploy --type unit` would result in:
+Likewise `cody deploy --type unit` would result in:
 
     .codebuild/unit/buildspec.yml
     .codebuild/unit/project.rb
@@ -52,12 +52,12 @@ So if you need multiple CodeBuild projects that perform different tasks but are 
 The CloudFormation stack name is appended with the name of the type option. So if your project folder is `demo` and the type option is `unit`.
 
     cd demo # project folder
-    cb deploy --type unit
+    cody deploy --type unit
 
 It produces a CodeBuild project named `demo-unit`.  The project name is an optional first CLI argument. Here's an example:
 
     cd demo # project folder
-    cb deploy demo-web --type deploy # CodeProject name: demo-web-deploy
+    cody deploy demo-web --type deploy # CodeProject name: demo-web-deploy
 
 ## Stack Name
 

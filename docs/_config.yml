@@ -1,9 +1,9 @@
 # Site settings
 title: codebuild
 email: tongueroo@gmail.com
-url: https://codebuild.cloud
-description: "The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults."
-keywords: "codebuild boltops dsl ruby aws"
+url: https://cody.run
+description: "Cody allow you to create CodeBuild quickly with a powerful DSL"
+keywords: "cody codebuild boltops dsl ruby aws"
 skills: ""
 meta_author: Tung Nguyen
 

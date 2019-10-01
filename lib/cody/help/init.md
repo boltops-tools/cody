@@ -1,13 +1,13 @@
 ## Examples
 
-    cb init # infers the name from the parent folder
-    cb init my-project # set the name
+    cody init # infers the name from the parent folder
+    cody init my-project # set the name
 
 ## Type Option
 
 The type option is useful to generate subfolder under .codebuild that contain another codebuild project.  Example:
 
-    cb init --type unit
+    cody init --type unit
 
 Thi generates the cb files under the `.codebuild/unit` folder.
 
@@ -18,8 +18,8 @@ Thi generates the cb files under the `.codebuild/unit` folder.
 
 To tell the codebuild tool to use these files, you specify the `--type` option as a part of the other commands. Examples:
 
-    cb deploy --type unit
-    cb start --type unit
+    cody deploy --type unit
+    cody start --type unit
 
 ## Structure
 
@@ -35,9 +35,9 @@ So if you need multiple CodeBuild projects that perform different tasks but are 
 
 ## Mode Option
 
-By default, `cb init` generates a very lightweight structure.  You can have it also generate a "full" structure with the `--mode` option.  Example.
+By default, `cody init` generates a very lightweight structure.  You can have it also generate a "full" structure with the `--mode` option.  Example.
 
-    $ cb init --mode full
+    $ cody init --mode full
     $ tree .codebuild
     .codebuild
     ├── buildspec.yml
@@ -52,20 +52,20 @@ By default, `cb init` generates a very lightweight structure.  You can have it a
 
 ## Custom Templates
 
-If you would like the `cb init` command to use your own custom templates, you can achieve this with the `--template` and `--template-mode` options.  Example:
+If you would like the `cody init` command to use your own custom templates, you can achieve this with the `--template` and `--template-mode` options.  Example:
 
-    cb init --template=tongueroo/codebuild-custom-template
+    cody init --template=tongueroo/codebuild-custom-template
 
 This will clone the repo on GitHub into the `~/.codebuild/templates/tongueroo/codebuild-custom-template` and use that as an additional template source.  The default `--template-mode=additive` mode means that if there's a file in `tongueroo/codebuild-custom-template` that exists it will use that in place of the default template files.
 
 If you do not want to use any of the original default template files within the codebuild gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
 
-    cb init --template=tongueroo/codebuild-custom-template --template-mode=replace
+    cody init --template=tongueroo/codebuild-custom-template --template-mode=replace
 
 You can also specific the full GitHub url. Example:
 
-    cb init --template=https://github.com/tongueroo/codebuild-custom-template
+    cody init --template=https://github.com/tongueroo/codebuild-custom-template
 
 If you would like to use a local template that is not on GitHub, then created a top-level folder in `~/.codebuild/templates` without a subfolder. Example:
 
-    cb init --template=my-custom # uses ~/.codebuild/templates/my-custom
+    cody init --template=my-custom # uses ~/.codebuild/templates/my-custom

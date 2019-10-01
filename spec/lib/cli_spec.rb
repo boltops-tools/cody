@@ -1,4 +1,4 @@
-describe Codebuild::CLI do
+describe Cody::CLI do
   before(:all) do
     @args = "--noop"
     @codebuild_bin = "exe/codebuild"

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "codebuild/version"
+require "cody/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "codebuild"
-  spec.version       = Codebuild::VERSION
+  spec.name          = "cody"
+  spec.version       = Cody::VERSION
   spec.authors       = ["Tung Nguyen"]
   spec.email         = ["tongueroo@gmail.com"]
-  spec.summary       = "CodeBuild DSL Tool to Quickly Create CodeBuild Project"
-  spec.homepage      = "https://github.com/tongueroo/codebuild"
+  spec.summary       = "Cody helps your create and AWS CodeBuild projects with a DSL"
+  spec.homepage      = "https://github.com/tongueroo/cody"
   spec.license       = "MIT"
 
   vendor_files       = Dir.glob("vendor/**/*")

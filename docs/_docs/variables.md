@@ -3,7 +3,7 @@ title: Variables Support
 nav_order: 5
 ---
 
-The codebuild tool supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code with different environmental variables.
+Cody supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code with different environmental variables.
 
 Within the `.codebuild/variables` folder, you can create variable files and the variables defined in them are made available to your `.codebuild` DSL files.
 
@@ -45,19 +45,19 @@ production.rb:
 
 Then you can do this:
 
-    cb deploy # defaults to CB_ENV=development
+    cody deploy # defaults to CB_ENV=development
 
 Since `CB_ENV=development` is the default, this means `@myvar = "development-value"` is used.
 
 If we want to use production values, then we can set `CB_ENV=production`
 
-    CB_ENV=production cb deploy
+    CB_ENV=production cody deploy
 
 In this case, `@myvar = "production-value"` is used.
 
 Now if we use `CB_ENV=staging`
 
-    CB_ENV=staging cb deploy
+    CB_ENV=staging cody deploy
 
 In this case, `@myvar = "base-value"` is used, since there is no `staging.rb` file.
 
@@ -65,7 +65,7 @@ In this case, `@myvar = "base-value"` is used, since there is no `staging.rb` fi
 
 With codebuild, we can use a `--type` option to create additional codebuild projects under the `.codebuild` folder.  Here's a short example:
 
-    cb deploy --type deploy
+    cody deploy --type deploy
 
 The buildspec file it'll use is here:
 

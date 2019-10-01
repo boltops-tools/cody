@@ -1,6 +1,6 @@
 require "aws-sdk-cloudformation"
 
-module Codebuild
+module Cody
   class Stack
     include AwsServices
 
@@ -23,7 +23,7 @@ module Codebuild
       )
       project_builder = Project.new(options)
       unless project_builder.exist?
-        puts "ERROR: Codebuild project does not exist: #{project_builder.project_path}".color(:red)
+        puts "ERROR: Cody project does not exist: #{project_builder.project_path}".color(:red)
         exit 1
         return
       end

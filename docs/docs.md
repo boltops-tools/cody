@@ -5,7 +5,7 @@ nav_order: 2
 
 ## What is codebuild?
 
-Codebuild is a tool that simplifies creating and managing [AWS CodeBuild](https://aws.amazon.com/codebuild/) projects. It provides a DSL to create a CodeBuild project with reasonable defaults.
+Cody is a tool that simplifies creating and managing [AWS CodeBuild](https://aws.amazon.com/codebuild/) projects. It provides a DSL to create a CodeBuild project with reasonable defaults.
 
 The DSL is simply a wrapper to the [CloudFormation CodeBuild Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html). Essentially, this means you can **fullly control** and customize of the CodeBuild project.
 

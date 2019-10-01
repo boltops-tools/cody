@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Init < Sequence
     # Ugly, this is how I can get the options from to match with this Thor::Group
     def self.cli_options

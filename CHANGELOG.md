@@ -20,13 +20,13 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 - fix settings
 
 ## [0.6.1]
-- cb init: no variables by default
+- cody init: no variables by default
 - fix handle rollback
 
 ## [0.6.0]
 - named stack with -cb at the very end
 - add docs
-- cb init --no-variables option
+- cody init --no-variables option
 
 ## [0.5.0]
 - add --wait option

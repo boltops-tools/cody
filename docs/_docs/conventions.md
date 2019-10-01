@@ -10,7 +10,7 @@ The codebuild tool follows a few naming conventions.
 It will set the codebuild project name by inferring the name of the parent folder.  For example, if the parent folder is `demo`.
 
     cd demo
-    cb deploy
+    cody deploy
 
 The CodeBuild project is named `demo`. You can override this easily by providing a project name.
 
@@ -22,7 +22,7 @@ The CodeBuild project is named `my-project`
 
 If the `--type` option is used, then it is appended to the CodeBuild project name. For example:
 
-    cb deploy my-project --type unit
+    cody deploy my-project --type unit
 
 The CodeBuild project is named `my-project-unit`.
 
@@ -30,7 +30,7 @@ The CodeBuild project is named `my-project-unit`.
 
 The `CB_ENV_EXTRA` also affects the name of the CodeBuild project.  It gets appended after the type option.
 
-    CB_ENV_EXTRA=2 cb deploy my-project --type unit
+    CB_ENV_EXTRA=2 cody deploy my-project --type unit
 
 The CodeBuild project is named `my-project-unit-2`.
 

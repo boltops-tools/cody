@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Deploy < Stack
     def run
       handle_rollback_completed!

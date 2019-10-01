@@ -1,6 +1,6 @@
 require "yaml"
 
-module Codebuild
+module Cody
   class Project
     include Dsl::Project
     include Evaluate

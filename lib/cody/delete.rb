@@ -1,4 +1,4 @@
-module Codebuild
+module Cody
   class Delete
     include AwsServices
 

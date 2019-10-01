@@ -21,8 +21,8 @@ The base settings are common and used for all the environments. The other enviro
 
 ## Example
 
-    cb deploy # will use the development settings since development is the default
-    CB_ENV=production cb deploy # will use the production settings
+    cody deploy # will use the development settings since development is the default
+    CB_ENV=production cody deploy # will use the production settings
 
 ## Options
 

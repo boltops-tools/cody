@@ -1,4 +1,4 @@
-module Codebuild::Dsl
+module Cody::Dsl
   module Schedule
     PROPERTIES = %w[
       description
