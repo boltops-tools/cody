@@ -14,6 +14,7 @@ module Codebuild
     cli_options.each { |o| class_option(*o) }
 
     def setup_template_repo
+      puts "[DEPRECATION] This gem has been renamed to cody and will no longer be supported. Please switch to cody as soon as possible."
       return unless @options[:template]&.include?('/')
 
       sync_template_repo

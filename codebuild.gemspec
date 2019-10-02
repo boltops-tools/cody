@@ -12,6 +12,12 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/tongueroo/codebuild"
   spec.license       = "MIT"
 
+  spec.post_install_message = <<-MESSAGE
+  !    The codebuild gem has been deprecated and has been replaced by cody.
+  !    See: https://rubygems.org/gems/cody
+  !    And: https://github.com/tongueroo/cody
+  MESSAGE
+
   vendor_files       = Dir.glob("vendor/**/*")
   gem_files          = `git -C "#{File.dirname(__FILE__)}" ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features|docs)/})

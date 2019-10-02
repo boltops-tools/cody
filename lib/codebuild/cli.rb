@@ -20,6 +20,7 @@ module Codebuild
     long_desc Help.text(:deploy)
     common_options.call
     def deploy(project_name=nil)
+      puts "[DEPRECATION] This gem has been renamed to cody and will no longer be supported. Please switch to cody as soon as possible."
       Deploy.new(options.merge(project_name: project_name)).run
     end
 
