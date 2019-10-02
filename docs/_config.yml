@@ -1,9 +1,9 @@
 # Site settings
-title: codebuild
+title: cody
 email: tongueroo@gmail.com
-url: https://codebuild.cloud
-description: "The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults."
-keywords: "codebuild boltops dsl ruby aws"
+url: https://cody.run
+description: "Cody allow you to create CodeBuild quickly with a powerful DSL"
+keywords: "cody codebuild boltops dsl ruby aws"
 skills: ""
 meta_author: Tung Nguyen
 
@@ -46,7 +46,7 @@ social:
   - title: twitter
     url: http://twitter.com/tongueroo
   - title: github
-    url: https://github.com/tongueroo/codebuild
+    url: https://github.com/tongueroo/cody
 
 # Credits content
 credits:
@@ -55,7 +55,7 @@ credits:
 markdown: kramdown
 permalink: pretty
 
-gh_url: https://github.com/tongueroo/codebuild
+gh_url: https://github.com/tongueroo/cody
 
 collections:
   docs:

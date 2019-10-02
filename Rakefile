@@ -5,9 +5,9 @@ task default: :spec
 
 RSpec::Core::RakeTask.new
 
-require_relative "lib/codebuild"
+require_relative "lib/cody"
 require "cli_markdown"
 desc "Generates cli reference docs as markdown"
 task :docs do
-  CliMarkdown::Creator.create_all(cli_class: Codebuild::CLI, cli_name: "cb")
+  CliMarkdown::Creator.create_all(cli_class: Cody::CLI, cli_name: "cody")
 end

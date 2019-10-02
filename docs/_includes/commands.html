@@ -13,10 +13,10 @@
                                 <h3>Overview</h3>
                                 <div class="commands">
 {% highlight sh %}
-cb init
-cb deploy
-cb start
-cb delete
+cody init
+cody deploy
+cody start
+cody delete
 {% endhighlight %}
                                 </div>
                             </div>
@@ -24,7 +24,7 @@ cb delete
                                 <h3>Structure</h3>
                                 <div class="commands">
 {% highlight sh %}
-.codebuild
+.cody
 ├── buildspec.yml
 ├── role.rb
 ├── project.rb
@@ -38,14 +38,14 @@ cb delete
                                 <h3>Usage</h3>
                                 <div class="commands">
 {% highlight sh %}
-cb deploy # infers the project name from the parent folder
-cb deploy project-name # explicitly specify project name
+cody deploy # infers the project name from the parent folder
+cody deploy project-name # explicitly specify project name
 
-cb start # infers the project name from the parent folder
-cb start demo-project # looks up project via CodeBuild project name
+cody start # infers the project name from the parent folder
+cody start demo-project # looks up project via CodeBuild project name
 
-cb deploy demo --type unit # different codebuild project types
-cb start demo --type unit
+cody deploy demo --type unit # different codebuild project types
+cody start demo --type unit
 {% endhighlight %}
                                 </div>
                             </div>

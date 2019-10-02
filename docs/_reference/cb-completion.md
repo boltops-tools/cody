@@ -1,11 +1,11 @@
 ---
-title: cb completion
+title: cody completion
 reference: true
 ---
 
 ## Usage
 
-    cb completion *PARAMS
+    cody completion *PARAMS
 
 ## Description
 

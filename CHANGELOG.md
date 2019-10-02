@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.7.0]
+- Rename to cody
+- Breaking changes: .cody folder, CODY_ENV, -cody stack name suffix
+
 ## [0.6.6]
 - add mode option: bare and full
 
@@ -20,13 +24,13 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 - fix settings
 
 ## [0.6.1]
-- cb init: no variables by default
+- cody init: no variables by default
 - fix handle rollback
 
 ## [0.6.0]
-- named stack with -cb at the very end
+- named stack with -cody at the very end
 - add docs
-- cb init --no-variables option
+- cody init --no-variables option
 
 ## [0.5.0]
 - add --wait option
@@ -41,7 +45,7 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 ## [0.3.0]
 - rework cb cli interface
 - project_name as cli main parameter
-- type option for subprojects in .codebuild folder
+- type option for subprojects in .cody folder
 - update to zeitwerk for autoloading
 
 ## [0.2.0]

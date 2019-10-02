@@ -7,13 +7,13 @@ ENV["TEST"] = "1"
 # Ensures aws api never called. Fixture home folder does not contain ~/.aws/credentails
 ENV['HOME'] = File.join(Dir.pwd,'spec/fixtures/home')
 
-ENV['CB_ROOT'] = "spec/fixtures/app"
+ENV['CODY_ROOT'] = "spec/fixtures/app"
 
 
 require "pp"
 require "byebug"
 root = File.expand_path("../", File.dirname(__FILE__))
-require "#{root}/lib/codebuild"
+require "#{root}/lib/cody"
 
 module Helper
   def execute(cmd)

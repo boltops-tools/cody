@@ -1,5 +1,5 @@
 # For methods, refer to the properties of the CloudFormation CodeBuild::Project https://amzn.to/2UTeNlr
-# For convenience methods, refer to the source https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb
+# For convenience methods, refer to the source https://github.com/tongueroo/cody/blob/master/lib/codebuild/dsl/project.rb
 
 # name("example-project-name") # recommend leaving unset and codebuild will use a conventional name
 github_url("<%= project_github_url %>")
@@ -14,7 +14,7 @@ environment_variables(
 # puts "full_project_name #{full_project_name}" # demo-web-development
 
 # Uncomment to enable github webhook, the GitHub oauth token needs admin:repo_hook permissions
-# Refer to https://codebuild.cloud/docs/github_oauth/
+# Refer to https://cody.run/docs/github_oauth/
 # triggers(webhook: true)
 # Another example:
 # Docs: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html

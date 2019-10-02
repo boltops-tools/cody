@@ -1,12 +1,12 @@
-describe Codebuild::CLI do
+describe Cody::CLI do
   before(:all) do
     @args = "--noop"
-    @codebuild_bin = "exe/codebuild"
+    @cody_bin = "exe/cody"
   end
 
-  describe "codebuild" do
+  describe "cody" do
     it "deploy" do
-      out = execute("#{@codebuild_bin} deploy #{@args}")
+      out = execute("#{@cody_bin} deploy #{@args}")
       expect(out).to include("Generated CloudFormation template")
     end
   end

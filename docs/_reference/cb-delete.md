@@ -1,11 +1,11 @@
 ---
-title: cb delete
+title: cody delete
 reference: true
 ---
 
 ## Usage
 
-    cb delete
+    cody delete
 
 ## Description
 
@@ -16,7 +16,7 @@ Delete codebuild project.
 
 ```
 [--sure=SURE]                # Bypass are you sure prompt
-[--type=TYPE]                # folder to use within .codebuild folder for different build types
+[--type=TYPE]                # folder to use within .cody folder for different build types
 [--stack-name=STACK_NAME]    # Override the generated stack name. If you use this you must always specify it
 [--wait], [--no-wait]        # Wait for operation to complete
                              # Default: true

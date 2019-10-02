@@ -5,12 +5,12 @@ categories: dsl
 nav_order: 12
 ---
 
-You define the CodeBuild project in `.codebuild/project.rb`. Here's an example of the DSL used to create a codebuild project.
+You define the CodeBuild project in `.cody/project.rb`. Here's an example of the DSL used to create a codebuild project.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
-# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
+# name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
@@ -28,7 +28,7 @@ Here's a list of some of the convenience shorthand DSL methods:
 * environment_variables(vars)
 * local_cache(enable=true)
 
-Refer to the [dsl/project.rb](https://github.com/tongueroo/codebuild/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
+Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
 
 ## Webhook Example
 
@@ -51,10 +51,10 @@ triggers(
 
 The convenience methods are shorter and cleaner. However, you have access to a Full DSL if needed. The Full DSL methods are merely the properties of the [AWS::CodeBuild::Project CloudFormation Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html).  Here's an example.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
-# name("demo") # recommend to not set, and let the codebuild tool set this automatically
+# name("demo") # recommend to not set, and let cody set this automatically
 description("desc2")
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
 source(
@@ -62,7 +62,7 @@ source(
   location: "https://github.com/tongueroo/demo-ufo",
   git_clone_depth: 1,
   git_submodules_config: { fetch_submodules: true },
-  build_spec: ".codebuild/buildspec.yml",
+  build_spec: ".cody/buildspec.yml",
   auth: {
     type: "OAUTH",
     resource: ssm("/codebuild/demo/oauth_token"),

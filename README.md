@@ -1,83 +1,81 @@
-# Codebuild
+# Cody
 
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSUFzNE9RV3ROWmNKOHh2NG1wTjNmRlV4dnlOTnVrK3U2UFMrOEJRUGE2WS9mcjRWS0o1bjdSZlN5bG1tR1YyYVFlNkErTGdkbThsWExUaVJvWU1PRUY4PSIsIml2UGFyYW1ldGVyU3BlYyI6InppWWxJRGFiWHN1bEtYSzIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
-[![Gem Version](https://badge.fury.io/rb/codebuild.png)](http://badge.fury.io/rb/codebuild)
+[![Gem Version](https://badge.fury.io/rb/cody.png)](http://badge.fury.io/rb/cody)
 
-The codebuild tool provides a DSL to create a CodeBuild project with some reasonable defaults.
+Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
 
-The codebuild tool installs `cb` and `codebuild` executables. Both of them do the same thing, `cb` is just shorter to type.
-
-The documentation site is at: [codebuild.cloud](https://codebuild.cloud/)
+The documentation site is at: [cody.run](https://cody.run/)
 
 ## Quick Start
 
-    cb init
-    cb deploy
-    cb start
+    cody init
+    cody deploy
+    cody start
 
 ## Private Repo
 
-IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to the [CodeBuilld Github Oauth/](https://codebuild.cloud/docs/github_oauth/) for more info.
+IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to the [CodeBuilld Github Oauth/](https://cody.run/docs/github_oauth/) for more info.
 
 ## Usage
 
-1. **init**: generate starter .codebuild files.
+1. **init**: generate starter .cody files.
 2. **deploy**: deploy the CodeBuild project on AWS.
 3. **start**: kick off a CodeBuild project run.
 
 ### Init and Structure
 
-First, run `codebuild init` to generate a starter .codebuild structure.
+First, run `cody init` to generate a starter `.cody` folder structure.
 
-    $ tree .codebuild
-    .codebuild
+    $ tree .cody
+    .cody
     ├── buildspec.yml
     ├── project.rb
     └── role.rb
 
 File | Description
 --- | ---
-buildspec.yml | The build commands to run.
-project.rb | The codebuild project written as a DSL.
-role.rb | The IAM role associated with the codebuild project written as a DSL.
+buildspec.yml | The build commands to run.  Here are the [buildspec.yml syntax docs](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html).
+project.rb | The codebuild project written as a DSL. Here are the [Project DSL docs](https://cody.run/docs/dsl/project/)
+role.rb | The IAM role associated with the codebuild project written as a DSL. Here are the [IAM Role DSL docs](https://cody.run/docs/dsl/role/)
 
 ### Deploy
 
-Adjust the files in `.codebuild` to fit your needs. When you're ready, deploy the CodeBuild project with:
+Adjust the files in `.cody` to fit your needs. When you're ready, deploy the CodeBuild project with:
 
-    cb deploy STACK_NAME
+    cody deploy STACK_NAME
 
 More examples:
 
-    cb deploy # infers the CloudFormation name from the parent folder
-    cb deploy stack-name # explicitly specify stack name
+    cody deploy # infers the CloudFormation name from the parent folder
+    cody deploy stack-name # explicitly specify stack name
 
 It is useful to just see the generated CloudFormation template with `--noop` mode:
 
-    cb deploy --noop # see generated CloudFormation template
+    cody deploy --noop # see generated CloudFormation template
 
 For more help:
 
-    cb deploy -h
+    cody deploy -h
 
 ### Start
 
 When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
 
-    cb start # infers the name from the parent folder
-    cb start stack-name # looks up project via CloudFormation stack
-    cb start demo-project # looks up project via CodeBuild project name
+    cody start # infers the name from the parent folder
+    cody start stack-name # looks up project via CloudFormation stack
+    cody start demo-project # looks up project via CodeBuild project name
 
-The `cb start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
+The `cody start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
 
 ## Project DSL
 
 The tool provides a DSL to create a codebuild project.  Here's an example.
 
-.codebuild/project.rb:
+.cody/project.rb:
 
 ```ruby
-# name("demo") # recommended to leave unset and use the conventional name that cb tool sets
+# name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 environment_variables(
@@ -97,13 +95,13 @@ Here's a list of some of the convenience shorthand DSL methods:
 
 Please refer to [lib/codebuild/dsl/project.rb](lib/codebuild/dsl/project.rb) for the full list.
 
-More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [DSL docs](https://codebuild.cloud/docs/dsl/).
+More slightly more control, you may be interested in the `github_source` and `linux_environment` methods.  For even more control, see [DSL docs](https://cody.run/docs/dsl/).
 
 ## IAM Role DSL
 
-The codebuild tool can create the IAM service role associated with the codebuild project. Here's an example:
+Cody can create the IAM service role associated with the codebuild project. Here's an example:
 
-.codebuild/role.rb:
+.cody/role.rb:
 
 ```ruby
 iam_policy("logs", "ssm")
@@ -132,7 +130,7 @@ managed_iam_policy("AmazonS3ReadOnlyAccess")
 
 ## Schedule Support
 
-.codebuild/schedule.rb:
+.cody/schedule.rb:
 
 ```ruby
 rate "1 day"
@@ -140,17 +138,17 @@ rate "1 day"
 
 ## Full DSL
 
-The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](https://codebuild.cloud/docs/dsl/) for more info.
+The convenience DSL methods shown above are short and clean.  They merely wrap a DSL that map to the properties of CloudFormation resources like [AWS::CodeBuild::Project](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) and [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html). Refer the [DSL docs](https://cody.run/docs/dsl/) for more info.
 
 ## Type Option
 
-By default, the codebuild tool looks up files in the `.codebuild` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](https://codebuild.cloud/docs/type-option/).
+By default, cody looks up files in the `.cody` folder.  You can affect the behavior of the Type logic with the `--Type` option.  More info [Type docs](https://cody.run/docs/type-option/).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem "codebuild"
+    gem "cody"
 
 And then execute:
 
@@ -158,7 +156,7 @@ And then execute:
 
 Or install it yourself as:
 
-    gem install codebuild
+    gem install cody
 
 ## Contributing
 

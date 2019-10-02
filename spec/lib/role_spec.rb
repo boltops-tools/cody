@@ -1,6 +1,6 @@
-describe Codebuild::Role do
+describe Cody::Role do
   let(:role) do
-    Codebuild::Role.new(role_path: "spec/fixtures/app/.codebuild/role.rb")
+    Cody::Role.new(role_path: "spec/fixtures/app/.cody/role.rb")
   end
   context "general" do
     it "builds up the template in memory" do

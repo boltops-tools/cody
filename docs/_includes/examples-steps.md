@@ -2,7 +2,7 @@
 
 To create the CodeBuild project via CloudFormation run:
 
-    cb deploy demo
+    cody deploy demo
 
 This creates the CodeBuild project as well as the necessary IAM role.
 
@@ -10,8 +10,8 @@ This creates the CodeBuild project as well as the necessary IAM role.
 
 To start a build:
 
-    cb start demo
+    cody start demo
 
 You can also start a build with a specific branch. Remember to `git push` your branch.
 
-    cb start demo -b mybranch
+    cody start demo -b mybranch
