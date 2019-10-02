@@ -1,10 +1,10 @@
-_codebuild() {
+_cody() {
   COMPREPLY=()
   local word="${COMP_WORDS[COMP_CWORD]}"
   local words=("${COMP_WORDS[@]}")
   unset words[0]
-  local completion=$(codebuild completion ${words[@]})
+  local completion=$(cody completion ${words[@]})
   COMPREPLY=( $(compgen -W "$completion" -- "$word") )
 }
 
-complete -F _codebuild codebuild
+complete -F _cody cody

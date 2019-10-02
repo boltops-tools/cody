@@ -58,7 +58,7 @@ If you would like the `cody init` command to use your own custom templates, you 
 
 This will clone the repo on GitHub into the `~/.cody/templates/tongueroo/cody-custom-template` and use that as an additional template source.  The default `--template-mode=additive` mode means that if there's a file in `tongueroo/cody-custom-template` that exists it will use that in place of the default template files.
 
-If you do not want to use any of the original default template files within the codebuild gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
+If you do not want to use any of the original default template files within the cody gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
 
     cody init --template=tongueroo/cody-custom-template --template-mode=replace
 
