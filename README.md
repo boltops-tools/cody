@@ -43,12 +43,12 @@ role.rb | The IAM role associated with the codebuild project written as a DSL. H
 
 Adjust the files in `.cody` to fit your needs. When you're ready, deploy the CodeBuild project with:
 
-    cody deploy STACK_NAME
+    cody deploy PROJECT_NAME
 
 More examples:
 
-    cody deploy # infers the CloudFormation name from the parent folder
-    cody deploy stack-name # explicitly specify stack name
+    cody deploy # infers the CodeBuild project name from the parent folder
+    cody deploy PROJECT_NAME # explicitly specify project name
 
 It is useful to just see the generated CloudFormation template with `--noop` mode:
 
@@ -63,8 +63,7 @@ For more help:
 When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
 
     cody start # infers the name from the parent folder
-    cody start stack-name # looks up project via CloudFormation stack
-    cody start demo-project # looks up project via CodeBuild project name
+    cody start PROJECT_NAME # looks up project via CodeBuild project name
 
 The `cody start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
 
