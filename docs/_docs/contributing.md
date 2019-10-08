@@ -48,13 +48,13 @@ That's it! You'll be automatically subscribed to receive updates as others revie
 ### Submitting a pull request via Git command line
 
 1. Fork the project by clicking "Fork" in the top right corner of [tongueroo/cody](https://github.com/tongueroo/cody).
-2. Clone the repository locally `git clone https://github.com/<your-username>/codebuild`.
+2. Clone the repository locally `git clone https://github.com/<your-username>/cody`.
 3. Fetch submodules `git submodule init && git submodule update`.
 4. Create a new, descriptively named branch to contain your change ( `git checkout -b my-awesome-feature` ).
 5. Hack away, add tests. Not necessarily in that order.
 6. Make sure everything still passes by running `bundle exec rspec` (see [the tests section](#running-tests-locally) below)
 7. Push the branch up ( `git push origin my-awesome-feature` ).
-8. Create a pull request by visiting `https://github.com/<your-username>/codebuild` and following the instructions at the top of the screen.
+8. Create a pull request by visiting `https://github.com/<your-username>/cody` and following the instructions at the top of the screen.
 
 ## Proposing updates to the documentation
 
@@ -62,7 +62,7 @@ We want the CodeBuild documentation to be the best it can be. We've open-sourced
 
 ### How to submit changes
 
-You can find the documentation for [https://cody.run.com](http://https://cody.run.com) in the [docs](https://github.com/tongueroo/cody/tree/master/docs) directory. See the section above, [submitting a pull request](#submitting-a-pull-request) for information on how to propose a change.
+You can find the documentation for [https://cody.run.com](https://cody.run.com) in the [docs](https://github.com/tongueroo/cody/tree/master/docs) directory. See the section above, [submitting a pull request](#submitting-a-pull-request) for information on how to propose a change.
 
 One gotcha, all pull requests should be directed at the `master` branch (the default branch).
 

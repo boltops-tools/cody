@@ -48,15 +48,15 @@ Fortunately, negative and positive arity values are processed the same way. So w
 
 Here are some test cases, hit TAB after typing the command:
 
-  codebuild completion
-  codebuild completion hello
-  codebuild completion hello name
-  codebuild completion hello name --
-  codebuild completion hello name --noop
+  cody completion
+  cody completion hello
+  cody completion hello name
+  cody completion hello name --
+  cody completion hello name --noop
 
-  codebuild completion
-  codebuild completion sub:goodbye
-  codebuild completion sub:goodbye name
+  cody completion
+  cody completion sub:goodbye
+  cody completion sub:goodbye name
 
 ## Subcommands and Thor::Group Registered Commands
 

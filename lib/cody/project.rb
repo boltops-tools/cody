@@ -62,11 +62,11 @@ module Cody
     end
 
     def get_project_path
-      lookup_codebuild_file("project.rb")
+      lookup_cody_file("project.rb")
     end
 
     def build_spec
-      lookup_codebuild_file("buildspec.yml")
+      lookup_cody_file("buildspec.yml")
     end
   end
 end

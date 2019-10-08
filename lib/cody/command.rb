@@ -18,23 +18,23 @@ module Cody
     class << self
       def dispatch(m, args, options, config)
         # Allow calling for help via:
-        #   codebuild command help
-        #   codebuild command -h
-        #   codebuild command --help
-        #   codebuild command -D
+        #   cody command help
+        #   cody command -h
+        #   cody command --help
+        #   cody command -D
         #
         # as well thor's normal way:
         #
-        #   codebuild help command
+        #   cody help command
         help_flags = Thor::HELP_MAPPINGS + ["help"]
         if args.length > 1 && !(args & help_flags).empty?
           args -= help_flags
           args.insert(-2, "help")
         end
 
-        #   codebuild version
-        #   codebuild --version
-        #   codebuild -v
+        #   cody version
+        #   cody --version
+        #   cody -v
         version_flags = ["--version", "-v"]
         if args.length == 1 && !(args & version_flags).empty?
           args = ["version"]

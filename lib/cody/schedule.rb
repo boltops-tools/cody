@@ -64,7 +64,7 @@ module Cody
 
   private
     def get_schedule_path
-      lookup_codebuild_file("schedule.rb")
+      lookup_cody_file("schedule.rb")
     end
 
     def events_rule_role

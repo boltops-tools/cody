@@ -7,7 +7,7 @@ Cody follows a few naming conventions.
 
 ## Project Name
 
-It will set the codebuild project name by inferring the name of the parent folder.  For example, if the parent folder is `demo`.
+It will set the CodeBuild project name by inferring the name of the parent folder.  For example, if the parent folder is `demo`.
 
     cd demo
     cody deploy

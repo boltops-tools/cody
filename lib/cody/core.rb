@@ -45,12 +45,12 @@ module Cody
     end
     memoize :settings
 
-    def check_codebuild_project!
+    def check_cody_project!
       check_path = "#{Cody.root}/.cody"
       unless File.exist?(check_path)
-        puts "ERROR: No .cody folder found.  Are you sure you are in a project with codebuild setup?".color(:red)
+        puts "ERROR: No .cody folder found.  Are you sure you are in a project with cody setup?".color(:red)
         puts "Current directory: #{Dir.pwd}"
-        puts "If you want to set up codebuild for this project, please create a settings file via: cody init"
+        puts "If you want to set up cody for this project, please create a settings file via: cody init"
         exit 1 unless ENV['TEST']
       end
     end

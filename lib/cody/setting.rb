@@ -4,14 +4,14 @@ require 'render_me_pretty'
 module Cody
   class Setting
     extend Memoist
-    def initialize(check_codebuild_project=true)
-      @check_codebuild_project = check_codebuild_project
+    def initialize(check_cody_project=true)
+      @check_cody_project = check_cody_project
     end
 
     # data contains the settings.yml config.  The order or precedence for settings
     # is the project ufo/settings.yml and then the ~/.cody/settings.yml.
     def data
-      Cody.check_codebuild_project! if @check_codebuild_project
+      Cody.check_cody_project! if @check_cody_project
       return {} unless File.exist?(project_settings_path)
 
       # project based settings files

@@ -40,7 +40,7 @@ module Cody
       end
     end
 
-    def lookup_codebuild_file(name)
+    def lookup_cody_file(name)
       [".cody", @options[:type], name].compact.join("/")
     end
   end

@@ -5,13 +5,13 @@ nav_order: 19
 
 ## Getting Help
 
-If you're looking for support for codebuild, here are some options:
+If you're looking for support for Cody, here are some options:
 
-* Read the [Documentation](http://https://cody.run)
+* Read the [Documentation](https://cody.run)
 
 ## Report a bug
 
-If you think you've found a bug within the codebuild repository, [open an issue](https://github.com/tongueroo/cody/issues/new/choose).
+If you think you've found a bug within the Cody repository, [open an issue](https://github.com/tongueroo/cody/issues/new/choose).
 
 Happy Hackin' 😁
 

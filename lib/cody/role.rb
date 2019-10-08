@@ -41,7 +41,7 @@ module Cody
 
   private
     def get_role_path
-      lookup_codebuild_file("role.rb")
+      lookup_cody_file("role.rb")
     end
 
     def default_properties
