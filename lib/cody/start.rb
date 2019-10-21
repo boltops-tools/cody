@@ -18,7 +18,7 @@ module Cody
       resp = codebuild.start_build(params)
       puts "Build started for project: #{project_name}"
       puts "Please check the CodeBuild console for the status."
-      puts "Cody Log Url:"
+      puts "CodeBuild Log Url:"
       puts codebuild_log_url(resp.build.id)
     end
 
