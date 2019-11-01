@@ -28,7 +28,7 @@ Here's a list of some of the convenience shorthand DSL methods:
 * environment_variables(vars)
 * local_cache(enable=true)
 
-Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/codebuild/dsl/project.rb) source code for the most updated list of methods.
+Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/cody/dsl/project.rb) source code for the most updated list of methods.
 
 ## Webhook Example
 
