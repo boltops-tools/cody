@@ -1,3 +1,7 @@
+<div align="center">
+  <a href="http://cody.run"><img src="https://raw.githubusercontent.com/tongueroo/cody/master/docs/img/logos/cody-with-text.png" /></a>
+</div>
+
 # Cody
 
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWWFRbjVNQlIvZGtSS2NMTGlRY3pWYm1lTGFFSG5acDc4b09hL2lHWGVxeHZaMGYxVTc0cGEwOHBHWHF6MjZiNlZNU0JqS0lvTnZkdWI5enRDczRZYStnPSIsIml2UGFyYW1ldGVyU3BlYyI6ImsyUDJNc2E3SlpYOGFYYy8iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
