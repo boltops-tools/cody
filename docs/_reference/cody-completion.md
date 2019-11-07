@@ -38,7 +38,7 @@ Auto-completion example usage:
 ## Options
 
 ```
-[--verbose], [--no-verbose]
-[--noop], [--no-noop]
+[--verbose], [--no-verbose]  
+[--noop], [--no-noop]        
 ```
 

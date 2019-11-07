@@ -27,9 +27,7 @@ Thi generates the cb files under the `.cody/unit` folder.
     .cody
     └── unit
         ├── buildspec.yml
-        ├── project.rb
-        ├── role.rb
-        └── schedule.rb
+        └── project.rb
 
 To tell cody to use these files, you specify the `--type` option as a part of the other commands. Examples:
 
@@ -43,14 +41,27 @@ So if you need multiple CodeBuild projects that perform different tasks but are 
     .cody
     ├── deploy
     │   ├── buildspec.yml
-    │   ├── project.rb
-    │   ├── role.rb
-    │   └── schedule.rb
+    │   └── project.rb
     └── unit
         ├── buildspec.yml
-        ├── project.rb
-        ├── role.rb
-        └── schedule.rb
+        └── project.rb
+
+## Mode Option
+
+By default, `cody init` generates a very lightweight structure.  You can have it also generate a "full" structure with the `--mode` option.  Example.
+
+    $ cody init --mode full
+    $ tree .cody
+    .cody
+    ├── buildspec.yml
+    ├── project.rb
+    ├── role.rb
+    ├── schedule.rb
+    ├── settings.yml
+    └── variables
+        ├── base.rb
+        ├── development.rb
+        └── production.rb
 
 ## Custom Templates
 
@@ -60,7 +71,7 @@ If you would like the `cody init` command to use your own custom templates, you 
 
 This will clone the repo on GitHub into the `~/.cody/templates/tongueroo/cody-custom-template` and use that as an additional template source.  The default `--template-mode=additive` mode means that if there's a file in `tongueroo/cody-custom-template` that exists it will use that in place of the default template files.
 
-If you do not want to use any of the original default template files within the codebuild gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
+If you do not want to use any of the original default template files within the cody gem at all, you can use the `--template-mode=replace` mode. Replace mode will only use templates from the provided `--template` option.  Example:
 
     cody init --template=tongueroo/cody-custom-template --template-mode=replace
 
@@ -78,10 +89,11 @@ If you would like to use a local template that is not on GitHub, then created a 
 ```
 [--force]                        # Bypass overwrite are you sure prompt for existing files
 [--name=NAME]                    # CodeBuild project name
+[--mode=MODE]                    # Modes: light or full
+                                 # Default: light
 [--template=TEMPLATE]            # Custom template to use
 [--template-mode=TEMPLATE_MODE]  # Template mode: replace or additive
 [--type=TYPE]                    # Type option creates a subfolder under .cody
-[--variables], [--no-variables]  # Create variables starter files
 [--verbose], [--no-verbose]      
 [--noop], [--no-noop]            
 ```
