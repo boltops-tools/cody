@@ -64,6 +64,6 @@ Likewise `cody deploy PROJECT_NAME --type unit` would result in:
     .cody/unit/project.rb
     .cody/unit/role.rb
 
-Also, for help info you can check the [cody deploy]({% link _reference/cb-deploy.md %}) CLI reference.
+Also, for help info you can check the [cody deploy]({% link _reference/cody-deploy.md %}) CLI reference.
 
 {% include prev_next.md %}

@@ -46,6 +46,6 @@ Remember the environment variables are within the CodeBuild environment instance
 
 ## CLI Reference
 
-Also, for help info you can check the [cody start]({% link _reference/cb-start.md %}) CLI reference.
+Also, for help info you can check the [cody start]({% link _reference/cody-start.md %}) CLI reference.
 
 {% include prev_next.md %}
