@@ -1,6 +1,8 @@
 require "aws-sdk-codebuild"
 require "aws-sdk-cloudformation"
 
+require "aws_mfa_secure/ext/aws" # add MFA support
+
 module Cody
   module AwsServices
     include Helpers
