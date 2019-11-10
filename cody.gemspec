@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport"
+  spec.add_dependency "aws-mfa-secure"
   spec.add_dependency "aws-sdk-cloudformation"
   spec.add_dependency "aws-sdk-codebuild"
   spec.add_dependency "aws-sdk-ssm"
