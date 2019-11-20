@@ -7,6 +7,8 @@
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiWWFRbjVNQlIvZGtSS2NMTGlRY3pWYm1lTGFFSG5acDc4b09hL2lHWGVxeHZaMGYxVTc0cGEwOHBHWHF6MjZiNlZNU0JqS0lvTnZkdWI5enRDczRZYStnPSIsIml2UGFyYW1ldGVyU3BlYyI6ImsyUDJNc2E3SlpYOGFYYy8iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 [![Gem Version](https://badge.fury.io/rb/cody.png)](http://badge.fury.io/rb/cody)
 
+[![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
+
 Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
 
 The documentation site is at: [cody.run](https://cody.run/)
