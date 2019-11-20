@@ -1,6 +1,5 @@
 ---
 title: Variables Support
-nav_order: 5
 ---
 
 Cody supports the concept of variables. Variables allow you to set environment-specific variables. For example, development and production environments usually require the same code with different environmental variables.
@@ -112,5 +111,3 @@ github_url("https://github.com/tongueroo/demo-ufo")
 linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
 vpc_config @vpc_config
 ```
-
-{% include prev_next.md %}

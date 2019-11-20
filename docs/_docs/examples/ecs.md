@@ -2,7 +2,6 @@
 title: ECS
 nav_text: ECS
 categories: example
-nav_order: 16
 ---
 
 This example will show some powerful patterns with cody.  We'll use cody with the [ufo](https://ufoships.com) tool to deploy an application to ECS.
@@ -119,5 +118,3 @@ You can also start a build with a specific branch. Remember to `git push` your b
 If you are using CodePipeline also, you may be wondering why not just use the provided Amazon ECS deployment action instead.  It comes down to control. With a CodeBuild project, we have full control of how we want to build and deploy the Docker image to ECS.
 
 Also, with the CodePipeline ECS deploy action, we are unable to configure a timeout.  If the ECS deployment fails due to some reasons, we're stuck waiting 60 minutes for the pipeline timeout. There's a way to hack around this by literally overriding updating the CodeBuild project. You also must do it manually and are charged for the time if you don't notice it. With CodeBuild project, you can set the timeout value yourself. Essentially, you have more control with CodeBuild. There's some more info here: [CodePipeline ECS Deploy vs CodeBuild ufo ship](https://codepipeline.org/docs/ecs-deploy/).
-
-{% include prev_next.md %}

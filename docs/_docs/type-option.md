@@ -1,6 +1,5 @@
 ---
 title: Type Option
-nav_order: 4
 ---
 
 The `--type` option is a powerful option that allows you to create multiple codebuild projects associated with the same repo.
@@ -68,5 +67,3 @@ CodeBuild Project Name | Stack Name
 demo | demo-cody
 demo-unit | demo-unit-cody
 demo-web-unit | demo-web-unit-cody
-
-{% include prev_next.md %}

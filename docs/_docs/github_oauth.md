@@ -1,6 +1,5 @@
 ---
 title: GitHub Oauth Token
-nav_order: 10
 ---
 
 This page covers how to set up the GitHub oauth token that CodeBuild uses.
@@ -47,5 +46,3 @@ Import the source credential into codebuild.
     aws codebuild list-source-credentials
 
 Setting this sets the oauth token used by the CodeBuild projects.
-
-{% include prev_next.md %}

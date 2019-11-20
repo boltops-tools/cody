@@ -1,6 +1,5 @@
 ---
 title: Deploy
-nav_order: 6
 ---
 
 The CodeBuild project is generated from the DSL and created with CloudFormation. By default, the files that the DSL evaluates are:
@@ -65,5 +64,3 @@ Likewise `cody deploy PROJECT_NAME --type unit` would result in:
     .cody/unit/role.rb
 
 Also, for help info you can check the [cody deploy]({% link _reference/cody-deploy.md %}) CLI reference.
-
-{% include prev_next.md %}

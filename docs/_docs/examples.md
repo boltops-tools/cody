@@ -1,6 +1,5 @@
 ---
 title: Examples
-nav_order: 15
 ---
 
 <ul>
@@ -8,5 +7,3 @@ nav_order: 15
   <li><a href='{{doc.url}}'>{{doc.nav_text}}</a></li>
   {% endfor %}
 </ul>
-
-{% include prev_next.md %}

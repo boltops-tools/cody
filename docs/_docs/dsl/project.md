@@ -2,7 +2,6 @@
 title: Project DSL
 nav_text: Project
 categories: dsl
-nav_order: 12
 ---
 
 You define the CodeBuild project in `.cody/project.rb`. Here's an example of the DSL used to create a codebuild project.
@@ -93,5 +92,3 @@ environment(
 
 service_role(ref: "IamRole")
 ```
-
-{% include prev_next.md %}

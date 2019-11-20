@@ -2,7 +2,6 @@
 title: Ruby
 nav_text: Ruby
 categories: example
-nav_order: 18
 ---
 
 This examples show to run Ruby unit tests.
@@ -40,5 +39,3 @@ phases:
 ```
 
 {% include examples-steps.md %}
-
-{% include prev_next.md %}

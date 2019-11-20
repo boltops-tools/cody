@@ -1,6 +1,5 @@
 ---
 title: Start
-nav_order: 7
 ---
 
 You can start a CodeBuild project with the `cody start` command. Here's an example:
@@ -47,5 +46,3 @@ Remember the environment variables are within the CodeBuild environment instance
 ## CLI Reference
 
 Also, for help info you can check the [cody start]({% link _reference/cody-start.md %}) CLI reference.
-
-{% include prev_next.md %}

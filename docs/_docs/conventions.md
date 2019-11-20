@@ -1,6 +1,5 @@
 ---
 title: Naming Conventions
-nav_order: 9
 ---
 
 Cody follows a few naming conventions.
@@ -59,5 +58,3 @@ demo-unit | demo-unit-cody
 demo-web-unit | demo-web-unit-cody
 
 Though not recommended, the `-cody` that gets appended to the stack can be adjusted with settings also.  For example, `stack_naming.append_stack_name: cb` would result in `demo-cb`.
-
-{% include prev_next.md %}
