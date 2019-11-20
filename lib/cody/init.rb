@@ -34,7 +34,6 @@ module Cody
     end
 
     def copy_top_level
-      puts "Initialize .cody top-level folder"
       dest = ".cody"
       excludes = %w[.git]
       if @options[:mode] == "light"
@@ -48,7 +47,6 @@ module Cody
     end
 
     def copy_project
-      puts "Initialize codebuild project in .cody"
       dest = ".cody"
       dest = "#{dest}/#{@options[:type]}" if @options[:type]
 
