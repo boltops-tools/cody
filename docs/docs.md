@@ -5,7 +5,7 @@ nav_order: 2
 
 ## What is Cody?
 
-Cody is a tool that simplifies creating and managing [AWS CodeBuild](https://aws.amazon.com/codebuild/) projects. It provides a beautiful DSL to create a CodeBuild project.
+Cody is an AWS CodeBuild Management Tool. Cody simplifies creating and managing [AWS CodeBuild](https://aws.amazon.com/codebuild/) projects. It provides a beautiful DSL to create a CodeBuild project.
 
 The DSL is simply a wrapper to the [CloudFormation CodeBuild Project resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html). Essentially, this means you can **fullly control** and customize of the CodeBuild project.
 
