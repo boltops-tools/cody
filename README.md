@@ -9,7 +9,7 @@
 
 [![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
 
-Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
+Cody is an AWS CodeBuild Management Tool. Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
 
 The documentation site is at: [cody.run](https://cody.run/)
 
