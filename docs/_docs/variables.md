@@ -102,9 +102,9 @@ An good variables example is running migrations. The migration tasks usually req
 @vpc_config = { vpc_id: "vpc-bbb", subnet_id: "subnet-bbb" }
 ```
 
-You'll use then `@vpc_config` variable in the `buildspec.yml`.
+You'll use then `@vpc_config` variable in the `project.rb`.
 
-.cody/buildspec.yml:
+.cody/project.rb:
 
 ```ruby
 github_url("https://github.com/tongueroo/demo-ufo")
