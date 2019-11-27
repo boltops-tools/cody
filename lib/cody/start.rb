@@ -20,6 +20,11 @@ module Cody
       puts "Please check the CodeBuild console for the status."
       puts "CodeBuild Log Url:"
       puts codebuild_log_url(resp.build.id)
+      tail_logs(resp.build.id)
+    end
+
+    def tail_logs(build_id)
+      Logs.new(build_id).tail
     end
 
     def environment_variables_override
