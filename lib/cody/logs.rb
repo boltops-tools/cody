@@ -4,16 +4,41 @@ module Cody
 
     def initialize(build_id)
       @build_id = build_id
+      puts "@build_id #{@build_id}"
     end
 
     def tail
-      puts "@build_id #{@build_id}"
-      resp = codebuild.batch_get_builds(ids: [@build_id])
-      build = resp.builds.first
-      puts "build:"
-      pp build
+      complete = false
+      until complete do
+        resp = codebuild.batch_get_builds(ids: [@build_id])
+        build = resp.builds.first
+        # pp build
+        puts "build.build_complete #{build.build_complete}"
+        puts "Time.now: #{Time.now}".color(:green)
 
-      puts "build.build_complete #{build.build_complete}"
+        print_log_info(build)
+
+        print_phases(build)
+
+        sleep 5
+        complete = build.build_complete
+      end
+    end
+
+    def print_log_info(build)
+      logs = build.logs
+      puts "logs.group_name: #{logs.group_name}"
+      puts "logs.stream_name: #{logs.stream_name}"
+      puts "logs.cloud_watch_logs_arn: #{logs.cloud_watch_logs_arn}"
+    end
+
+    require "byebug"
+    def print_phases(build)
+      puts "phase_type phase_status start_time end_time duration"
+      # byebug
+      build.phases.each do |phase|
+        puts [phase.phase_type, phase.phase_status, phase.start_time, phase.end_time, phase.duration_in_seconds].join(" ")
+      end
     end
   end
 end
