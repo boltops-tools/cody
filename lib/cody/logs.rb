@@ -8,6 +8,8 @@ module Cody
     def initialize(options, build_id)
       @options, @build_id = options, build_id
       @wait = @options[:wait] || true
+
+      @output = [] # for specs
       set_trap
     end
 
@@ -15,11 +17,9 @@ module Cody
       complete = false
       until complete do
         resp = codebuild.batch_get_builds(ids: [@build_id])
-        puts "batch_get_builds resp:"
-        pp resp
-
         build = resp.builds.first
-        log_info(build)
+        print_phases(build)
+        set_log_group_name(build)
 
         sleep 5 if @wait && !@@end_loop_signal && !ENV["CODY_TEST"]
         complete = build.build_complete
@@ -48,22 +48,37 @@ module Cody
       cw_tail.run
     end
 
-    def log_info(build)
+    def set_log_group_name(build)
       logs = build.logs
-      puts "logs.group_name: #{logs.group_name}"
-      puts "logs.stream_name: #{logs.stream_name}"
-      puts "logs.cloud_watch_logs_arn: #{logs.cloud_watch_logs_arn}"
-
       @log_group_name = logs.group_name if logs.group_name
       @log_stream_name = logs.stream_name if logs.stream_name
     end
 
     def print_phases(build)
-      puts "phase_type phase_status start_time end_time duration"
-      # byebug
       build.phases.each do |phase|
-        puts [phase.phase_type, phase.phase_status, phase.start_time, phase.end_time, phase.duration_in_seconds].join(" ")
+        puts [
+          "Phase Details:".color(:green),
+          "Name: ".color(:purple), phase.phase_type,
+          "Status: ".color(:purple), phase.phase_status,
+          "Time: ".color(:purple), phase.start_time,
+          "Duration: ".color(:purple), phase.duration_in_seconds,
+        ].join(" ")
       end
+    end
+
+    def log_info(build)
+      logs = build.logs
+      puts "logs.group_name: #{logs.group_name}"
+      puts "logs.stream_name: #{logs.stream_name}"
+      puts "logs.cloud_watch_logs_arn: #{logs.cloud_watch_logs_arn}"
+    end
+
+    def say(text)
+      ENV["CODY_TEST"] ? @output << text : puts(text)
+    end
+
+    def output
+      @output.join("\n") + "\n"
     end
 
     @@end_loop_signal = false
