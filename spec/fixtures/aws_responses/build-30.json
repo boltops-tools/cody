@@ -1,0 +1,193 @@
+{
+  "builds": [
+    {
+      "id": "demo:983ab574-32fb-43d0-b20f-e251ecf1febf",
+      "arn": "arn:aws:codebuild:us-west-2:112233445566:build/demo:983ab574-32fb-43d0-b20f-e251ecf1febf",
+      "build_number": 28,
+      "start_time": "2019-11-28 00:45:31 +0000",
+      "end_time": "2019-11-28 00:47:57 +0000",
+      "current_phase": "COMPLETED",
+      "build_status": "SUCCEEDED",
+      "source_version": "test",
+      "resolved_source_version": "5aec5100967bc43c735a009bd6613827c4dfeed2",
+      "project_name": "demo",
+      "phases": [
+        {
+          "phase_type": "SUBMITTED",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:45:31 +0000",
+          "end_time": "2019-11-28 00:45:31 +0000",
+          "duration_in_seconds": 0
+        },
+        {
+          "phase_type": "QUEUED",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:45:31 +0000",
+          "end_time": "2019-11-28 00:45:32 +0000",
+          "duration_in_seconds": 1
+        },
+        {
+          "phase_type": "PROVISIONING",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:45:32 +0000",
+          "end_time": "2019-11-28 00:46:13 +0000",
+          "duration_in_seconds": 40,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "DOWNLOAD_SOURCE",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:46:13 +0000",
+          "end_time": "2019-11-28 00:46:14 +0000",
+          "duration_in_seconds": 0,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "INSTALL",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:46:14 +0000",
+          "end_time": "2019-11-28 00:46:14 +0000",
+          "duration_in_seconds": 0,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "PRE_BUILD",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:46:14 +0000",
+          "end_time": "2019-11-28 00:46:14 +0000",
+          "duration_in_seconds": 0,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "BUILD",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:46:14 +0000",
+          "end_time": "2019-11-28 00:47:55 +0000",
+          "duration_in_seconds": 100,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "POST_BUILD",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:47:55 +0000",
+          "end_time": "2019-11-28 00:47:55 +0000",
+          "duration_in_seconds": 0,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "UPLOAD_ARTIFACTS",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:47:55 +0000",
+          "end_time": "2019-11-28 00:47:55 +0000",
+          "duration_in_seconds": 0,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "FINALIZING",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:47:55 +0000",
+          "end_time": "2019-11-28 00:47:57 +0000",
+          "duration_in_seconds": 2,
+          "contexts": [
+            {
+              "status_code": "",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "phase_type": "COMPLETED",
+          "start_time": "2019-11-28 00:47:57 +0000"
+        }
+      ],
+      "source": {
+        "type": "GITHUB",
+        "location": "https://github.com/tongueroo/cody-demo",
+        "git_submodules_config": {
+          "fetch_submodules": true
+        },
+        "buildspec": ".cody/buildspec.yml",
+        "report_build_status": true,
+        "insecure_ssl": false
+      },
+      "artifacts": {
+        "location": ""
+      },
+      "cache": {
+        "type": "LOCAL",
+        "modes": [
+          "LOCAL_DOCKER_LAYER_CACHE",
+          "LOCAL_SOURCE_CACHE",
+          "LOCAL_CUSTOM_CACHE"
+        ]
+      },
+      "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/ruby:2.5.3-1.7.0",
+        "compute_type": "BUILD_GENERAL1_SMALL",
+        "environment_variables": [
+          {
+            "name": "JETS_ENV",
+            "value": "test",
+            "type": "PLAINTEXT"
+          }
+        ],
+        "privileged_mode": true,
+        "image_pull_credentials_type": "CODEBUILD"
+      },
+      "service_role": "arn:aws:iam::112233445566:role/demo-cody-IamRole-KYV4JL3UE35B",
+      "logs": {
+        "group_name": "/aws/codebuild/demo",
+        "stream_name": "983ab574-32fb-43d0-b20f-e251ecf1febf",
+        "deep_link": "https://console.aws.amazon.com/cloudwatch/home?region=us-west-2#logEvent:group=/aws/codebuild/demo;stream=983ab574-32fb-43d0-b20f-e251ecf1febf",
+        "cloud_watch_logs_arn": "arn:aws:logs:us-west-2:112233445566:log-group:/aws/codebuild/demo:log-stream:983ab574-32fb-43d0-b20f-e251ecf1febf",
+        "cloud_watch_logs": {
+          "status": "ENABLED"
+        }
+      },
+      "timeout_in_minutes": 20,
+      "queued_timeout_in_minutes": 480,
+      "build_complete": true,
+      "initiator": "tung",
+      "encryption_key": "arn:aws:kms:us-west-2:112233445566:alias/aws/s3"
+    }
+  ],
+  "builds_not_found": [
+
+  ]
+}

@@ -82,9 +82,9 @@ module Cody
       status = status&.include?("FAILED") ? status.color(:red) : status
       say [
         "Phase:".color(:green), details[:phase_type],
-        "Status: ".color(:purple), status,
+        "Status:".color(:purple), status,
         # "Time: ".color(:purple), details[:start_time],
-        "Duration: ".color(:purple), details[:duration_in_seconds],
+        "Duration:".color(:purple), details[:duration_in_seconds],
       ].join(" ")
     end
 
