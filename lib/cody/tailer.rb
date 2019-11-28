@@ -35,7 +35,7 @@ module Cody
         sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
       end
       AwsLogs::Tail.stop_follow!
-      @thread.join
+      @thread.join if @thread
     end
 
     def start_cloudwatch_tail
