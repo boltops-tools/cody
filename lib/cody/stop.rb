@@ -1,8 +1,9 @@
 module Cody
-  class Logs < Base
+  class Stop < Base
     def run
       run_with_exception_handling do
-        Tailer.new(@options, build_id).run
+        codebuild.stop_build(id: build_id)
+        puts "Build has been stopped: #{build_id}"
       end
     end
 
