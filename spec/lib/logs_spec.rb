@@ -19,4 +19,19 @@ describe Cody::Logs do
       expect(logs.output).to include("Phase Details")
     end
   end
+
+  context "multiple calls to print_phases" do
+    let(:logs) do
+      Cody::Logs.new({}, :fake_build_id)
+    end
+
+    it "print_phases" do
+      build = mock_response("spec/fixtures/aws_responses/build-1.json").builds.first
+      logs.print_phases(build)
+
+      build = mock_response("spec/fixtures/aws_responses/build-1.json").builds.first
+      logs.print_phases(build)
+      puts logs.output
+    end
+  end
 end

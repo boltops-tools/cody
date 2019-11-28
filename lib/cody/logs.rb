@@ -10,6 +10,7 @@ module Cody
       @wait = @options[:wait] || true
 
       @output = [] # for specs
+      @shown_phases = []
       set_trap
     end
 
@@ -48,6 +49,7 @@ module Cody
       cw_tail.run
     end
 
+    # Setting enables start_cloudwatch_tail
     def set_log_group_name(build)
       logs = build.logs
       @log_group_name = logs.group_name if logs.group_name
@@ -56,14 +58,34 @@ module Cody
 
     def print_phases(build)
       build.phases.each do |phase|
-        say [
-          "Phase Details:".color(:green),
-          "Name: ".color(:purple), phase.phase_type,
-          "Status: ".color(:purple), phase.phase_status,
-          "Time: ".color(:purple), phase.start_time,
-          "Duration: ".color(:purple), phase.duration_in_seconds,
-        ].join(" ")
+        details = {
+          phase_type: phase.phase_type,
+          phase_status: phase.phase_status,
+          start_time: phase.start_time,
+          duration_in_seconds: phase.duration_in_seconds,
+        }
+        display_phase(details)
+        @shown_phases << details
       end
+    end
+
+    def display_phase(details)
+      already_shown = @shown_phases.detect do |p|
+        p[:phase_type] == details[:phase_type] &&
+        p[:phase_status] == details[:phase_status] &&
+        p[:start_time] == details[:start_time] &&
+        p[:duration_in_seconds] == details[:duration_in_seconds]
+      end
+      return if already_shown
+
+      status = details[:phase_status]
+      status = status&.include?("FAILED") ? status.color(:red) : status
+      say [
+        "Phase:".color(:green), details[:phase_type],
+        "Status: ".color(:purple), status,
+        # "Time: ".color(:purple), details[:start_time],
+        "Duration: ".color(:purple), details[:duration_in_seconds],
+      ].join(" ")
     end
 
     def say(text)
