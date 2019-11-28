@@ -1,48 +1,44 @@
 require "byebug"
+require "json" # todo: remove
 
 module Cody
   class Logs
     include AwsServices
 
-    def initialize(build_id)
-      @build_id = build_id
-      puts "@build_id #{@build_id}"
+    def initialize(options, build_id)
+      @options, @build_id = options, build_id
+      @wait = @options[:wait] || true
+      set_trap
     end
 
     def tail
       complete = false
       until complete do
         resp = codebuild.batch_get_builds(ids: [@build_id])
-        build = resp.builds.first
-        # pp build
-        puts "build.build_complete #{build.build_complete}"
-        puts "Time.now: #{Time.now}".color(:green)
+        puts "batch_get_builds resp:"
+        pp resp
 
+        build = resp.builds.first
         log_info(build)
 
-        sleep 5
+        sleep 5 if @wait && !@@end_loop_signal && !ENV["CODY_TEST"]
         complete = build.build_complete
-        start_cloudwatch_tail
+        start_cloudwatch_tail unless ENV["CODY_TEST"]
       end
       AwsLogs::Tail.stop_follow!
     end
 
     def start_cloudwatch_tail
-      puts "start_cloudwatch_tail 1"
       return if @cloudwatch_tail_started
-      puts "start_cloudwatch_tail 2"
       return unless @log_group_name && @log_stream_name
-      puts "start_cloudwatch_tail 3"
 
       Thread.new do
         cloudwatch_tail
       end
-      puts "start_cloudwatch_tail 4"
       @cloudwatch_tail_started = true
     end
 
     def cloudwatch_tail
-      puts "Started AwsLogs::Tail#run"
       cw_tail = AwsLogs::Tail.new(
         log_group_name: @log_group_name,
         log_stream_names: [@log_stream_name],
@@ -68,6 +64,15 @@ module Cody
       build.phases.each do |phase|
         puts [phase.phase_type, phase.phase_status, phase.start_time, phase.end_time, phase.duration_in_seconds].join(" ")
       end
+    end
+
+    @@end_loop_signal = false
+    def set_trap
+      Signal.trap("INT") {
+        puts "\nCtrl-C detected. Exiting..."
+        @@end_loop_signal = true  # useful to control loop
+        exit # immediate exit
+      }
     end
   end
 end
