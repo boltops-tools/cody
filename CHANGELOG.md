@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.8.2]
+- #9 add cody stop command
+- #10 add evaluate interface methods
+
 ## [0.8.1]
 - #8 report build time at end of logs
 
