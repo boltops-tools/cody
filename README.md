@@ -9,15 +9,14 @@
 
 [![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
 
-Cody is an AWS CodeBuild Management Tool. Cody lets you create a AWS CodeBuild projects with a beautiful DSL.
-
-The documentation site is at: [cody.run](https://cody.run/)
+Cody is an AWS CodeBuild Management Tool. Cody lets you create AWS CodeBuild projects with a beautiful DSL. The documentation site is at: [cody.run](https://cody.run/)
 
 ## Quick Start
 
     cody init
     cody deploy
     cody start
+    cody logs
 
 ## Private Repo
 
@@ -66,12 +65,18 @@ For more help:
 
 ### Start
 
-When you are ready to start a codebuild project run, you can use `codebuild start`. Examples:
+When you are ready to start a codebuild project run, you can use [codebuild start](https://cody.run/reference/cody-start/). Examples:
 
     cody start # infers the name from the parent folder
     cody start PROJECT_NAME # looks up project via CodeBuild project name
 
 The `cody start` command understands multiple identifiers. It will look up the codebuild project either via CloudFormation or the CodeBuild project name.
+
+The start command continuously polls the CodeBuild project and prints out the logs until the build completes. To disable this, use the `--no-wait` option.
+
+    cody start PROJECT_NAME --no-wait
+
+The logs from the Phase Details and CloudWatch Logs are both displayed. Because they come from 2 different sources, the logs can interlace.
 
 ## Project DSL
 

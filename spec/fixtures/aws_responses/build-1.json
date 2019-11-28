@@ -1,0 +1,78 @@
+{
+  "builds": [
+    {
+      "id": "demo:983ab574-32fb-43d0-b20f-e251ecf1febf",
+      "arn": "arn:aws:codebuild:us-west-2:112233445566:build/demo:983ab574-32fb-43d0-b20f-e251ecf1febf",
+      "build_number": 28,
+      "start_time": "2019-11-28 00:45:31 +0000",
+      "current_phase": "QUEUED",
+      "build_status": "IN_PROGRESS",
+      "source_version": "test",
+      "project_name": "demo",
+      "phases": [
+        {
+          "phase_type": "SUBMITTED",
+          "phase_status": "SUCCEEDED",
+          "start_time": "2019-11-28 00:45:31 +0000",
+          "end_time": "2019-11-28 00:45:31 +0000",
+          "duration_in_seconds": 0
+        },
+        {
+          "phase_type": "QUEUED",
+          "start_time": "2019-11-28 00:45:31 +0000"
+        }
+      ],
+      "source": {
+        "type": "GITHUB",
+        "location": "https://github.com/tongueroo/cody-demo",
+        "git_submodules_config": {
+          "fetch_submodules": true
+        },
+        "buildspec": ".cody/buildspec.yml",
+        "report_build_status": true,
+        "insecure_ssl": false
+      },
+      "artifacts": {
+        "location": ""
+      },
+      "cache": {
+        "type": "LOCAL",
+        "modes": [
+          "LOCAL_DOCKER_LAYER_CACHE",
+          "LOCAL_SOURCE_CACHE",
+          "LOCAL_CUSTOM_CACHE"
+        ]
+      },
+      "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/ruby:2.5.3-1.7.0",
+        "compute_type": "BUILD_GENERAL1_SMALL",
+        "environment_variables": [
+          {
+            "name": "JETS_ENV",
+            "value": "test",
+            "type": "PLAINTEXT"
+          }
+        ],
+        "privileged_mode": true,
+        "image_pull_credentials_type": "CODEBUILD"
+      },
+      "service_role": "arn:aws:iam::112233445566:role/demo-cody-IamRole-KYV4JL3UE35B",
+      "logs": {
+        "deep_link": "https://console.aws.amazon.com/cloudwatch/home?region=us-west-2#logEvent:group=null;stream=null",
+        "cloud_watch_logs_arn": "arn:aws:logs:us-west-2:112233445566:log-group:null:log-stream:null",
+        "cloud_watch_logs": {
+          "status": "ENABLED"
+        }
+      },
+      "timeout_in_minutes": 20,
+      "queued_timeout_in_minutes": 480,
+      "build_complete": false,
+      "initiator": "tung",
+      "encryption_key": "arn:aws:kms:us-west-2:112233445566:alias/aws/s3"
+    }
+  ],
+  "builds_not_found": [
+
+  ]
+}

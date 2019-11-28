@@ -16,10 +16,15 @@ module Cody
       }
       params[:environment_variables_override] = environment_variables_override if @options[:env_vars]
       resp = codebuild.start_build(params)
+
       puts "Build started for project: #{project_name}"
-      puts "Please check the CodeBuild console for the status."
-      puts "CodeBuild Log Url:"
+      puts "Here's the CodeBuild Console Log url:"
       puts codebuild_log_url(resp.build.id)
+      tail_logs(resp.build.id) if @options[:wait]
+    end
+
+    def tail_logs(build_id)
+      Tailer.new(@options, build_id).run
     end
 
     def environment_variables_override

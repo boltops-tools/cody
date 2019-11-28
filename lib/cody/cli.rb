@@ -41,6 +41,15 @@ module Cody
       Start.new(options.merge(project_name: project_name)).run
     end
 
+    desc "logs", "Prints out logs for codebuild project."
+    long_desc Help.text(:logs)
+    option :build_id, desc: "Project build id. Defaults to most recent."
+    option :since, desc: "From what time to begin displaying logs.  By default, logs will be displayed starting from 7 days in the past. The value provided can be an ISO 8601 timestamp or a relative time."
+    common_options.call
+    def logs(project_name=nil)
+      Logs.new(options.merge(project_name: project_name)).run
+    end
+
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text(:completion)
     def completion(*params)
