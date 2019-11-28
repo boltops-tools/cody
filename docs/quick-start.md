@@ -58,7 +58,7 @@ environment_variables(
 
 To define a project, it's only 3 lines of code.
 
-Make sure youpushed to github, since codebuild will be pulling from it.
+Make sure you push to github, since codebuild will be pulling from it.
 
     git remote add origin git@github.com/user/repo # update with your own repo
     git add .
