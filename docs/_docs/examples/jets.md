@@ -2,6 +2,7 @@
 title: Jets
 nav_text: Jets
 categories: example
+nav_order: 17
 ---
 
 This example shows to deploy a [Jets](https://rubyonjets.com/) application with codebuild to AWS Lambda.
@@ -74,3 +75,5 @@ You may be interested in the [separate-unit-and-deploy branch](https://github.co
 * Only the deploy project requires IAM access to create the AWS resources.
 
 {% include examples-steps.md %}
+
+{% include prev_next.md %}

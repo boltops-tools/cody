@@ -1,5 +1,6 @@
 ---
 title: Overview
+nav_order: 2
 ---
 
 ## What is Cody?
@@ -17,3 +18,5 @@ Here are some ways to use CodeBuild:
 * building artifacts
 
 Pretty much anything you want to automate, cody can run for you. Since CodeBuild is a fully managed service, it gives you the advantage of not having to manage the EC2 instance or the build software.  You do not have to worry about software patches, security updates, or software upgrades.
+
+{% include prev_next.md %}

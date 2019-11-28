@@ -1,5 +1,6 @@
 ---
 title: Quick Start
+nav_order: 1
 ---
 
 In a hurry? No problem!  Here's a quick start to get going.
@@ -79,3 +80,5 @@ Once the stack is complete. You can start the CodeBuild project via the CLI or t
 Here's what CodeBuild project output looks like:
 
 ![](/img/docs/codebuild-output.png)
+
+{% include prev_next.md %}

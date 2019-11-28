@@ -1,5 +1,6 @@
 ---
 title: Installation
+nav_order: 3
 ---
 
 ## RubyGems
@@ -19,3 +20,5 @@ AWS access is required.  Though you can set up acess with `AWS_*` environment va
 Then [configure it](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
 
     aws configure
+
+{% include prev_next.md %}

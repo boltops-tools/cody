@@ -2,6 +2,7 @@
 title: Schedule DSL
 nav_text: Schedule
 categories: dsl
+nav_order: 14
 ---
 
 Cody supports creating a CloudWatch scheduled event rule that will trigger the codebuild project periodically.  You define the schedule in `.cody/schedule.rb`. Here's an example of what that looks like:
@@ -24,3 +25,5 @@ The convenience methods merely wrap properties of the [AWS::Events::Rule](https:
 description "my description"
 schedule_expression "rate(1 day)"
 ```
+
+{% include prev_next.md %}
