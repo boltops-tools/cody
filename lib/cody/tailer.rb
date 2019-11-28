@@ -13,11 +13,6 @@ module Cody
       set_trap
     end
 
-    def find_build
-      resp = codebuild.batch_get_builds(ids: [@build_id])
-      resp.builds.first
-    end
-
     def run
       puts "Showing logs for build #{@build_id}"
 
@@ -32,14 +27,19 @@ module Cody
         set_log_group_name(build)
 
         complete = build.build_complete
-        start_cloudwatch_tail unless ENV["CODY_TEST"]
-        sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
+
+        next if ENV["CODY_TEST"]
+        start_cloudwatch_tail
+        sleep 5
       end
 
-      AwsLogs::Tail.stop_follow!
-      @thread.join if @thread
-
+      stop_cloudwatch_tail(build)
       puts "The build took #{build_time(build)} to complete."
+    end
+
+    def find_build
+      resp = codebuild.batch_get_builds(ids: [@build_id])
+      resp.builds.first
     end
 
     def start_cloudwatch_tail
@@ -62,6 +62,35 @@ module Cody
         format: "simple",
       )
       cw_tail.run
+    end
+
+    def stop_cloudwatch_tail(build)
+      return if ENV["CODY_TEST"]
+
+      # The AwsLogs::Tail.stop_follow! results in a little waiting because it signals to break the polling loop.
+      # Since it's in the middle of the loop process, the loop will finish the sleep 5 first.
+      # So it can pause from 0-5 seconds.
+      #
+      # However, this is sometimes not enough of a pause for CloudWatch to receive and send the logs back to us.
+      # So additionally pause on a failed build so we can receive the final logs at the end.
+      #
+      sleep 10 if complete_failed?(build) # provide extra time for cw tail to report error
+      AwsLogs::Tail.stop_follow!
+      @thread.join if @thread
+    end
+
+    # build.build_status : The current status of the build. Valid values include:
+    #
+    #     FAILED : The build failed.
+    #     FAULT : The build faulted.
+    #     IN_PROGRESS : The build is still in progress.
+    #     STOPPED : The build stopped.
+    #     SUCCEEDED : The build succeeded.
+    #     TIMED_OUT : The build timed out.
+    #
+    def complete_failed?(build)
+      return if ENV["CODY_TEST"]
+      build.build_complete && build.build_status != "SUCCEEDED"
     end
 
     # Setting enables start_cloudwatch_tail
@@ -111,11 +140,9 @@ module Cody
       @output.join("\n") + "\n"
     end
 
-    @@end_loop_signal = false
     def set_trap
       Signal.trap("INT") {
         puts "\nCtrl-C detected. Exiting..."
-        @@end_loop_signal = true  # useful to control loop
         exit # immediate exit
       }
     end
