@@ -10,4 +10,5 @@ title: CLI Reference
 * [cody init]({% link _reference/cody-init.md %})
 * [cody logs]({% link _reference/cody-logs.md %})
 * [cody start]({% link _reference/cody-start.md %})
+* [cody stop]({% link _reference/cody-stop.md %})
 * [cody version]({% link _reference/cody-version.md %})
