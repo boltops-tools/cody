@@ -89,7 +89,7 @@ The top-level variables files are also loaded because it is common to need varia
 
 ## VPC and Migrations Example
 
-An good variables example is running migrations. The migration tasks usually requires access to the VPC to connect to the database. However, the development and production resources can be on separate VPCs.  Variables can help here:
+A good variables example is running migrations. The migration tasks usually requires access to the VPC to connect to the database. However, the development and production resources can be on separate VPCs.  Variables can help here:
 
 .cody/variables/development.rb:
 
