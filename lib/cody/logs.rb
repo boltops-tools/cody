@@ -56,7 +56,7 @@ module Cody
 
     def print_phases(build)
       build.phases.each do |phase|
-        puts [
+        say [
           "Phase Details:".color(:green),
           "Name: ".color(:purple), phase.phase_type,
           "Status: ".color(:purple), phase.phase_status,
@@ -64,13 +64,6 @@ module Cody
           "Duration: ".color(:purple), phase.duration_in_seconds,
         ].join(" ")
       end
-    end
-
-    def log_info(build)
-      logs = build.logs
-      puts "logs.group_name: #{logs.group_name}"
-      puts "logs.stream_name: #{logs.stream_name}"
-      puts "logs.cloud_watch_logs_arn: #{logs.cloud_watch_logs_arn}"
     end
 
     def say(text)
@@ -91,12 +84,3 @@ module Cody
     end
   end
 end
-
-# buildStatus -> (string)
-# The current status of the build. Valid values include:
-# FAILED : The build failed.
-# FAULT : The build faulted.
-# IN_PROGRESS : The build is still in progress.
-# STOPPED : The build stopped.
-# SUCCEEDED : The build succeeded.
-# TIMED_OUT : The build timed out.

@@ -1,5 +1,5 @@
 describe Cody::Logs do
-  context "examples" do
+  context "first call before cloudwatch log group name is set" do
     let(:logs) do
       logs = Cody::Logs.new({}, :fake_build_id)
       allow(logs).to receive(:codebuild).and_return(codebuild)
@@ -11,14 +11,12 @@ describe Cody::Logs do
       client
     end
     let(:batch_get_builds_response) do
-      [
-        mock_response("spec/fixtures/aws_responses/build-1.json"),
-      ]
+      [ mock_response("spec/fixtures/aws_responses/build-1.json") ]
     end
 
-    context "first call before cloudwatch log group name is set"
     it "prints out build phases" do
       logs.tail
+      expect(logs.output).to include("Phase Details")
     end
   end
 end
