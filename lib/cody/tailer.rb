@@ -12,6 +12,7 @@ module Cody
     end
 
     def run
+      puts "Showing logs for build #{@build_id}:"
       complete = false
       until complete do
         resp = codebuild.batch_get_builds(ids: [@build_id])
@@ -19,8 +20,8 @@ module Cody
         print_phases(build)
         set_log_group_name(build)
 
-        sleep 5 if @wait && !@@end_loop_signal && !ENV["CODY_TEST"]
         complete = build.build_complete
+        sleep 5 if @wait && !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
         start_cloudwatch_tail unless ENV["CODY_TEST"]
       end
       AwsLogs::Tail.stop_follow!

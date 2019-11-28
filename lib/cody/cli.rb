@@ -43,6 +43,7 @@ module Cody
 
     desc "logs", "Prints out logs for codebuild project."
     long_desc Help.text(:logs)
+    option :build_id, desc: "Project build id. Defaults to most recent."
     def logs(project_name=nil)
       Logs.new(options.merge(project_name: project_name)).run
     end
