@@ -7,3 +7,6 @@
 [submodule "vendor/aws_data"]
 	path = vendor/aws_data
 	url = https://github.com/tongueroo/aws_data
+[submodule "vendor/aws-logs"]
+	path = vendor/aws-logs
+	url = https://github.com/tongueroo/aws-logs
