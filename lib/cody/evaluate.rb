@@ -1,5 +1,7 @@
 module Cody
   module Evaluate
+    include Interface
+
     def evaluate(path)
       source_code = IO.read(path)
       begin
