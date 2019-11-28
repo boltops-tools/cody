@@ -20,6 +20,7 @@ module Cody
 
     def run
       puts "Showing logs for build #{@build_id}"
+
       complete = false
       until complete do
         build = find_build
@@ -34,8 +35,11 @@ module Cody
         start_cloudwatch_tail unless ENV["CODY_TEST"]
         sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
       end
+
       AwsLogs::Tail.stop_follow!
       @thread.join if @thread
+
+      puts "The build took #{build_time(build)} to complete."
     end
 
     def start_cloudwatch_tail
@@ -114,6 +118,22 @@ module Cody
         @@end_loop_signal = true  # useful to control loop
         exit # immediate exit
       }
+    end
+
+    def build_time(build)
+      duration = build.phases.inject(0) { |sum,p| sum + p.duration_in_seconds.to_i }
+      pretty_time(duration)
+    end
+
+    # http://stackoverflow.com/questions/4175733/convert-duration-to-hoursminutesseconds-or-similar-in-rails-3-or-ruby
+    def pretty_time(total_seconds)
+      minutes = (total_seconds / 60) % 60
+      seconds = total_seconds % 60
+      if total_seconds < 60
+        "#{seconds.to_i}s"
+      else
+        "#{minutes.to_i}m #{seconds.to_i}s"
+      end
     end
   end
 end
