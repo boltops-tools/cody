@@ -7,9 +7,20 @@ You can start a CodeBuild project with the `cody start` command. Here's an examp
 
     $ cody start demo
     Build started for project: demo
-    Please check the CodeBuild console for the status.
-    Cody Log Url:
+    Here's the CodeBuild Console Log url:
     https://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/demo/build/demo%3A7bc4cb33-d918-467a-9e09-fe7fe1f57ed8/log
+    Showing logs for build demo:10b8c4dc-e328-4759-9e32-805bcee8d1f9
+    Phase: SUBMITTED Status: SUCCEEDED Duration: 0
+    Phase: QUEUED Status:  Duration:
+    Phase: QUEUED Status: SUCCEEDED Duration: 1
+    ...
+    Phase: FINALIZING Status: SUCCEEDED Duration: 2
+    Phase: COMPLETED Status:  Duration:
+    2019-11-28 05:29:23 UTC 9: post_build
+    2019-11-28 05:29:23 UTC Thu Nov 28 05:29:21 UTC 2019
+    2019-11-28 05:29:25 UTC
+    2019-11-28 05:29:25 UTC [Container] 2019/11/28 05:29:23 Phase complete: POST_BUILD State: SUCCEEDED
+    2019-11-28 05:29:25 UTC [Container] 2019/11/28 05:29:23 Phase context status code:  Message:
     $
 
 If the project name is the same as the parent folder name then you can do this:
