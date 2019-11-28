@@ -41,6 +41,12 @@ module Cody
       Start.new(options.merge(project_name: project_name)).run
     end
 
+    desc "logs", "Prints out logs for codebuild project."
+    long_desc Help.text(:logs)
+    def logs(project_name=nil)
+      Logs.new(options.merge(project_name: project_name)).run
+    end
+
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text(:completion)
     def completion(*params)

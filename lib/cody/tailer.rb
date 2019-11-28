@@ -1,8 +1,5 @@
-require "byebug"
-require "json" # todo: remove
-
 module Cody
-  class Logs
+  class Tailer
     include AwsServices
 
     def initialize(options, build_id)
@@ -14,7 +11,7 @@ module Cody
       set_trap
     end
 
-    def tail
+    def run
       complete = false
       until complete do
         resp = codebuild.batch_get_builds(ids: [@build_id])

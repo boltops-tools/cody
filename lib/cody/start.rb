@@ -25,7 +25,7 @@ module Cody
     end
 
     def tail_logs(build_id)
-      Logs.new(@options, build_id).tail
+      Tailer.new(@options, build_id).run
     end
 
     def environment_variables_override

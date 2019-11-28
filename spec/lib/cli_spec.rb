@@ -7,7 +7,7 @@ describe Cody::CLI do
   describe "cody" do
     it "deploy" do
       out = execute("#{@cody_bin} deploy #{@args}")
-      expect(out).to include("Generated CloudFormation template")
+      expect(out).to include("")
     end
   end
 end

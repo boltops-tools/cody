@@ -1,4 +1,5 @@
 ENV["CODY_TEST"] = "1"
+ENV["AWS_REGION"] ||= "us-west-2"
 
 # CodeClimate test coverage: https://docs.codeclimate.com/docs/configuring-test-coverage
 # require 'simplecov'

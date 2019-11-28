@@ -1,7 +1,7 @@
-describe Cody::Logs do
+describe Cody::Tailer do
   context "first call before cloudwatch log group name is set" do
     let(:logs) do
-      logs = Cody::Logs.new({}, :fake_build_id)
+      logs = Cody::Tailer.new({}, :fake_build_id)
       allow(logs).to receive(:codebuild).and_return(codebuild)
       logs
     end
@@ -15,14 +15,14 @@ describe Cody::Logs do
     end
 
     it "prints out build phases" do
-      logs.tail
-      expect(logs.output).to include("Phase Details")
+      logs.run
+      expect(logs.output).to include("Phase")
     end
   end
 
   context "multiple calls to print_phases" do
     let(:logs) do
-      Cody::Logs.new({}, :fake_build_id)
+      Cody::Tailer.new({}, :fake_build_id)
     end
 
     it "print_phases" do
@@ -31,7 +31,7 @@ describe Cody::Logs do
 
       build = mock_response("spec/fixtures/aws_responses/build-1.json").builds.first
       logs.print_phases(build)
-      puts logs.output
+      expect(logs.output.scan("SUBMITTED").size).to eq 1
     end
   end
 end
