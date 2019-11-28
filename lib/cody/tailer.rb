@@ -1,3 +1,5 @@
+require "aws-logs"
+
 module Cody
   class Tailer
     include AwsServices
@@ -16,7 +18,7 @@ module Cody
     end
 
     def run
-      puts "Showing logs for build #{@build_id}:"
+      puts "Showing logs for build #{@build_id}"
       complete = false
       until complete do
         build = find_build
