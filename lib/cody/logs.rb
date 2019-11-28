@@ -10,6 +10,11 @@ module Cody
 
     def run
       Tailer.new(@options, build_id).run
+    rescue Aws::CodeBuild::Errors::ResourceNotFoundException => e
+      puts "ERROR: #{e.class}: #{e.message}".color(:red)
+      puts "CodeBuild project #{@full_project_name} not found."
+    rescue Aws::CodeBuild::Errors::InvalidInputException => e
+      puts "ERROR: #{e.class}: #{e.message}".color(:red)
     end
 
     def build_id

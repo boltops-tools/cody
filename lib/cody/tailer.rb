@@ -10,12 +10,20 @@ module Cody
       set_trap
     end
 
+    def find_build
+      resp = codebuild.batch_get_builds(ids: [@build_id])
+      resp.builds.first
+    end
+
     def run
       puts "Showing logs for build #{@build_id}:"
       complete = false
       until complete do
-        resp = codebuild.batch_get_builds(ids: [@build_id])
-        build = resp.builds.first
+        build = find_build
+        unless build
+          puts "ERROR: Build id not found: #{@build_id}".color(:red)
+          return
+        end
         print_phases(build)
         set_log_group_name(build)
 
