@@ -21,7 +21,7 @@ module Cody
       puts "Please check the CodeBuild console for the status."
       puts "CodeBuild Log Url:"
       puts codebuild_log_url(resp.build.id)
-      tail_logs(resp.build.id)
+      tail_logs(resp.build.id) if @options[:wait]
     end
 
     def tail_logs(build_id)

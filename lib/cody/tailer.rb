@@ -4,7 +4,6 @@ module Cody
 
     def initialize(options, build_id)
       @options, @build_id = options, build_id
-      @wait = @options[:wait] || true
 
       @output = [] # for specs
       @shown_phases = []
@@ -21,7 +20,7 @@ module Cody
         set_log_group_name(build)
 
         complete = build.build_complete
-        sleep 5 if @wait && !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
+        sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
         start_cloudwatch_tail unless ENV["CODY_TEST"]
       end
       AwsLogs::Tail.stop_follow!
