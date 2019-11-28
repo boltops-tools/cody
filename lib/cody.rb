@@ -13,8 +13,8 @@ $:.unshift("#{gem_root}/vendor/cfn_camelizer/lib")
 require "cfn_camelizer"
 $:.unshift("#{gem_root}/vendor/cfn-status/lib")
 require "cfn/status"
-$:.unshift("#{gem_root}/vendor/aws_logs/lib")
-require "aws_logs"
+$:.unshift("#{gem_root}/vendor/aws-logs/lib")
+require "aws-logs"
 
 module Cody
   class Error < StandardError; end
