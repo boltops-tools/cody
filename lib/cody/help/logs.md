@@ -49,7 +49,7 @@
 
 By default, Cody logs searches only 7 days in the past. This is done for speed. If you have an older build and would like to search further in the past.  You can use the `--since option`.  Example:
 
-    cody logs --since 1m # 1 month ago
+    cody logs --since 4w # 4 weeks ago
 
 The since format is from the [aws-logs gem](https://github.com/tongueroo/aws-logs). Since formats:
 
