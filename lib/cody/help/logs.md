@@ -59,4 +59,4 @@ The since format is from the [aws-logs gem](https://github.com/tongueroo/aws-log
 * d - days
 * w - weeks
 
-Since does not current support combining the formats. IE: 5m30s.
+Since does not support combining the formats. IE: 5m30s.
