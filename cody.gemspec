@@ -34,8 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "thor"
   spec.add_dependency "zeitwerk"
 
-  spec.add_dependency "aws-sdk-cloudwatchlogs" # required by vendor/aws-logs
-
   # spec.add_dependency "aws_data" # using vendor/cfn_camelizer for now
   # spec.add_dependency "cfn_camelizer" # using vendor/cfn_camelizer for now
 

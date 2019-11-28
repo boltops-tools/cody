@@ -9,6 +9,7 @@ module Cody
 
       @output = [] # for specs
       @shown_phases = []
+      @thread = nil
       set_trap
     end
 
@@ -30,26 +31,29 @@ module Cody
         set_log_group_name(build)
 
         complete = build.build_complete
-        sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
         start_cloudwatch_tail unless ENV["CODY_TEST"]
+        sleep 5 if !@@end_loop_signal && !complete && !ENV["CODY_TEST"]
       end
       AwsLogs::Tail.stop_follow!
+      @thread.join
     end
 
     def start_cloudwatch_tail
       return if @cloudwatch_tail_started
       return unless @log_group_name && @log_stream_name
 
-      Thread.new do
+      @thread = Thread.new do
         cloudwatch_tail
       end
       @cloudwatch_tail_started = true
     end
 
     def cloudwatch_tail
+      since = @options[:since] || "7d" # by default, search only 7 days in the past
       cw_tail = AwsLogs::Tail.new(
         log_group_name: @log_group_name,
         log_stream_names: [@log_stream_name],
+        since: since,
         follow: true,
         format: "simple",
       )
