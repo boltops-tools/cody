@@ -76,4 +76,25 @@ policies([{
 }])
 ```
 
+## Default IAM Role
+
+Here's the default IAM Role that Cody uses.
+
+```ruby
+iam_policy(
+  action: [
+    "logs:CreateLogGroup",
+    "logs:CreateLogStream",
+    "logs:PutLogEvents",
+    "ssm:DescribeDocumentParameters",
+    "ssm:DescribeParameters",
+    "ssm:GetParameter*",
+  ],
+  effect: "Allow",
+  resource: "*"
+)
+```
+
+If you override default by creating a `role.rb` file, you will probably want to keep at least logs access so CodeBuild can write to CloudWatch.
+
 {% include prev_next.md %}
