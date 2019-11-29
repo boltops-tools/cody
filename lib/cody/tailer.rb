@@ -34,6 +34,13 @@ module Cody
       end
 
       stop_cloudwatch_tail(build)
+      final_message(build)
+    end
+
+    def final_message(build)
+      status = build.build_status
+      status = status != "SUCCEEDED" ? status.color(:red) : status.color(:green)
+      puts "Final build status: #{status}"
       puts "The build took #{build_time(build)} to complete."
     end
 
@@ -122,8 +129,8 @@ module Cody
       end
       return if already_shown
 
-      status = details[:phase_status]
-      status = status&.include?("FAILED") ? status.color(:red) : status
+      status = details[:phase_status].to_s # in case of nil
+      status = status == "SUCCEEDED" ? status.color(:green) : status.color(:red)
       say [
         "Phase:".color(:green), details[:phase_type],
         "Status:".color(:purple), status,
