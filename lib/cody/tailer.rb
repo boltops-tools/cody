@@ -38,10 +38,19 @@ module Cody
     end
 
     def final_message(build)
-      status = build.build_status
+      status = build.build_status.to_s # in case nil
       status = status != "SUCCEEDED" ? status.color(:red) : status.color(:green)
       puts "Final build status: #{status}"
+      display_failed_phases(build) if status != "SUCCEEDED"
       puts "The build took #{build_time(build)} to complete."
+    end
+
+    def display_failed_phases(build)
+      puts "Failed Phases:"
+      build.phases.each do |phase|
+        next if phase.phase_status == "SUCCEEDED" or phase.phase_status.nil? or phase.phase_status == ""
+        puts "#{phase.phase_type}: #{phase.phase_status.color(:red)}"
+      end
     end
 
     def find_build
@@ -81,9 +90,14 @@ module Cody
       # However, this is sometimes not enough of a pause for CloudWatch to receive and send the logs back to us.
       # So additionally pause on a failed build so we can receive the final logs at the end.
       #
-      sleep 10 if complete_failed?(build) # provide extra time for cw tail to report error
+      # provide extra time for cw tail to report error
+      sleep 10 if complete_failed?(build) and !logs_command?
       AwsLogs::Tail.stop_follow!
       @thread.join if @thread
+    end
+
+    def logs_command?
+      ARGV.join(" ").include?("logs")
     end
 
     # build.build_status : The current status of the build. Valid values include:
