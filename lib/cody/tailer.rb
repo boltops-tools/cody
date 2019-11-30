@@ -46,9 +46,13 @@ module Cody
     end
 
     def display_failed_phases(build)
+      failed_phases = build.phases.select do |phase|
+        phase.phase_status != "SUCCEEDED" && !phase.phase_status.to_s == ""
+      end
+      return if failed_phases.empty?
+
       puts "Failed Phases:"
-      build.phases.each do |phase|
-        next if phase.phase_status == "SUCCEEDED" or phase.phase_status.nil? or phase.phase_status == ""
+      failed_phases.each do |phase|
         puts "#{phase.phase_type}: #{phase.phase_status.color(:red)}"
       end
     end
