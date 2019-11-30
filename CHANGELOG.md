@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.8.5]
+- #12 display failed phases at the end if failed
+- also dont sleep 10 if command is coming from logs
+
 ## [0.8.4]
 - improve final message, report build_status
 
