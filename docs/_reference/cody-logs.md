@@ -78,13 +78,13 @@ Since does not support combining the formats. IE: 5m30s.
 ## Options
 
 ```
-[--build-id=BUILD_ID]        # Project build id. Defaults to most recent.
-[--since=SINCE]              # From what time to begin displaying logs.  By default, logs will be displayed starting from 7 days in the past. The value provided can be an ISO 8601 timestamp or a relative time.
-[--type=TYPE]                # folder to use within .cody folder for different build types
-[--stack-name=STACK_NAME]    # Override the generated stack name. If you use this you must always specify it
-[--wait], [--no-wait]        # Wait for operation to complete
-                             # Default: true
-[--verbose], [--no-verbose]  
-[--noop], [--no-noop]        
+    [--build-id=BUILD_ID]        # Project build id. Defaults to most recent.
+    [--since=SINCE]              # From what time to begin displaying logs.  By default, logs will be displayed starting from 7 days in the past. The value provided can be an ISO 8601 timestamp or a relative time.
+t, [--type=TYPE]                 # folder to use within .cody folder for different build types
+    [--stack-name=STACK_NAME]    # Override the generated stack name. If you use this you must always specify it
+    [--wait], [--no-wait]        # Wait for operation to complete
+                                 # Default: true
+    [--verbose], [--no-verbose]  
+    [--noop], [--no-noop]        
 ```
 
