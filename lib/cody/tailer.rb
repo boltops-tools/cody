@@ -47,7 +47,7 @@ module Cody
 
     def display_failed_phases(build)
       failed_phases = build.phases.select do |phase|
-        phase.phase_status != "SUCCEEDED" && !phase.phase_status.to_s == ""
+        phase.phase_status != "SUCCEEDED" && phase.phase_status.to_s != ""
       end
       return if failed_phases.empty?
 
