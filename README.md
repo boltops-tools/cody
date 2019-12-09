@@ -20,7 +20,7 @@ Cody is an AWS CodeBuild Management Tool. Cody lets you create AWS CodeBuild pro
 
 ## Private Repo
 
-IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to the [CodeBuilld Github Oauth/](https://cody.run/docs/github_oauth/) for more info.
+IMPORTANT: Before deploying, if you are using a private repo, use [aws codebuild import-source-credentials](https://docs.aws.amazon.com/cli/latest/reference/codebuild/import-source-credentials.html) to add credentials so that codebuild can clone down the repo.  Refer to the [CodeBuilld Github Oauth](https://cody.run/docs/github_oauth/) for more info.
 
 ## Usage
 
