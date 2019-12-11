@@ -24,7 +24,7 @@ environment_variables(
 Notice the use of `Cody.env` and `project_name` to set environment variables. The environment variables are later used in the `.buildspec.yml`.
 
 * The `Cody.env` method contains the value of `CODY_ENV` when you run the `cody deploy` command.
-* The `project_name` is the CodeBuild project name itself.
+* The `project_name` is the CodeBuild project name itself.  It does not include the `--type` option.
 
 If CodeBuild project name matches the ufo ECS service name, then it makes the commands very simple. For example.
 
