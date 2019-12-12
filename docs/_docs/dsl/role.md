@@ -1,6 +1,6 @@
 ---
-title: Role DSL
-nav_text: Role
+title: IAM Role DSL
+nav_text: IAM Role
 categories: dsl
 nav_order: 13
 ---
