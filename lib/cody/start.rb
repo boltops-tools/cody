@@ -63,6 +63,7 @@ module Cody
     def codebuild_log_url(build_id)
       build_id = build_id.split(':').last
       region = `aws configure get region`.strip rescue "us-east-1"
+      region ||= "us-east-1"
       "https://#{region}.console.aws.amazon.com/codesuite/codebuild/projects/#{project_name}/build/#{project_name}%3A#{build_id}/log"
     end
 
