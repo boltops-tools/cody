@@ -1,3 +1,5 @@
+require 'cli-format'
+
 module Cody
   class CLI < Command
     class_option :verbose, type: :boolean
@@ -59,6 +61,7 @@ module Cody
 
     desc "list", "list codebuild project."
     long_desc Help.text(:list)
+    option :format, desc: "Output formats: #{CliFormat.formats.join(', ')}"
     def list
       List.new(options).run
     end

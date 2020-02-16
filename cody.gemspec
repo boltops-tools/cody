@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "aws-sdk-cloudformation"
   spec.add_dependency "aws-sdk-codebuild"
   spec.add_dependency "aws-sdk-ssm"
+  spec.add_dependency "cli-format"
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
   spec.add_dependency "render_me_pretty"

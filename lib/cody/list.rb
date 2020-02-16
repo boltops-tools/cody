@@ -1,3 +1,5 @@
+require 'cli-format'
+
 module Cody
   class List
     include AwsServices
@@ -8,12 +10,19 @@ module Cody
     end
 
     def run
+      presenter = CliFormat::Presenter.new(@options)
+      presenter.header = ["Name", "Status"]
       projects.each do |project|
-        puts project
+        presenter.rows << [project.name, project.status]
       end
+      presenter.show
     end
 
     def projects
+      list_projects.map { |p| Project.new(p) }
+    end
+
+    def list_projects
       projects = []
       next_token = :start
       while next_token
@@ -27,6 +36,6 @@ module Cody
       end
       projects
     end
-    memoize :projects
+    memoize :list_projects
   end
 end
