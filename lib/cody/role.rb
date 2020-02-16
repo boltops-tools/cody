@@ -24,11 +24,7 @@ module Cody
         }
       }]
 
-      if @managed_policy_arns && !@managed_policy_arns.empty?
-        @properties[:managed_policy_arns] = @managed_policy_arns
-      else
-        @properties[:managed_policy_arns] = default_managed_policy_arns
-      end
+      @properties[:managed_policy_arns] ||= @managed_policy_arns || default_managed_policy_arns
 
       resource = {
         IamRole: {
