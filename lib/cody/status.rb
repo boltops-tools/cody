@@ -9,6 +9,7 @@ module Cody
       end
     end
 
+  private
     def colored(status)
       # one of SUCCEEDED FAILED FAULT TIMED_OUT IN_PROGRESS STOPPED
       case status
