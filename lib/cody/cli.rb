@@ -41,12 +41,26 @@ module Cody
       Start.new(options.merge(project_name: project_name)).run
     end
 
+    desc "status", "status of codebuild project."
+    long_desc Help.text(:status)
+    option :build_id, desc: "Project build id. Defaults to most recent."
+    common_options.call
+    def status(project_name=nil)
+      Status.new(options.merge(project_name: project_name)).run
+    end
+
     desc "stop", "stop codebuild project."
     long_desc Help.text(:stop)
     option :build_id, desc: "Project build id. Defaults to most recent."
     common_options.call
     def stop(project_name=nil)
       Stop.new(options.merge(project_name: project_name)).run
+    end
+
+    desc "list", "list codebuild project."
+    long_desc Help.text(:list)
+    def list
+      List.new(options).run
     end
 
     desc "logs", "Prints out logs for codebuild project."
