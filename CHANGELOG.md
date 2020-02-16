@@ -3,7 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
-## [0.8.7]
+## [0.9.0]
+- #13,#14 setting a default region in the event that the AWS region is not set.
+- #17 allow empty IAM Managed Policies
+- #18 add status and list commands
 - fix display failed phases
 
 ## [0.8.6]
