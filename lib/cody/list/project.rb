@@ -2,6 +2,7 @@
 class Cody::List
   class Project
     include Cody::AwsServices
+    extend Memoist
 
     attr_reader :name
     def initialize(name)
@@ -13,10 +14,12 @@ class Cody::List
       build = resp.builds.first
       build.build_status
     end
+    memoize :status
 
     def build_id
       resp = codebuild.list_builds_for_project(project_name: @name)
       resp.ids.first # most recent build_id
     end
+    memoize :build_id
   end
 end
