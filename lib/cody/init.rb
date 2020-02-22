@@ -77,7 +77,7 @@ module Cody
       url == '' ? default : url
     end
 
-    def lookup_managed_image(pattern=/ruby:/)
+    def lookup_managed_image(pattern=/amazonlinux2-x86_64-standard/)
       resp = codebuild.list_curated_environment_images
 
       # Helpful for debugging:
@@ -92,9 +92,21 @@ module Cody
         end
       end
       versions = versions.select { |v| v =~ pattern }
-      # IE: aws/codebuild/ruby:2.5.3-1.7.0
+      # IE: aws/codebuild/amazonlinux2-x86_64-standard:2.0
       # Falls back to hard-coded image name since the API changed and looks like it's returning no ruby images
-      versions.sort.last || "aws/codebuild/ruby:2.5.3-1.7.0"
+      latest_version = versions.sort.last
+      if latest_version
+        # Drop the "date part"
+        # aws/codebuild/amazonlinux2-x86_64-standard:2.0-19.11.26 ->
+        # aws/codebuild/amazonlinux2-x86_64-standard:2.0 ->
+        latest_version.split('-')[0..-2].join('-')
+      else
+        fallback_image
+      end
+    end
+
+    def fallback_image
+      "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
     end
   end
 end

@@ -14,7 +14,7 @@ Here's the project DSL.
 
 ```ruby
 github_url("https://github.com/tongueroo/demo-ufo")
-linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+linux_image("aws/codebuild/amazonlinux2-x86_64-standard:2.0")
 environment_variables(
   UFO_ENV: Cody.env,
   UFO_APP: project_name,

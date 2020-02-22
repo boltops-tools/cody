@@ -12,7 +12,7 @@ You define the CodeBuild project in `.cody/project.rb`. Here's an example of the
 ```ruby
 # name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
-linux_image("aws/codebuild/ruby:2.5.3-1.7.0")
+linux_image("aws/codebuild/amazonlinux2-x86_64-standard:2.0")
 environment_variables(
   UFO_ENV: "development",
   API_KEY: "ssm:/codebuild/demo/api_key" # ssm param example
@@ -75,7 +75,7 @@ environment(
   compute_type: "BUILD_GENERAL1_SMALL",
   image_pull_credentials_type: "CODEBUILD",
   privileged_mode: true,
-  image: "aws/codebuild/ruby:2.5.3-1.7.0",
+  image: "aws/codebuild/amazonlinux2-x86_64-standard:2.0",
   environment_variables: [
     {
       type: "PLAINTEXT",
