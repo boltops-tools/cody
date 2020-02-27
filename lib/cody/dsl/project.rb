@@ -67,7 +67,7 @@ module Cody::Dsl
     end
 
     def linux_environment(options={})
-      image = options[:image] || "aws/codebuild/ruby:2.5.3-1.7.0"
+      image = options[:image] || "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
       env = {
         compute_type: options[:compute_type] || "BUILD_GENERAL1_SMALL",
         image_pull_credentials_type: "CODEBUILD", # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-imagepullcredentialstype

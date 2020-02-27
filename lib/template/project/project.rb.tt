@@ -3,7 +3,7 @@
 
 # name("example-project-name") # recommend leaving unset and codebuild will use a conventional name
 github_url("<%= project_github_url %>")
-linux_image("<%= lookup_managed_image(/ruby:/) %>")
+linux_image("<%= lookup_managed_image(/amazonlinux2-x86_64-standard/) %>")
 environment_variables(
   JETS_ENV: "test",
   # API_KEY: "ssm:/codebuild/demo/api_key" # Example of ssm parameter
