@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.9.2]
+- #21 update to amazonlinux2-x86_64-standard:2.0 image
+
 ## [0.9.1]
 - list command improvement: show status also
 
