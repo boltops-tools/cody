@@ -29,6 +29,8 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      ruby: 2.6
     commands:
       - apt-get update -y && apt-get install -y rsync
   build:

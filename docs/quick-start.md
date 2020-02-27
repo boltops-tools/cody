@@ -38,6 +38,9 @@ An important generated file `.cody/buildspec.yml`. The starter file looks someth
 
 ```yaml
 phases:
+  install:
+    runtime-versions:
+      ruby: 2.6
   build:
     commands:
       - echo Build started on `date`

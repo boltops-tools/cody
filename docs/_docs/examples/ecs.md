@@ -40,6 +40,9 @@ Here's the buildspec that references the environment variables set in `project.r
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      ruby: 2.6
   pre_build:
     commands:
       - gem install --no-document ufo
