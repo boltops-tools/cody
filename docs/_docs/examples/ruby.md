@@ -35,8 +35,8 @@ phases:
       - apt-get update -y && apt-get install -y rsync
   build:
     commands:
-      - echo Build started on `date`
-      - sed -i '/BUNDLED WITH/Q' Gemfile.lock # hack to fix bundler issue: allow different versions of bundler to work
+      # keep sed comment for older versions of ruby
+      - # sed -i '/BUNDLED WITH/Q' Gemfile.lock # hack to fix bundler issue: allow different versions of bundler to work.
       - bundle
       - JETS_ENV=test bundle exec rspec
 ```
