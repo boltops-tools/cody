@@ -1,15 +1,14 @@
 require "yaml"
 
 module Cody
-  class Role
+  class Role < Dsl::Base
     include Cody::Dsl::Role
     include Evaluate
     include Variables
 
     def initialize(options={})
-      @options = options
+      super
       @role_path = options[:role_path] || get_role_path
-      @properties = default_properties
       @iam_policy = {}
     end
 
