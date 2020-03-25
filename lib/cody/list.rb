@@ -11,8 +11,8 @@ module Cody
 
     def run
       if projects.size > 15
-        puts "Number of projects: #{projects.size}"
-        puts "Can take a while for a large number of projects..."
+        $stderr.puts "Number of projects: #{projects.size}"
+        $stderr.puts "Can take a while for a large number of projects..."
       end
 
       presenter = CliFormat::Presenter.new(@options)
