@@ -12,8 +12,9 @@ class Cody::List
     end
 
     def build
+      return NoBuildsProject.new unless build_id # most recent build
       resp = codebuild.batch_get_builds(ids: [build_id])
-      resp.builds.first # most recent build
+      resp.builds.first
     end
     memoize :build
     alias_method :load, :build # interface to eager load
