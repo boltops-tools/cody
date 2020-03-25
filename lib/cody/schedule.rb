@@ -1,13 +1,12 @@
 module Cody
-  class Schedule
+  class Schedule < Dsl::Base
     include Cody::Dsl::Schedule
     include Evaluate
     include Variables
 
     def initialize(options={})
-      @options = options
+      super
       @schedule_path = options[:schedule_path] || get_schedule_path
-      @properties = default_properties
       @iam_policy = {}
     end
 
