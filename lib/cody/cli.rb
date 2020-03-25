@@ -75,6 +75,14 @@ module Cody
       Logs.new(options.merge(project_name: project_name)).run
     end
 
+    desc "badge", "show the codebuild badge."
+    long_desc Help.text(:list)
+    option :markdown, default: true, type: :boolean, desc: "Show the markdown that can be copied and pasted"
+    common_options.call
+    def badge(project_name=nil)
+      Badge.new(options.merge(project_name: project_name)).run
+    end
+
     desc "completion *PARAMS", "Prints words for auto-completion."
     long_desc Help.text(:completion)
     def completion(*params)
