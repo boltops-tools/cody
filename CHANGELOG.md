@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.9.5]
+- write info messsage to stderr so we can pipe to jq
+
 ## [0.9.4]
 - #23 list command: add Time column
 
