@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.9.3]
+- #22 add badge command
+
 ## [0.9.2]
 - #21 update to amazonlinux2-x86_64-standard:2.0 image
 
