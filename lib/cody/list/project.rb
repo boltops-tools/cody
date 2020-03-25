@@ -4,17 +4,19 @@ class Cody::List
     include Cody::AwsServices
     extend Memoist
 
+    delegate :build_status, :start_time, :end_time, to: :build
+
     attr_reader :name
     def initialize(name)
       @name = name # Simple string
     end
 
-    def status
+    def build
       resp = codebuild.batch_get_builds(ids: [build_id])
-      build = resp.builds.first
-      build.build_status
+      resp.builds.first # most recent build
     end
-    memoize :status
+    memoize :build
+    alias_method :load, :build # interface to eager load
 
     def build_id
       resp = codebuild.list_builds_for_project(project_name: @name)

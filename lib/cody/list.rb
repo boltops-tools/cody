@@ -10,10 +10,15 @@ module Cody
     end
 
     def run
+      if projects.size > 15
+        puts "Number of projects: #{projects.size}"
+        puts "Can take a while for a large number of projects..."
+      end
+
       presenter = CliFormat::Presenter.new(@options)
-      presenter.header = ["Name", "Status"]
+      presenter.header = ["Name", "Status", "Time"]
       projects.each do |project|
-        presenter.rows << [project.name, project.status]
+        presenter.rows << [project.name, project.build_status, project.end_time]
       end
       presenter.show
     end
@@ -21,6 +26,7 @@ module Cody
     def projects
       list_projects.map { |p| Project.new(p) }
     end
+    memoize :projects
 
     def list_projects
       projects = []
