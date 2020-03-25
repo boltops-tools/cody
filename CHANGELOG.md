@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.9.6]
+- #24 refactor: add dsl base class so `project_name` method is available to all dsl classes
+- cody list: fix for projects with no builds yet
+
 ## [0.9.5]
 - write info messsage to stderr so we can pipe to jq
 
