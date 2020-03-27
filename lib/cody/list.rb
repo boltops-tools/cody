@@ -24,7 +24,12 @@ module Cody
     end
 
     def projects
-      list_projects.map { |p| Project.new(p) }
+      projects = list_projects.map { |p| Project.new(p) }
+      if @options[:sort_by]
+        projects.sort_by { |p| p.send(@options[:sort_by]) }
+      else
+        projects # default name
+      end
     end
     memoize :projects
 

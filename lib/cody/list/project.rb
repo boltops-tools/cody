@@ -5,6 +5,8 @@ class Cody::List
     extend Memoist
 
     delegate :build_status, :start_time, :end_time, to: :build
+    alias_method :time, :end_time
+    alias_method :status, :build_status
 
     attr_reader :name
     def initialize(name)
