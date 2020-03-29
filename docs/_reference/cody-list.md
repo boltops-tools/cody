@@ -16,6 +16,7 @@ list codebuild project.
 
 ```
 [--format=FORMAT]            # Output formats: csv, table, tab, json
+[--sort-by=SORT_BY]          # Sort by column: name, status, time
 [--verbose], [--no-verbose]  
 [--noop], [--no-noop]        
 ```
