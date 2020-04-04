@@ -31,11 +31,15 @@ Here's a guide to using the `import-source-credentials` commands.
 
 First, save the GitHub oauth token to parameter store, in case we need it in the future.
 
-    aws ssm put-parameter --name /github/user/token --value secret-token-value --type SecureString
+    aws ssm put-parameter --name /github/USER/token --value secret-token-value --type SecureString
 
-Import the source credential into codebuild.
+Replace `USER` with the github username. IE:
 
-    TOKEN=$(aws ssm get-parameter --name /github/user/token --with-decryption | jq -r '.Parameter.Value')
+    aws ssm put-parameter --name /github/tongueroo/token --value secret-token-value --type SecureString
+
+Import the source credential into codebuild, here's an example with `USER=tongueroo`.
+
+    TOKEN=$(aws ssm get-parameter --name /github/tongueroo/token --with-decryption | jq -r '.Parameter.Value')
     cat > /tmp/codebuild-source-credentials.json <<EOL
     {
         "token": "$TOKEN",
