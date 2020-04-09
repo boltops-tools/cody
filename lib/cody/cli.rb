@@ -63,6 +63,7 @@ module Cody
     long_desc Help.text(:list)
     option :format, desc: "Output formats: #{CliFormat.formats.join(', ')}"
     option :sort_by, desc: "Sort by column: name, status, time"
+    option :status, desc: "status filter. IE: SUCCEEDED, FAILED, FAULT, TIMED_OUT, IN_PROGRESS, STOPPED. Both upper and lowercase works."
     def list
       List.new(options).run
     end

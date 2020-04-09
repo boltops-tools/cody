@@ -18,9 +18,19 @@ module Cody
       presenter = CliFormat::Presenter.new(@options)
       presenter.header = ["Name", "Status", "Time"]
       projects.each do |project|
-        presenter.rows << [project.name, project.build_status, project.end_time]
+        row = [project.name, project.build_status, project.end_time]
+        presenter.rows << row if show?(project.build_status)
       end
       presenter.show
+    end
+
+    def show?(build_status)
+      status = @options[:status].upcase if @options[:status]
+      if status
+        build_status == status
+      else
+        true
+      end
     end
 
     def projects
