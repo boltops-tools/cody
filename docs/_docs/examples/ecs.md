@@ -2,7 +2,7 @@
 title: ECS
 nav_text: ECS
 categories: example
-nav_order: 16
+nav_order: 17
 ---
 
 This example will show some powerful patterns with cody.  We'll use cody with the [ufo](https://ufoships.com) tool to deploy an application to ECS.

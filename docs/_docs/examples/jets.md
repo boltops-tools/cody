@@ -2,7 +2,7 @@
 title: Jets
 nav_text: Jets
 categories: example
-nav_order: 17
+nav_order: 18
 ---
 
 This example shows to deploy a [Jets](https://rubyonjets.com/) application with codebuild to AWS Lambda.

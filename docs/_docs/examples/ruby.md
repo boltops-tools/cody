@@ -2,7 +2,7 @@
 title: Ruby
 nav_text: Ruby
 categories: example
-nav_order: 18
+nav_order: 19
 ---
 
 This examples show to run Ruby unit tests.
