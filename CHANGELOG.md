@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [0.9.8]
+- add minimal deploy iam policy docs
+- list: add --status filter option
+
 ## [0.9.7]
 - #25 cody list: add sort-by option
 
