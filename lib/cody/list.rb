@@ -7,17 +7,20 @@ module Cody
 
     def initialize(options)
       @options = options
+      @sort_by = @options[:sort_by] ? @options[:sort_by].upcase : "NAME" # NAME | CREATED_TIME | LAST_MODIFIED_TIME
     end
 
     def run
-      if projects.size > 15
-        $stderr.puts "Number of projects: #{projects.size}"
-        $stderr.puts "Can take a while for a large number of projects..."
-      end
+      # TODO: no need for this after cfn-format is also lazy
+      # if projects.size > 15
+      #   $stderr.puts "Number of projects: #{projects.size}"
+      #   $stderr.puts "Can take a while for a large number of projects..."
+      # end
 
       presenter = CliFormat::Presenter.new(@options)
       presenter.header = ["Name", "Status", "Time"]
       projects.each do |project|
+        project = Project.new(project)
         row = [project.name, project.build_status, project.end_time]
         presenter.rows << row if show?(project.build_status)
       end
@@ -33,29 +36,27 @@ module Cody
       end
     end
 
+    # Returns flattened lazy Enumerator
     def projects
-      projects = list_projects.map { |p| Project.new(p) }
-      if @options[:sort_by]
-        projects.sort_by { |p| p.send(@options[:sort_by]) }
-      else
-        projects # default name
-      end
+      list_projects.lazy.flat_map { |p| p }
     end
     memoize :projects
 
     def list_projects
-      projects = []
-      next_token = :start
-      while next_token
-        options = {sort_by: "NAME"}
-        if next_token && next_token != :start
-          options[:next_token] = next_token
+      Enumerator.new do |y|
+        next_token = :start
+        while next_token
+          options = {sort_by: @sort_by}
+          if next_token && next_token != :start
+            options[:next_token] = next_token
+          end
+
+          resp = codebuild.list_projects(options)
+          projects, next_token = resp.projects, resp.next_token
+
+          y.yield(projects, resp)
         end
-        resp = codebuild.list_projects(options)
-        next_token = resp.next_token
-        projects += resp.projects
       end
-      projects
     end
     memoize :list_projects
   end
