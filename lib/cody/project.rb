@@ -20,40 +20,40 @@ module Cody
       load_variables
       evaluate(@project_path)
       resource = {
-        code_build: {
-          type: "AWS::CodeBuild::Project",
-          properties: @properties
+        CodeBuild: {
+          Type: "AWS::CodeBuild::Project",
+          Properties: @properties
         }
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
     def default_properties
       {
-        name: @full_project_name,
-        description: @full_project_name,
-        artifacts: { type: "NO_ARTIFACTS" },
-        service_role: { ref: "IamRole" },
-        badge_enabled: true,
-        timeout_in_minutes: 20,
-        logs_config: {
-          cloud_watch_logs: {
-            status: "ENABLED",
+        Name: @full_project_name,
+        Description: @full_project_name,
+        Artifacts: { Type: "NO_ARTIFACTS" },
+        ServiceRole: { Ref: "IamRole" },
+        BadgeEnabled: true,
+        TimeoutInMinutes: 20,
+        LogsConfig: {
+          CloudWatchLogs: {
+            Status: "ENABLED",
             # the default log group name is thankfully the project name
           }
         },
-        source: {
-          type: "GITHUB",
+        Source: {
+          Type: "GITHUB",
           # location: "", # required
-          # git_clone_depth: 1,
-          git_submodules_config: { fetch_submodules: true },
-          build_spec: build_spec,
-          # auth doesnt seem to work, refer to https://github.com/tongueroo/cody/blob/master/readme/github_oauth.md
-          # auth: {
-          #   type: "OAUTH",
-          #   # resource: "", # required
+          # GitCloneDepth: 1,
+          GitSubmodulesConfig: { FetchSubmodules: true },
+          BuildSpec: build_spec,
+          # auth doesnt seem to work, refer to https://github.com/tongueroo/cody/blob/master/readme/GithubOauth.md
+          # Auth: {
+          #   Type: "OAUTH",
+          #   # Resource: "", # required
           # },
-          report_build_status: true,
+          ReportBuildStatus: true,
         }
       }
     end

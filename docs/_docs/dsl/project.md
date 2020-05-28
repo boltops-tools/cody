@@ -2,7 +2,7 @@
 title: Project DSL
 nav_text: Project
 categories: dsl
-nav_order: 13
+nav_order: 15
 ---
 
 You define the CodeBuild project in `.cody/project.rb`. Here's an example of the DSL used to create a codebuild project.
@@ -12,7 +12,7 @@ You define the CodeBuild project in `.cody/project.rb`. Here's an example of the
 ```ruby
 # name("demo") # recommended to leave unset and use the conventional name that cody sets
 github_url("https://github.com/tongueroo/demo-ufo")
-linux_image("aws/codebuild/amazonlinux2-x86_64-standard:2.0")
+linux_image("aws/codebuild/standard:4.0")
 environment_variables(
   UFO_ENV: "development",
   API_KEY: "ssm:/codebuild/demo/api_key" # ssm param example
@@ -21,11 +21,12 @@ environment_variables(
 
 Here's a list of some of the convenience shorthand DSL methods:
 
-* github_url(url)
-* github_source(options={})
-* linux_image(name)
-* linux_environment(options={})
+* buildspec(path)
 * environment_variables(vars)
+* github_source(options={})
+* github_url(url)
+* linux_environment(options={})
+* linux_image(name)
 * local_cache(enable=true)
 
 Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/cody/dsl/project.rb) source code for the most updated list of methods.
@@ -35,17 +36,22 @@ Refer to the [dsl/project.rb](https://github.com/tongueroo/cody/blob/master/lib/
 If you would like for a build to run on every commit pushed.
 
 ```ruby
-triggers(webhook: true)
+triggers(Webhook: true)
 ```
 
 For more control over the branches to run:
 
 ```ruby
 triggers(
-  webhook: true,
-  filter_groups: [[{type: "HEAD_REF", pattern: "my-branch"}, {type: "EVENT", pattern: "PUSH"}]]
+  Webhook: true,
+  FilterGroups: [[{Type: "HEAD_REF", Pattern: "my-branch"}, {Type: "EVENT", Pattern: "PUSH"}]]
 )
 ```
+
+Notes:
+
+* The extra brackets: `[[]]`` is actually the proper format. I know weird.
+* The GitHub oauth token needs admin:repo_hook permissions for triggers.
 
 ## Full DSL
 
@@ -58,37 +64,37 @@ The convenience methods are shorter and cleaner. However, you have access to a F
 description("desc2")
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html
 source(
-  type: "GITHUB",
-  location: "https://github.com/tongueroo/demo-ufo",
-  git_clone_depth: 1,
-  git_submodules_config: { fetch_submodules: true },
-  build_spec: ".cody/buildspec.yml",
-  auth: {
-    type: "OAUTH",
-    resource: ssm("/codebuild/demo/oauth_token"),
+  Type: "GITHUB",
+  Location: "https://github.com/tongueroo/demo-ufo",
+  GitCloneDepth: 1,
+  GitSubmodulesConfig: { FetchSubmodules: true },
+  BuildSpec: ".cody/buildspec.yml",
+  Auth: {
+    Type: "OAUTH",
+    Resource: ssm("/codebuild/demo/oauth_token"),
   },
-  report_build_status: true,
+  ReportBuildStatus: true,
 )
 
-artifacts(type: "NO_ARTIFACTS")
+artifacts(Type: "NO_ARTIFACTS")
 environment(
-  compute_type: "BUILD_GENERAL1_SMALL",
-  image_pull_credentials_type: "CODEBUILD",
-  privileged_mode: true,
-  image: "aws/codebuild/amazonlinux2-x86_64-standard:2.0",
-  environment_variables: [
+  ComputeType: "BUILD_GENERAL1_SMALL",
+  ImagePullCredentialsType: "CODEBUILD",
+  PrivilegedMode: true,
+  Image: "aws/codebuild/standard:4.0",
+  EnvironmentVariables: [
     {
-      type: "PLAINTEXT",
-      name: "UFO_ENV",
-      value: "development"
+      Type: "PLAINTEXT",
+      Name: "UFO_ENV",
+      Value: "development"
     },
     {
-      type: "PARAMETER_STORE",
-      name: "API_KEY",
-      value: "/codebuild/demo/api_key"
+      Type: "PARAMETER_STORE",
+      Name: "API_KEY",
+      Value: "/codebuild/demo/api_key"
     }
   ],
-  type: "LINUX_CONTAINER"
+  Type: "LINUX_CONTAINER"
 )
 
 service_role(ref: "IamRole")

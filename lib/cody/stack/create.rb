@@ -1,5 +1,5 @@
-module Cody
-  class Create < Stack
+class Cody::Stack
+  class Create < Base
     def perform
       cfn.create_stack(
         stack_name: @stack_name,

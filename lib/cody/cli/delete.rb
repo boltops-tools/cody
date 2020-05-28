@@ -1,11 +1,11 @@
-module Cody
+class Cody::CLI
   class Delete
-    include AwsServices
+    include Cody::AwsServices
 
     def initialize(options)
       @options = options
       @project_name = options[:project_name] || inferred_project_name
-      @stack_name = options[:stack_name] || inferred_stack_name(@project_name)
+      @stack_name = normalize_stack_name(options[:stack_name] || inferred_stack_name(@project_name))
     end
 
     def run

@@ -1,16 +1,16 @@
 module Cody::Dsl
   module Role
     PROPERTIES = %w[
-      assume_role_policy_document
-      managed_policy_arns
-      max_session_duration
-      path
-      permissions_boundary
-      policies
-      role_name
+      AssumeRolePolicyDocument
+      ManagedPolicyArns
+      MaxSessionDuration
+      Path
+      PermissionsBoundary
+      Policies
+      RoleName
     ]
     PROPERTIES.each do |prop|
-      define_method(prop) do |v|
+      define_method(prop.underscore) do |v|
         @properties[prop.to_sym] = v
       end
     end
@@ -27,9 +27,9 @@ module Cody::Dsl
         # Expands simple string from: logs => logs:*
         definition = "#{definition}:*" unless definition.include?(':')
         {
-          action: [definition],
-          effect: "Allow",
-          resource: "*",
+          Action: [definition],
+          Effect: "Allow",
+          Resource: "*",
         }
       when Hash
         definition

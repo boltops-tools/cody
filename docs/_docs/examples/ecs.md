@@ -2,7 +2,7 @@
 title: ECS
 nav_text: ECS
 categories: example
-nav_order: 17
+nav_order: 19
 ---
 
 This example will show some powerful patterns with cody.  We'll use cody with the [ufo](https://ufoships.com) tool to deploy an application to ECS.
@@ -14,7 +14,7 @@ Here's the project DSL.
 
 ```ruby
 github_url("https://github.com/tongueroo/demo-ufo")
-linux_image("aws/codebuild/amazonlinux2-x86_64-standard:2.0")
+linux_image("aws/codebuild/standard:4.0")
 environment_variables(
   UFO_ENV: Cody.env,
   UFO_APP: project_name,
@@ -42,7 +42,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      ruby: 2.6
+      ruby: latest
   pre_build:
     commands:
       - gem install --no-document ufo

@@ -1,4 +1,4 @@
-module Cody
+class Cody::CLI
   class Badge < Base
     def run
       resp = codebuild.batch_get_projects(names: [@full_project_name])

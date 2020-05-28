@@ -1,6 +1,7 @@
-module Cody
+class Cody::CLI
   class Status < Base
     def run
+      check_build_id!
       run_with_exception_handling do
         puts "Build id: #{build_id}"
         resp = codebuild.batch_get_builds(ids: [build_id])

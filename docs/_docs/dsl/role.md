@@ -2,7 +2,7 @@
 title: IAM Role DSL
 nav_text: IAM Role
 categories: dsl
-nav_order: 14
+nav_order: 16
 ---
 
 Cody can create the IAM service role associated with the codebuild project. Here's an example:
@@ -17,14 +17,14 @@ For more control, here's a longer form:
 
 ```ruby
 iam_policy(
-  action: [
+  Action: [
     "logs:CreateLogGroup",
     "logs:CreateLogStream",
     "logs:PutLogEvents",
     "ssm:*",
   ],
-  effect: "Allow",
-  resource: "*"
+  Effect: "Allow",
+  Resource: "*"
 )
 ```
 
@@ -49,28 +49,28 @@ The convenience methods merely wrap properties of the [AWS::IAM::Role
 
 ```ruby
 assume_role_policy_document(
-  statement: [{
-    action: ["sts:AssumeRole"],
-    effect: "Allow",
-    principal: {
-      service: ["codebuild.amazonaws.com"]
+  Statement: [{
+    Action: ["sts:AssumeRole"],
+    Effect: "Allow",
+    Principal: {
+      Service: ["codebuild.amazonaws.com"]
     }
   }],
-  version: "2012-10-17"
+  Version: "2012-10-17"
 )
 path("/")
 policies([{
-  policy_name: "CodeBuildAccess",
-  policy_document: {
-    version: "2012-10-17",
-    statement: [{
-      action: [
+  PolicyName: "CodeBuildAccess",
+  PolicyDocument: {
+    Version: "2012-10-17",
+    Statement: [{
+      Action: [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
       ],
-      effect: "Allow",
-      resource: "*"
+      Effect: "Allow",
+      Resource: "*"
     }]
   }
 }])
@@ -82,7 +82,7 @@ Here's the default IAM Role that Cody uses.
 
 ```ruby
 iam_policy(
-  action: [
+  Action: [
     "logs:CreateLogGroup",
     "logs:CreateLogStream",
     "logs:PutLogEvents",
@@ -90,8 +90,8 @@ iam_policy(
     "ssm:DescribeParameters",
     "ssm:GetParameter*",
   ],
-  effect: "Allow",
-  resource: "*"
+  Effect: "Allow",
+  Resource: "*"
 )
 ```
 

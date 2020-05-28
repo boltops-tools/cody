@@ -28,7 +28,8 @@ The base settings are common and used for all the environments. The other enviro
 
 Name | Description
 --- | ---
-stack_naming.append_env | Determines if `CODY_ENV` value is append to the CodeBuild project name.
+auto_camelize | Whether or not to auto camelize properties keys. Default is false as of v1.0.0. Recommended to leave this false.
 aws_profile | This provides a way to bind `CODY_ENV` to `AWS_PROFILE` tightly. This prevents you from forgetting to switch your `CODY_ENV` when switching your `AWS_PROFILE`, thereby accidentally launching a stack in the wrong environment.
+stack_naming.append_env | Determines if `CODY_ENV` value is append to the CodeBuild project name.
 
 {% include prev_next.md %}

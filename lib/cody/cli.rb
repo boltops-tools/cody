@@ -27,7 +27,7 @@ module Cody
 
     desc "delete", "Delete codebuild project."
     long_desc Help.text(:delete)
-    option :sure, desc: "Bypass are you sure prompt"
+    option :yes, aliases: %w[y], desc: "Bypass are you sure prompt"
     common_options.call
     def delete(project_name=nil)
       Delete.new(options.merge(project_name: project_name)).run
@@ -64,6 +64,7 @@ module Cody
     option :format, desc: "Output formats: #{CliFormat.formats.join(', ')}"
     option :sort_by, desc: "Sort by column: name, status, time"
     option :status, desc: "status filter. IE: SUCCEEDED, FAILED, FAULT, TIMED_OUT, IN_PROGRESS, STOPPED. Both upper and lowercase works."
+    option :select, desc: "select filter on the project name. The select option gets converted to an Ruby regexp"
     def list
       List.new(options).run
     end
@@ -83,18 +84,6 @@ module Cody
     common_options.call
     def badge(project_name=nil)
       Badge.new(options.merge(project_name: project_name)).run
-    end
-
-    desc "completion *PARAMS", "Prints words for auto-completion."
-    long_desc Help.text(:completion)
-    def completion(*params)
-      Completer.new(CLI, *params).run
-    end
-
-    desc "completion_script", "Generates a script that can be eval to setup auto-completion."
-    long_desc Help.text(:completion_script)
-    def completion_script
-      Completer::Script.generate
     end
 
     desc "version", "prints version"

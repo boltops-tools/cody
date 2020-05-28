@@ -19,12 +19,12 @@ module Cody
     end
     memoize :env
 
-    def env_extra
-      env_extra = ENV['CODY_ENV_EXTRA'] if ENV['CODY_ENV_EXTRA'] # highest precedence
-      return if env_extra&.empty?
-      env_extra
+    def extra
+      extra = ENV['CODY_EXTRA'] if ENV['CODY_EXTRA'] # highest precedence
+      return if extra&.empty?
+      extra
     end
-    memoize :env_extra
+    memoize :extra
 
     # Overrides AWS_PROFILE based on the Cody.env if set in configs/settings.yml
     # 2-way binding.

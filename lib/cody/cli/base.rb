@@ -1,7 +1,7 @@
 # Base only for Stop and Start currently.
-module Cody
+class Cody::CLI
   class Base
-    include AwsServices
+    include Cody::AwsServices
 
     def initialize(options)
       @options = options
@@ -23,6 +23,12 @@ module Cody
 
       resp = codebuild.list_builds_for_project(project_name: @full_project_name)
       resp.ids.first # most recent build_id
+    end
+
+    def check_build_id!
+      return if build_id
+      puts "WARN: No builds found for #{@project_name.color(:green)} project"
+      exit
     end
   end
 end

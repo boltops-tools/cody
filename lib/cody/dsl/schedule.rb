@@ -1,16 +1,16 @@
 module Cody::Dsl
   module Schedule
     PROPERTIES = %w[
-      description
-      event_pattern
-      name
-      role_arn
-      schedule_expression
-      state
-      targets
+      Description
+      EventPattern
+      Name
+      RoleArn
+      ScheduleExpression
+      State
+      Targets
     ]
     PROPERTIES.each do |prop|
-      define_method(prop) do |v|
+      define_method(prop.underscore) do |v|
         @properties[prop.to_sym] = v
       end
     end

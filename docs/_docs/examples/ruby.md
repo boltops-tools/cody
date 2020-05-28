@@ -2,7 +2,7 @@
 title: Ruby
 nav_text: Ruby
 categories: example
-nav_order: 19
+nav_order: 21
 ---
 
 This examples show to run Ruby unit tests.
@@ -14,7 +14,7 @@ Here's the project DSL.
 
 ```ruby
 github_url("https://github.com/username/repo")
-linux_image("aws/codebuild/amazonlinux2-x86_64-standard:2.0")
+linux_image("aws/codebuild/standard:4.0")
 environment_variables(
   JETS_ENV: Cody.env,
 )
@@ -30,7 +30,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      ruby: 2.6
+      ruby: latest
     commands:
       - apt-get update -y && apt-get install -y rsync
   build:

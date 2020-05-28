@@ -1,6 +1,6 @@
-module Cody
+class Cody::CLI
   class Start
-    include AwsServices
+    include Cody::AwsServices
 
     def initialize(options)
       @options = options
@@ -24,7 +24,7 @@ module Cody
     end
 
     def tail_logs(build_id)
-      Tailer.new(@options, build_id).run
+      Cody::Tailer.new(@options, build_id).run
     end
 
     def environment_variables_override
