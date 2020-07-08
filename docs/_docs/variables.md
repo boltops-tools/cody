@@ -76,14 +76,14 @@ More info on the type option is here: [Type Option]({% link _docs/type-option.md
 Specific project type variables can be set. For example, let's say you have a `--type=deploy`, the variable files that will be used are:
 
     .cody/deploy/variables/base.rb
-    .cody/deploy/variables/developemnt.rb
+    .cody/deploy/variables/development.rb
 
 The type specific variable files override the top-level variable files. Type specific variable files get loaded last so they take the highest precedence.  Example:
 
     .cody/variables/base.rb - lowest precedence
-    .cody/variables/developemnt.rb
+    .cody/variables/development.rb
     .cody/deploy/variables/base.rb
-    .cody/deploy/variables/developemnt.rb - highest precedence
+    .cody/deploy/variables/development.rb - highest precedence
 
 The top-level variables files are also loaded because it is common to need variables that are available to all projects.
 
