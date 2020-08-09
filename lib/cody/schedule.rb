@@ -74,7 +74,7 @@ module Cody
             Statement: [{
               Action: [ "sts:AssumeRole" ],
               Effect: "Allow",
-              Principal: { service: [ "events.amazonaws.com" ] }
+              Principal: { Service: [ "events.amazonaws.com" ] }
             }],
             Version: "2012-10-17"
           },
