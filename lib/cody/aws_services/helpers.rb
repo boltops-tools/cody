@@ -1,5 +1,18 @@
 module Cody::AwsServices
   module Helpers
+    def find_stack(stack_name)
+      return if ENV['TEST']
+      resp = cfn.describe_stacks(stack_name: stack_name)
+      resp.stacks.first
+    rescue Aws::CloudFormation::Errors::ValidationError => e
+      # example: Stack with id demo-web does not exist
+      if e.message =~ /Stack with/ && e.message =~ /does not exist/
+        nil
+      else
+        raise
+      end
+    end
+
     def stack_exists?(stack_name)
       return false if ENV['TEST']
 
@@ -26,7 +39,7 @@ module Cody::AwsServices
     end
 
     def project_name_convention(name_base)
-      items = [@project_name, @options[:type], Cody.env_extra]
+      items = [@project_name, @options[:type], Cody.extra]
       items.insert(2, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).compact.join("-")
     end
@@ -44,13 +57,13 @@ module Cody::AwsServices
     #
     def inferred_stack_name(project_name)
       append_stack_name = Cody.settings.dig(:stack_naming, :append_stack_name) || "cody"
-      items = [project_name, @options[:type], Cody.env_extra, append_stack_name]
+      items = [project_name, @options[:type], Cody.extra, append_stack_name]
       items.insert(3, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
       items.reject(&:blank?).reject {|i| i == false}.compact.join("-")
     end
 
     def are_you_sure?(stack_name, action)
-      if @options[:sure]
+      if @options[:yes]
         sure = 'y'
       else
         message = case action
@@ -67,6 +80,10 @@ module Cody::AwsServices
         puts "Whew! Exiting without running #{action}."
         exit 0
       end
+    end
+
+    def normalize_stack_name(name)
+      name.gsub('_','-') # cloudformation stack names dont allow _
     end
   end
 end

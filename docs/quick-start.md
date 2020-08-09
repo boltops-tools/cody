@@ -12,6 +12,7 @@ In a hurry? No problem!  Here's a quick start to get going.
     cody init # generates starter .cody files
     # edit .cody/buildspec.yml
     # git commit and push your changes. codebuild will git pull them down.
+    # edit .cody/project.rb - replace with your github.com repo
     cody deploy # create the CodeBuild project via CloudFormation
     cody start  # start a CodeBuild project. Runs the buildspec.yml
 
@@ -40,7 +41,7 @@ An important generated file `.cody/buildspec.yml`. The starter file looks someth
 phases:
   install:
     runtime-versions:
-      ruby: 2.6
+      ruby: latest
   build:
     commands:
       - echo Build started on `date`

@@ -2,7 +2,7 @@ require "aws-logs"
 
 module Cody
   class Tailer
-    include AwsServices
+    include Cody::AwsServices
 
     def initialize(options, build_id)
       @options, @build_id = options, build_id

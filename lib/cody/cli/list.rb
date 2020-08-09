@@ -1,8 +1,8 @@
 require 'cli-format'
 
-module Cody
+class Cody::CLI
   class List
-    include AwsServices
+    include Cody::AwsServices
     extend Memoist
 
     def initialize(options)
@@ -34,7 +34,7 @@ module Cody
     end
 
     def projects
-      projects = list_projects.map { |p| Project.new(p) }
+      projects = list_projects.map { |p| Cody::List::Project.new(p) }
       if @options[:sort_by]
         projects.sort_by { |p| p.send(@options[:sort_by]) }
       else
@@ -54,6 +54,10 @@ module Cody
         resp = codebuild.list_projects(options)
         next_token = resp.next_token
         projects += resp.projects
+      end
+      if @options[:select]
+        regexp = Regexp.new(@options[:select])
+        projects.select! { |p| p =~ regexp }
       end
       projects
     end

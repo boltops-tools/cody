@@ -17,27 +17,27 @@ module Cody
       load_variables
       evaluate(@schedule_path)
 
-      @properties[:schedule_expression] = @schedule_expression if @schedule_expression
+      @properties[:ScheduleExpression] = @schedule_expression if @schedule_expression
       set_rule_event! if @rule_event_props
       return if old_properties == @properties # empty schedule.rb file
 
       resource = {
-        events_rule: {
-          type: "AWS::Events::Rule",
-          properties: @properties
+        EventsRule: {
+          Type: "AWS::Events::Rule",
+          Properties: @properties
         },
-        events_rule_role: events_rule_role,
+        EventsRuleRole: events_rule_role,
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
     def set_rule_event!
       props = @rule_event_props
-      if props.key?(:detail)
-        description = props.key?(:description) ? props.delete(:description) : rule_description
-        rule_props = { event_pattern: props, description: description }
-      else # if props.key?(:event_pattern)
-        props[:description] ||= rule_description
+      if props.key?(:Detail)
+        description = props.key?(:Description) ? props.delete(:Description) : rule_description
+        rule_props = { EventPattern: props, description: description }
+      else # if props.key?(:EventPattern)
+        props[:Description] ||= rule_description
         rule_props = props
       end
 
@@ -48,15 +48,15 @@ module Cody
       description = "Cody #{@options[:full_project_name]}"
       name = description.gsub(" ", "-").downcase
       {
-        description: "#{description} CodeBuild project",
-        # event_pattern: ,
-        name: name,
-        # schedule_expression: ,
-        state: "ENABLED",
-        targets: [{
-          arn: { "Fn::GetAtt": "CodeBuild.Arn" },
-          role_arn: { "Fn::GetAtt": "EventsRuleRole.Arn" }, # required for specific CodeBuild target.
-          id: "CodeBuildTarget",
+        Description: "#{description} CodeBuild project",
+        # EventPattern: ,
+        Name: name,
+        # ScheduleExpression: ,
+        State: "ENABLED",
+        Targets: [{
+          Arn: { "Fn::GetAtt": "CodeBuild.Arn" },
+          RoleArn: { "Fn::GetAtt": "EventsRuleRole.Arn" }, # required for specific CodeBuild target.
+          Id: "CodeBuildTarget",
         }]
       }
     end
@@ -68,25 +68,25 @@ module Cody
 
     def events_rule_role
       {
-        type: "AWS::IAM::Role",
-        properties: {
-          assume_role_policy_document: {
-            statement: [{
-              action: [ "sts:AssumeRole" ],
-              effect: "Allow",
-              principal: { service: [ "events.amazonaws.com" ] }
+        Type: "AWS::IAM::Role",
+        Properties: {
+          AssumeRolePolicyDocument: {
+            Statement: [{
+              Action: [ "sts:AssumeRole" ],
+              Effect: "Allow",
+              Principal: { service: [ "events.amazonaws.com" ] }
             }],
-            version: "2012-10-17"
+            Version: "2012-10-17"
           },
-          path: "/",
-          policies: [{
-            policy_name: "CodeBuildAccess",
-            policy_document: {
-              version: "2012-10-17",
-              statement: [{
-                action: "codebuild:StartBuild",
-                effect: "Allow",
-                resource: "arn:aws:codebuild:#{aws_data.region}:#{aws_data.account}:project/#{@options[:full_project_name]}"
+          Path: "/",
+          Policies: [{
+            PolicyName: "CodeBuildAccess",
+            PolicyDocument: {
+              Version: "2012-10-17",
+              Statement: [{
+                Action: "codebuild:StartBuild",
+                Effect: "Allow",
+                Resource: "arn:aws:codebuild:#{aws_data.region}:#{aws_data.account}:project/#{@options[:full_project_name]}"
               }]
             }
           }]

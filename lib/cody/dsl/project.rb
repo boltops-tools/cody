@@ -3,34 +3,39 @@ module Cody::Dsl
     include Ssm
 
     PROPERTIES = %w[
-      artifacts
-      badge_enabled
-      cache
-      description
-      encryption_key
-      environment
-      logs_config
-      name
-      queued_timeout_in_minutes
-      secondary_artifacts
-      secondary_sources
-      service_role
-      source
-      tags
-      timeout_in_minutes
-      triggers
-      vpc_config
+      Artifacts
+      BadgeEnabled
+      Cache
+      Description
+      EncryptionKey
+      Environment
+      LogsConfig
+      Name
+      QueuedTimeoutInMinutes
+      SecondaryArtifacts
+      SecondarySources
+      ServiceRole
+      Source
+      Tags
+      TimeoutInMinutes
+      Triggers
+      VpcConfig
     ]
     PROPERTIES.each do |prop|
-      define_method(prop) do |v|
+      define_method(prop.underscore) do |v|
         @properties[prop.to_sym] = v
       end
     end
 
     # Convenience wrapper methods
     def github_url(url)
-      @properties[:source][:location] = url
+      @properties[:Source][:Location] = url
     end
+
+    def buildspec(file=".cody/buildspec.yaml")
+      @properties[:Source][:BuildSpec] = file
+    end
+    alias_method :build_spec, :buildspec
 
     # So it looks like the auth resource property doesnt really get used.
     # Instead an account level credential is worked.  Refer to:
@@ -39,47 +44,47 @@ module Cody::Dsl
     # Keeping this method around in case the CloudFormation method works one day,
     # or end up figuring out to use it properly.
     def github_token(token)
-      @properties[:source][:auth][:resource] = token
+      @properties[:Source][:Auth][:Resource] = token
     end
 
     def github_source(options={})
       source = {
-        type: "GITHUB",
-        location: options[:location],
-        git_clone_depth: 1,
-        git_submodules_config: { fetch_submodules: true },
-        build_spec: options[:buildspec] || ".cody/buildspec.yml", # options[:buildspec] accounts for type already
-        report_build_status: true,
+        Type: "GITHUB",
+        Location: options[:Location],
+        GitCloneDepth: 1,
+        GitSubmodulesConfig: { fetch_submodules: true },
+        BuildSpec: options[:BuildSpec] || ".cody/buildspec.yml", # options[:Buildspec] accounts for type already
+        ReportBuildStatus: true,
       }
 
-      if options[:oauth_token]
-        source[:auth] = {
-          type: "OAUTH",
-          resource: options[:oauth_token],
+      if options[:OauthToken]
+        source[:Auth] = {
+          Type: "OAUTH",
+          Resource: options[:OauthToken],
         }
       end
 
-      @properties[:source] = source
+      @properties[:Source] = source
     end
 
     def linux_image(name)
-      linux_environment(image: name)
+      linux_environment(Image: name)
     end
 
     def linux_environment(options={})
-      image = options[:image] || "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
+      image = options[:Image] || "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
       env = {
-        compute_type: options[:compute_type] || "BUILD_GENERAL1_SMALL",
-        image_pull_credentials_type: "CODEBUILD", # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-imagepullcredentialstype
-        privileged_mode: true,
-        image: image,
-        type: "LINUX_CONTAINER"
+        ComputeType: options[:ComputeType] || "BUILD_GENERAL1_SMALL",
+        ImagePullCredentialsType: "CODEBUILD", # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-imagepullcredentialstype
+        PrivilegedMode: true,
+        Image: image,
+        Type: "LINUX_CONTAINER"
       }
       # @mapped_env_vars is in memory
-      env[:environment_variables] = @mapped_env_vars if @mapped_env_vars
+      env[:EnvironmentVariables] = @mapped_env_vars if @mapped_env_vars
       # options has highest precedence
-      env[:environment_variables] = options[:environment_variables] if options[:environment_variables]
-      @properties[:environment] = env
+      env[:EnvironmentVariables] = options[:EnvironmentVariables] if options[:EnvironmentVariables]
+      @properties[:Environment] = env
     end
 
     def environment_variables(vars)
@@ -87,20 +92,20 @@ module Cody::Dsl
       @mapped_env_vars = vars.map { |k,v|
         k, v = k.to_s, v.to_s
         if v =~ /^ssm:/
-          { type: "PARAMETER_STORE", name: k, value: v.sub('ssm:','') }
+          { Type: "PARAMETER_STORE", Name: k, Value: v.sub('ssm:','') }
         else
-          { type: "PLAINTEXT", name: k, value: v }
+          { Type: "PLAINTEXT", Name: k, Value: v }
         end
       }
-      @properties[:environment] ||= {}
-      @properties[:environment][:environment_variables] = @mapped_env_vars
+      @properties[:Environment] ||= {}
+      @properties[:Environment][:EnvironmentVariables] = @mapped_env_vars
     end
 
     def local_cache(enable=true)
       cache = if enable
         {
-          type: "LOCAL",
-          modes: [
+          Type: "LOCAL",
+          Modes: [
               "LOCAL_DOCKER_LAYER_CACHE",
               "LOCAL_SOURCE_CACHE",
               "LOCAL_CUSTOM_CACHE"
@@ -109,11 +114,11 @@ module Cody::Dsl
       else
         {type: "NO_CACHE"}
       end
-      @properties[:cache] = cache
+      @properties[:Cache] = cache
     end
 
     def type
-      @options[:type]
+      @options[:type] # should be lowercase
     end
   end
 end

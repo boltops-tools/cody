@@ -15,23 +15,23 @@ module Cody
     def run
       load_variables
       evaluate(@role_path) if File.exist?(@role_path)
-      @properties[:policies] = [{
-        policy_name: "CodeBuildAccess",
-        policy_document: {
-          version: "2012-10-17",
-          statement: derived_iam_statements
+      @properties[:Policies] = [{
+        PolicyName: "CodeBuildAccess",
+        PolicyDocument: {
+          Version: "2012-10-17",
+          Statement: derived_iam_statements
         }
       }]
 
-      @properties[:managed_policy_arns] ||= @managed_policy_arns || default_managed_policy_arns
+      @properties[:ManagedPolicyArns] ||= @managed_policy_arns || default_managed_policy_arns
 
       resource = {
         IamRole: {
-          type: "AWS::IAM::Role",
-          properties: @properties
+          Type: "AWS::IAM::Role",
+          Properties: @properties
         }
       }
-      CfnCamelizer.transform(resource)
+      auto_camelize(resource)
     end
 
   private
@@ -41,17 +41,17 @@ module Cody
 
     def default_properties
       {
-        assume_role_policy_document: {
-          statement: [{
-            action: ["sts:AssumeRole"],
-            effect: "Allow",
-            principal: {
-              service: ["codebuild.amazonaws.com"]
+        AssumeRolePolicyDocument: {
+          Statement: [{
+            Action: ["sts:AssumeRole"],
+            Effect: "Allow",
+            Principal: {
+              Service: ["codebuild.amazonaws.com"]
             }
           }],
-          version: "2012-10-17"
+          Version: "2012-10-17"
         },
-        path: "/"
+        Path: "/"
       }
     end
 
@@ -61,7 +61,7 @@ module Cody
 
     def default_iam_statements
       [{
-        action: [
+        Action: [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",
@@ -69,8 +69,8 @@ module Cody
           "ssm:DescribeParameters",
           "ssm:GetParameter*",
         ],
-        effect: "Allow",
-        resource: "*"
+        Effect: "Allow",
+        Resource: "*"
       }]
     end
 

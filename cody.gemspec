@@ -28,15 +28,15 @@ Gem::Specification.new do |spec|
   spec.add_dependency "aws-sdk-cloudformation"
   spec.add_dependency "aws-sdk-codebuild"
   spec.add_dependency "aws-sdk-ssm"
+  spec.add_dependency "aws_data"
+  spec.add_dependency "cfn-status"
+  spec.add_dependency "cfn_camelizer"
   spec.add_dependency "cli-format"
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
   spec.add_dependency "render_me_pretty"
   spec.add_dependency "thor"
   spec.add_dependency "zeitwerk"
-
-  # spec.add_dependency "aws_data" # using vendor/cfn_camelizer for now
-  # spec.add_dependency "cfn_camelizer" # using vendor/cfn_camelizer for now
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "byebug"

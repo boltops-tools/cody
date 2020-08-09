@@ -1,4 +1,4 @@
-module Cody
+class Cody::CLI
   class Init < Sequence
     # Ugly, this is how I can get the options from to match with this Thor::Group
     def self.cli_options
@@ -28,7 +28,6 @@ module Cody
         override_source_paths(custom_template)
       else # additive: modify on top of default template
         default_template = File.expand_path("../../template", __FILE__)
-        puts "default_template: #{default_template}"
         override_source_paths([custom_template, default_template])
       end
     end

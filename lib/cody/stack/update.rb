@@ -1,5 +1,5 @@
-module Cody
-  class Update < Stack
+class Cody::Stack
+  class Update < Base
     def perform
       cfn.update_stack(
         stack_name: @stack_name,

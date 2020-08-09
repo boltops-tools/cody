@@ -1,5 +1,5 @@
 # Wrap project in object to allow lazy loading of status
-class Cody::List
+module Cody::List
   class Project
     include Cody::AwsServices
     extend Memoist
