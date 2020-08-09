@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
-## [1.0.0] (UNRELEASED)
+## [1.0.0]
 * Breaking changes: CamelCase for properties instead of underscore. Map straight to the CloudFormation resource to remove mental overhead.
 * Use unfrozen gems instead of vendors gems: aws_data, cfn-status, cfn_camelizer.
 * Update templates to use the latest
