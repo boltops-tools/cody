@@ -5,6 +5,7 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 
 ## [1.0.0]
 * Breaking changes: CamelCase for properties instead of underscore. Map straight to the CloudFormation resource to remove mental overhead.
+* See: https://cody.run/docs/upgrading/
 * Use unfrozen gems instead of vendors gems: aws_data, cfn-status, cfn_camelizer.
 * Update templates to use the latest
 * Restructure classes to use CLI namespace
