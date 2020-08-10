@@ -1,6 +1,6 @@
 ---
 title: Upgrading Guide
-nav_order: 22
+nav_order: 23
 ---
 
 This guide provides some notes on upgrading Cody.
