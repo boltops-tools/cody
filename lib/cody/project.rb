@@ -53,7 +53,6 @@ module Cody
           #   Type: "OAUTH",
           #   # Resource: "", # required
           # },
-          ReportBuildStatus: true,
         }
       }
     end
