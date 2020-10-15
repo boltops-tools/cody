@@ -32,6 +32,11 @@ module Cody::Dsl
       @properties[:Source][:Location] = url
     end
 
+    # Convenience wrapper methods
+    def git_type(type="GITHUB")
+      @properties[:Source][:Type] = type
+    end
+
     def buildspec(file=".cody/buildspec.yaml")
       @properties[:Source][:BuildSpec] = file
     end
@@ -49,7 +54,7 @@ module Cody::Dsl
 
     def github_source(options={})
       source = {
-        Type: "GITHUB",
+        Type: options[:Type] || "GITHUB",
         Location: options[:Location],
         GitCloneDepth: 1,
         GitSubmodulesConfig: { fetch_submodules: true },
