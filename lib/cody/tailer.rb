@@ -54,6 +54,14 @@ module Cody
       puts "Failed Phases:"
       failed_phases.each do |phase|
         puts "#{phase.phase_type}: #{phase.phase_status.color(:red)}"
+        context = phase.contexts.last
+        if context # show error details: Unable to pull customer's container image https://gist.github.com/tongueroo/22e4ca3d4cde002108ff506eba9062f6
+          message = context.message
+          puts message
+          if message.include?("CannotPullContainerError") && message.include?("access denied")
+            puts "See: https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html"
+          end
+        end
       end
     end
 
