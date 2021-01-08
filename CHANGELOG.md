@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [1.0.4] - 2021-01-08
+- loosen activesupport version pin
+
 ## [1.0.3] - 2021-01-08
 - [#31](https://github.com/tongueroo/cody/pull/31) surface context message with error message for during provisioning fa…
 - docs: update ci jets v3
