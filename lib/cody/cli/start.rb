@@ -54,8 +54,13 @@ class Cody::CLI
         end
         resource.physical_resource_id # codebuild project name
       else
-        puts "ERROR: Unable to find the codebuild project with either full_project_name: #{@full_project_name} or project_name: #{@project_name}".color(:red)
-        exit 1
+        message = "ERROR: Unable to find the codebuild project with either full_project_name: #{@full_project_name} or project_name: #{@project_name}"
+        if @options[:raise_error]
+          raise(message)
+        else
+          puts message.color(:red)
+          exit 1
+        end
       end
     end
 
