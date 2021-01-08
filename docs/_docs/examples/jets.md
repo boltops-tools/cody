@@ -13,39 +13,42 @@ Here's the project DSL.
 
 
 ```ruby
-github_url("https://github.com/tongueroo/jets-codebuild")
-linux_image("timbru31/ruby-node:2.5") # currently Jets supports ruby 2.5
+github_url("https://github.com/tongueroo/jets-cody-demo")
+linux_image("aws/codebuild/amazonlinux2-x86_64-standard:3.0")
 environment_variables(
   JETS_ENV: Cody.env,
+  JETS_TOKEN: ssm("/jets-cody-demo/#{Cody.env}/CODY_JETS_TOKEN"),
 )
 ```
 
-The [.cody/project.rb](https://github.com/tongueroo/jets-codebuild/blob/master/.cody/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
+The [.cody/project.rb](https://github.com/tongueroo/jets-cody-demo/blob/master/.cody/project.rb) uses a Docker image that has Ruby, Node, and Yarn already installed.  If you prefer to use another image, update the `linux_image` setting, and update your `buildspec.yml` accordingly. For example, you may need to install the necessary packages.
 
 Here's the buildspec:
 
 .cody/buildspec.yml
 
 ```yaml
+# Build Specification Reference for CodeBuild: https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+
 version: 0.2
 
 phases:
   install:
     commands:
-      - apt-get update -y
-      - apt-get install -y rsync zip
+      - yum install -y rsync zip
+      - curl -s -o- -L https://yarnpkg.com/install.sh | bash
+    runtime-versions:
+      nodejs: latest
+      ruby: 2.7
   build:
     commands:
-      - echo Build started on `date`
-      - sed -i '/BUNDLED WITH/Q' Gemfile.lock # hack to fix bundler issue: allow different versions of bundler to work
-      - bundle
-      - JETS_ENV=test bundle exec rspec
-  post_build:
-    commands:
       - bash -c 'if [ "$CODEBUILD_BUILD_SUCCEEDING" == "0" ]; then exit 1; fi'
+      - ruby --version
+      - yarn install --check-files
+      - bundle
       - export JETS_AGREE=yes
+      - bundle exec jets configure $JETS_TOKEN
       - bundle exec jets deploy $JETS_ENV
-
 ```
 
 And here are the IAM permissions required as described in [Jets Minimal IAM Deploy Policy](https://rubyonjets.com/docs/extras/minimal-deploy-iam/).
@@ -67,9 +70,9 @@ iam_policy(
 )
 ```
 
-Here's also Github repo with CodeBuild examples with Jets: [tongueroo/jets-codebuild](https://github.com/tongueroo/jets-codebuild).  The example on the master branch is a similar simple approach with 1 CodeBuild project.
+Here's also Github repo with CodeBuild examples with Jets: [tongueroo/jets-cody-demo](https://github.com/tongueroo/jets-cody-demo).  The example on the master branch is a similar simple approach with 1 CodeBuild project.
 
-You may be interested in the [separate-unit-and-deploy branch](https://github.com/tongueroo/jets-codebuild/tree/separate-unit-and-deploy). The example shows how to set up 2 separate CodeBuild projects. Some advantages:
+You may be interested in the [separate-unit-and-deploy branch](https://github.com/tongueroo/jets-cody-demo/tree/separate-unit-and-deploy). The example shows how to set up 2 separate CodeBuild projects. Some advantages:
 
 * The projects are decoupled and you can run them separately.
 * Only the deploy project requires IAM access to create the AWS resources.
