@@ -37,6 +37,7 @@ module Cody
       path = "#{cb_root}/.cody/settings.yml"
       if File.exist?(path)
         settings = YAML.load_file(path)
+        settings = {} unless settings.is_a?(Hash) # in case YAML has nothing but comments
         env = settings.find do |_env, section|
           section ||= {}
           ENV['AWS_PROFILE'] && ENV['AWS_PROFILE'] == section['aws_profile']
@@ -54,6 +55,7 @@ module Cody
 
       content = RenderMePretty.result(path)
       data = YAML.load(content)
+      data = {} unless data.is_a?(Hash) # in case YAML has nothing but comments
       # If key is is accidentally set to nil it screws up the merge_base later.
       # So ensure that all keys with nil value are set to {}
       data.each do |env, _setting|
