@@ -15,6 +15,7 @@ class Cody::CLI
         source_version: source_version
       }
       params[:environment_variables_override] = environment_variables_override if @options[:env_vars]
+      params.merge!(@options[:overrides]) if @options[:overrides]
       resp = codebuild.start_build(params)
 
       puts "Build started for project: #{project_name}"
