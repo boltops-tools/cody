@@ -78,19 +78,12 @@ iam_policy(
   "route53",
   "ssm",
   {
-      "Action": [
-          "iam:GetRole"
-          "iam:PassRole"
-      ],
-      "Effect": "Allow",
-      "Resource": "*",
-      "Condition": {
-          "StringLike": {
-              "iam:PassedToService": [
-                  "ecs-tasks.amazonaws.com"
-              ]
-          }
-      }
+    "Action": [
+      "iam:GetRole"
+      "iam:PassRole",
+    ],
+    "Effect": "Allow",
+    "Resource": "*",
   }
 )
 managed_iam_policy("AmazonS3ReadOnlyAccess") # optional but common to need read only access to s3
