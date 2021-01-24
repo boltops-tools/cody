@@ -79,6 +79,7 @@ iam_policy(
   "ssm",
   {
       "Action": [
+          "iam:GetRole"
           "iam:PassRole"
       ],
       "Effect": "Allow",
