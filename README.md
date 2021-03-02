@@ -9,6 +9,8 @@
 
 [![BoltOps Badge](https://img.boltops.com/boltops/badges/boltops-badge.png)](https://www.boltops.com)
 
+Please **watch/star** this repo to help grow and support the project.
+
 Cody is an AWS CodeBuild Management Tool. Cody lets you create AWS CodeBuild projects with a beautiful DSL. The documentation site is at: [cody.run](https://cody.run/)
 
 ## Quick Start
