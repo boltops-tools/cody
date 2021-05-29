@@ -50,7 +50,7 @@ triggers(
 
 Notes:
 
-* The extra brackets: `[[]]`` is actually the proper format. I know weird.
+* The extra brackets: `[[]]` is actually the proper format. I know weird.
 * The GitHub oauth token needs admin:repo_hook permissions for triggers.
 
 ## Full DSL
