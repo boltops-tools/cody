@@ -94,13 +94,13 @@ A good variables example is running migrations. The migration tasks usually requ
 .cody/variables/development.rb:
 
 ```ruby
-@vpc_config = { vpc_id: "vpc-aaa", subnets: ["subnet-aaa"], security_group_ids: ["sg-111"]  }
+@vpc_config = { VpcId: "vpc-aaa", Subnets: ["subnet-aaa"], SecurityGroupIds: ["sg-111"]  }
 ```
 
 .cody/variables/production.rb:
 
 ```ruby
-@vpc_config = { vpc_id: "vpc-bbb", subnets: ["subnet-bbb"], security_group_ids: ["sg-222"]  }
+@vpc_config = { VpcId: "vpc-bbb", Subnets: ["subnet-bbb"], SecurityGroupIds: ["sg-222"]  }
 ```
 
 You'll use then `@vpc_config` variable in the `project.rb`.
