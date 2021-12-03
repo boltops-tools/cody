@@ -12,7 +12,7 @@ module Cody::Dsl::Project
 
       resp.parameter.value
     rescue Aws::SSM::Errors::ParameterNotFound
-      puts "WARN: #{name} found on AWS SSM.".color(:yellow)
+      puts "WARN: #{name} not found on AWS SSM.".color(:yellow)
     end
 
     def ssm_client
