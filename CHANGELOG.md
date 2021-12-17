@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [1.0.6] - 2021-12-17
+- [#32](https://github.com/tongueroo/cody/pull/32) fix activesupport require
+- fix warn not found ssm param message
+
 ## [1.0.5] - 2021-08-28
 - add params overrides option
 - docs: fix ecs permission, add iam:GetRole
