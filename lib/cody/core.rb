@@ -1,6 +1,5 @@
 require 'pathname'
 require 'yaml'
-require 'active_support/core_ext/string'
 
 module Cody
   module Core
