@@ -1,4 +1,6 @@
 $:.unshift(File.expand_path("../", __FILE__))
+require 'active_support'
+require 'active_support/core_ext/string'
 require "aws_data"
 require "cfn_camelizer"
 require "cfn_status"
