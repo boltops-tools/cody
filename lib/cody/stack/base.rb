@@ -1,6 +1,7 @@
 class Cody::Stack
   class Base
     include Cody::AwsServices
+    include Status
 
     def initialize(options)
       @options = options
@@ -66,10 +67,6 @@ class Cody::Stack
       url = "https://console.aws.amazon.com/cloudformation/home?region=#{region}#/stacks"
       puts "Stack name #{@stack_name.color(:yellow)} status #{stack["stack_status"].color(:yellow)}"
       puts "Here's the CloudFormation url to check for more details #{url}"
-    end
-
-    def status
-      @status ||= CfnStatus.new(@stack_name)
     end
 
     def rollback_complete?(stack)
