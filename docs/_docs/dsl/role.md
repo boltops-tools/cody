@@ -28,6 +28,13 @@ iam_policy(
 )
 ```
 
+You can also make multiple calls to `iam_policy`. Example:
+
+```ruby
+iam_policy("logs")
+lam_policy("ssm")
+```
+
 You can also create managed IAM policy.
 
 ```ruby
