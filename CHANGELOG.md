@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [1.1.0] - 2022-03-03
+- [#33](https://github.com/tongueroo/cody/pull/33) fix cfn status when auto deleting rollback completed stack
+- [#34](https://github.com/tongueroo/cody/pull/34) iam roles: support multiple calls
+- update iam role docs
+
 ## [1.0.6] - 2021-12-17
 - [#32](https://github.com/tongueroo/cody/pull/32) fix activesupport require
 - fix warn not found ssm param message
