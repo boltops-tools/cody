@@ -1,5 +1,7 @@
 module Cody::Dsl
   module Role
+    extend Memoist
+
     PROPERTIES = %w[
       AssumeRolePolicyDocument
       ManagedPolicyArns
@@ -17,7 +19,13 @@ module Cody::Dsl
 
     # convenience wrapper methods
     def iam_policy(*definitions)
-      @iam_statements = definitions.map { |definition| standardize_iam_policy(definition) }
+      statements = definitions.map { |definition| standardize_iam_policy(definition) }
+      Registry.register_policy(statements)
+    end
+
+    def managed_iam_policy(*definitions)
+      managed_policy_arns = definitions.map { |definition| standardize_managed_iam_policy(definition) }
+      Registry.register_managed_policy(managed_policy_arns)
     end
 
     # Returns standarized IAM statement
@@ -36,15 +44,15 @@ module Cody::Dsl
       end
     end
 
-    def managed_iam_policy(*definitions)
-      @managed_policy_arns = definitions.map { |definition| standardize_managed_iam_policy(definition) }
-    end
-
     # AmazonEC2ReadOnlyAccess => arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
     def standardize_managed_iam_policy(definition)
       return definition if definition.include?('iam::aws:policy')
-
       "arn:aws:iam::aws:policy/#{definition}"
     end
+
+    def aws
+      AwsData.new
+    end
+    memoize :aws
   end
 end
