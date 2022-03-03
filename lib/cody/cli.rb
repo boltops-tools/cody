@@ -37,7 +37,7 @@ module Cody
     long_desc Help.text(:start)
     option :source_version, default: "master", desc: "git branch"
     option :branch, aliases: "b", default: "master", desc: "git branch"
-    option :env_vars, type: :array, desc: "env var overrides. IE: KEY1=VALUE1 KEY2=VALUE2"
+    option :env_vars, aliases: "e", type: :array, desc: "env var overrides. IE: KEY1=VALUE1 KEY2=VALUE2"
     common_options.call
     def start(project_name=nil)
       Start.new(options.merge(project_name: project_name)).run
