@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cfn-status"
   spec.add_dependency "cfn_camelizer"
   spec.add_dependency "cli-format"
+  spec.add_dependency "dsl_evaluator"
   spec.add_dependency "memoist"
   spec.add_dependency "rainbow"
   spec.add_dependency "render_me_pretty"

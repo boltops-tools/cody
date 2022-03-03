@@ -18,7 +18,7 @@ module Cody
 
     def run
       load_variables
-      evaluate(@project_path)
+      evaluate_file(@project_path)
       resource = {
         CodeBuild: {
           Type: "AWS::CodeBuild::Project",

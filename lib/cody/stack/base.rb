@@ -41,6 +41,7 @@ class Cody::Stack
       FileUtils.mkdir_p(File.dirname(template_path))
       IO.write(template_path, YAML.dump(@template))
       puts "Generated CloudFormation template at #{template_path.color(:green)}"
+
       return if @options[:noop]
       puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
 

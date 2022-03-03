@@ -15,7 +15,7 @@ module Cody
 
       old_properties = @properties.clone
       load_variables
-      evaluate(@schedule_path)
+      evaluate_file(@schedule_path)
 
       @properties[:ScheduleExpression] = @schedule_expression if @schedule_expression
       set_rule_event! if @rule_event_props

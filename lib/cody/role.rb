@@ -2,9 +2,9 @@ require "yaml"
 
 module Cody
   class Role < Dsl::Base
-    include Cody::Dsl::Role
     include Evaluate
     include Variables
+    include Dsl::Role
 
     def initialize(options={})
       super
@@ -14,7 +14,8 @@ module Cody
 
     def run
       load_variables
-      evaluate(@role_path) if File.exist?(@role_path)
+      evaluate_file(@role_path) if File.exist?(@role_path) # registers definitions to registry
+      build # build definitions from registry. can set: @iam_statements and @managed_policy_arns
       @properties[:Policies] = [{
         PolicyName: "CodeBuildAccess",
         PolicyDocument: {
@@ -35,6 +36,12 @@ module Cody
     end
 
   private
+    Registry = Cody::Dsl::Role::Registry
+    def build
+      @iam_statements = Registry.iam_statements if Registry.iam_statements
+      @managed_policy_arns = Registry.managed_policy_arns if Registry.managed_policy_arns
+    end
+
     def get_role_path
       lookup_cody_file("role.rb")
     end
