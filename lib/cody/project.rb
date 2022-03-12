@@ -12,11 +12,8 @@ module Cody
       @project_path = options[:project_path] || get_project_path
     end
 
-    def exist?
-      File.exist?(@project_path)
-    end
-
-    def run
+    def build
+      check_exist!
       load_variables
       evaluate_file(@project_path)
       resource = {
@@ -26,6 +23,12 @@ module Cody
         }
       }
       auto_camelize(resource)
+    end
+
+    def check_exist!
+      return if File.exist?(@project_path)
+      logger.error "ERROR: Cody project does not exist: #{@project_path}".color(:red)
+      exit 1
     end
 
     def default_properties

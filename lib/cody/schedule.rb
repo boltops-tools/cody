@@ -10,7 +10,7 @@ module Cody
       @iam_policy = {}
     end
 
-    def run
+    def build
       return unless File.exist?(@schedule_path)
 
       old_properties = @properties.clone

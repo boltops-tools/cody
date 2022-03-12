@@ -3,16 +3,12 @@ class Cody::Stack
     include Cody::AwsServices
     include Status
 
-    def initialize(options)
+    def initialize(options={})
       @options = options
       @project_name = @options[:project_name] || inferred_project_name
       @stack_name = normalize_stack_name(options[:stack_name] || inferred_stack_name(@project_name))
 
       @full_project_name = project_name_convention(@project_name)
-      @template = {
-        "Description" => "CodeBuild Project: #{@full_project_name}",
-        "Resources" => {}
-      }
     end
 
     def run
@@ -20,21 +16,7 @@ class Cody::Stack
         project_name: @project_name,
         full_project_name: @full_project_name,
       )
-      project = Cody::CLI::Build.new(@options).run
-      @template["Resources"].merge!(project)
-
-      if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
-        role = Cody::Role.new(options).run
-        @template["Resources"].merge!(role)
-      end
-
-      schedule = Cody::Schedule.new(options).run
-      @template["Resources"].merge!(schedule) if schedule
-
-      template_path = "/tmp/codebuild.yml"
-      FileUtils.mkdir_p(File.dirname(template_path))
-      IO.write(template_path, YAML.dump(@template))
-      puts "Generated CloudFormation template at #{template_path.color(:green)}"
+      @template = Cody::CLI::Build.new(@options).template
 
       return if @options[:noop]
       puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"

@@ -1,22 +1,42 @@
 class Cody::CLI
   class Build < Base
-    extend Memoist
-
-    def run
-      check_exist!
-      project = project_builder.run
-      pp project
+    def initialize(options={})
+      super
+      @template = {
+        "Description" => "CodeBuild Project: #{@full_project_name}",
+        "Resources" => {}
+      }
     end
 
-    def check_exist!
-      return if project_builder.exist?
-      logger.error "ERROR: Cody project does not exist: #{project_builder.project_path}".color(:red)
-      exit 1
-    end
+    def template
+      project_resource = Cody::Project.new(@options).build
+      @template["Resources"].merge!(project_resource)
+      puts "template1:"
+      pp @template
 
-    def project_builder
-      Cody::Project.new(@options)
+      if project_resource["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
+        role_resource = Cody::Role.new(@options).build
+        @template["Resources"].merge!(role_resource)
+      end
+
+      puts "template2:"
+      pp @template
+
+      schedule_resource = Cody::Schedule.new(@options).build
+      @template["Resources"].merge!(schedule_resource) if schedule_resource
+
+      puts "template3:"
+      pp @template
+
+      write
     end
-    memoize :project_builder
+    alias_method :run, :template
+
+    def write
+      template_path = ".cody/output/template.yml"
+      FileUtils.mkdir_p(File.dirname(template_path))
+      IO.write(template_path, YAML.dump(@template))
+      logger.info "Template built: #{pretty_path(template_path)}"
+    end
   end
 end

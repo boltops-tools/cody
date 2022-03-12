@@ -1,7 +1,10 @@
 # Base only for Stop and Start currently.
 class Cody::CLI
   class Base
+    extend Memoist
     include Cody::AwsServices
+    include Cody::Utils::Logging
+    include Cody::Utils::Pretty
 
     def initialize(options)
       @options = options

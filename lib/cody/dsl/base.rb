@@ -1,5 +1,7 @@
 module Cody::Dsl
   class Base
+    include Cody::Utils::Logging
+
     attr_reader :options, :project_name, :full_project_name, :type
     def initialize(options={})
       @options = options

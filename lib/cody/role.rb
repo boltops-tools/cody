@@ -12,10 +12,10 @@ module Cody
       @iam_policy = {}
     end
 
-    def run
+    def build
       load_variables
       evaluate_file(@role_path) if File.exist?(@role_path) # registers definitions to registry
-      build # build definitions from registry. can set: @iam_statements and @managed_policy_arns
+      evaluate_definitions # build definitions from registry. can set: @iam_statements and @managed_policy_arns
       @properties[:Policies] = [{
         PolicyName: "CodeBuildAccess",
         PolicyDocument: {
@@ -37,7 +37,7 @@ module Cody
 
   private
     Registry = Cody::Dsl::Role::Registry
-    def build
+    def evaluate_definitions
       @iam_statements = Registry.iam_statements if Registry.iam_statements
       @managed_policy_arns = Registry.managed_policy_arns if Registry.managed_policy_arns
     end
