@@ -2,15 +2,9 @@
 
 The files in folder are used by cody to build AWS CodeBuild projects.  For more info, check out the [cody docs](https://cody.run). Here's a quick start.
 
-## Install Tool
+## Deploy CodeBuild Project
 
-    gem install cody
-
-This installs the `cody` command to manage the AWS CodeBuild project.
-
-## Update Project
-
-To update the CodeBuild project:
+To deploy the CodeBuild project. IE: Ereate or update the CloudFormation stack.
 
 Main services:
 

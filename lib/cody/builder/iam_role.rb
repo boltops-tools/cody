@@ -1,6 +1,6 @@
 class Cody::Builder
-  class Role < Cody::Dsl::Base
-    include Cody::Dsl::Role
+  class IamRole < Cody::Dsl::Base
+    include Cody::Dsl::IamRole
 
     def initialize(options={})
       super
@@ -32,7 +32,7 @@ class Cody::Builder
     end
 
   private
-    Registry = Cody::Dsl::Role::Registry
+    Registry = Cody::Dsl::IamRole::Registry
     def evaluate_definitions
       @iam_statements = Registry.iam_statements if Registry.iam_statements
       @managed_policy_arns = Registry.managed_policy_arns if Registry.managed_policy_arns

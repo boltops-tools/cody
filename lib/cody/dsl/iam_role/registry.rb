@@ -1,6 +1,6 @@
 require "set"
 
-module Cody::Dsl::Role
+module Cody::Dsl::IamRole
   class Registry
     class_attribute :iam_statements
     self.iam_statements = nil # nil to allow fallback to default_iam_statements in cody/role.rb

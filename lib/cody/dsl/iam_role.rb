@@ -1,5 +1,5 @@
 module Cody::Dsl
-  module Role
+  module IamRole
     extend Memoist
 
     PROPERTIES = %w[

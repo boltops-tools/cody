@@ -19,8 +19,8 @@ module Cody
       end
 
       if project_resource["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
-        role_resource = Role.new(@options).build
-        @template["Resources"].merge!(role_resource)
+        iam_role_resource = IamRole.new(@options).build
+        @template["Resources"].merge!(iam_role_resource)
       end
 
       schedule_resource = Schedule.new(@options).build
