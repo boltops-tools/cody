@@ -27,7 +27,10 @@ class Cody::Builder
     end
 
     def default_properties
-      {}
+      {
+        AuthType: @auth_type || "PERSONAL_ACCESS_TOKEN",
+        ServerType: @server_type || "GITHUB",
+      }
     end
   end
 end

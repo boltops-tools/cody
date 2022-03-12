@@ -1,9 +1,6 @@
 module Cody::Dsl
   module SourceCredential
     PROPERTIES = %w[
-      AuthType
-      ServerType
-      Token
       Username
     ]
     PROPERTIES.each do |prop|
@@ -14,6 +11,14 @@ module Cody::Dsl
 
     def token(value)
       @token = value
+    end
+
+    def auth_type(value)
+      @auth_type = value.upcase
+    end
+
+    def server_type(value)
+      @server_type = value.upcase
     end
   end
 end
