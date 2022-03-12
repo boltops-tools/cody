@@ -1,16 +1,10 @@
 class Cody::Stack
-  class Base
-    include Cody::AwsServices
-    include Cody::Utils::Logging
-    include Cody::Utils::Sure
+  class Base < Cody::CLI::Base
     include Status
 
     def initialize(options={})
-      @options = options
-      @project_name = @options[:project_name] || inferred_project_name
+      super
       @stack_name = normalize_stack_name(options[:stack_name] || inferred_stack_name(@project_name))
-
-      @full_project_name = project_name_convention(@project_name)
     end
 
     def run
@@ -22,22 +16,21 @@ class Cody::Stack
       )
       @template = Cody::Builder.new(@options).template
 
-      puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
-
-      # begin
+      logger.info "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
+      begin
         perform
         url_info
         return unless @options[:wait]
         status.wait
         exit 2 unless status.success?
-      # rescue Aws::CloudFormation::Errors::ValidationError => e
-      #   if e.message.include?("No updates") # No updates are to be performed.
-      #     puts "WARN: #{e.message}".color(:yellow)
-      #   else
-      #     puts "ERROR ValidationError: #{e.message}".color(:red)
-      #     exit 1
-      #   end
-      # end
+      rescue Aws::CloudFormation::Errors::ValidationError => e
+        if e.message.include?("No updates") # No updates are to be performed.
+          logger.info "WARN: #{e.message}".color(:yellow)
+        else
+          logger.info "ERROR ValidationError: #{e.message}".color(:red)
+          exit 1
+        end
+      end
     end
 
   private
@@ -54,8 +47,8 @@ class Cody::Stack
       stack = cfn.describe_stacks(stack_name: @stack_name).stacks.first
       region = `aws configure get region`.strip rescue "us-east-1"
       url = "https://console.aws.amazon.com/cloudformation/home?region=#{region}#/stacks"
-      puts "Stack name #{@stack_name.color(:yellow)} status #{stack["stack_status"].color(:yellow)}"
-      puts "Here's the CloudFormation url to check for more details #{url}"
+      logger.info "Stack name #{@stack_name.color(:yellow)} status #{stack["stack_status"].color(:yellow)}"
+      logger.info "Here's the CloudFormation url to check for more details #{url}"
     end
 
     def rollback_complete?(stack)
@@ -66,7 +59,7 @@ class Cody::Stack
     def handle_rollback_completed!
       @stack = find_stack(@stack_name)
       if @stack && rollback_complete?(@stack)
-        puts "Existing stack in ROLLBACK_COMPLETE state. Deleting stack before continuing."
+        logger.info "Existing stack in ROLLBACK_COMPLETE state. Deleting stack before continuing."
         cfn.delete_stack(stack_name: @stack_name)
         status.wait
         status.reset

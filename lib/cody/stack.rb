@@ -3,6 +3,7 @@ require "aws-sdk-cloudformation"
 module Cody
   class Stack
     include Cody::AwsServices
+    include Cody::Names::Conventions
     include Status
 
     def initialize(options)

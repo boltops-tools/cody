@@ -6,6 +6,7 @@ class Cody::CLI
     include Cody::Names::Conventions
     include Cody::Utils::Logging
     include Cody::Utils::Pretty
+    include Cody::Utils::Sure
 
     def initialize(options)
       @options = options
