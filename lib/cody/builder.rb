@@ -11,22 +11,14 @@ module Cody
     def template
       project_resource = Project.new(@options).build
       @template["Resources"].merge!(project_resource)
-      puts "template1:"
-      pp @template
 
       if project_resource["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
         role_resource = Role.new(@options).build
         @template["Resources"].merge!(role_resource)
       end
 
-      puts "template2:"
-      pp @template
-
       schedule_resource = Schedule.new(@options).build
       @template["Resources"].merge!(schedule_resource) if schedule_resource
-
-      puts "template3:"
-      pp @template
 
       write
     end
