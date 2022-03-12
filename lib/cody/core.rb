@@ -11,10 +11,8 @@ module Cody
     end
 
     def env
-      # 2-way binding
-      cb_env = env_from_profile || 'development'
-      cb_env = ENV['CODY_ENV'] if ENV['CODY_ENV'] # highest precedence
-      ActiveSupport::StringInquirer.new(cb_env)
+      env = ENV['CODY_ENV'] || 'dev'
+      ActiveSupport::StringInquirer.new(env)
     end
     memoize :env
 
@@ -25,32 +23,38 @@ module Cody
     end
     memoize :extra
 
-    # Overrides AWS_PROFILE based on the Cody.env if set in configs/settings.yml
-    # 2-way binding.
-    def set_aws_profile!
-      return if ENV['TEST']
-      return unless File.exist?("#{Cody.root}/.cody/settings.yml") # for rake docs
-      return unless settings # Only load if within Cody project and there's a settings.yml
-
-      data = settings || {}
-      if data[:aws_profile]
-        puts "Using AWS_PROFILE=#{data[:aws_profile]} from CODY_ENV=#{Cody.env} in config/settings.yml"
-        ENV['AWS_PROFILE'] = data[:aws_profile]
-      end
+    def log_root
+      "#{root}/log"
     end
 
-    def settings
-      Setting.new.data
+    def configure(&block)
+      Config.instance.configure(&block)
     end
-    memoize :settings
 
-    def check_cody_project!
-      check_path = "#{Cody.root}/.cody"
-      unless File.exist?(check_path)
-        puts "ERROR: No .cody folder found.  Are you sure you are in a project with cody setup?".color(:red)
-        puts "Current directory: #{Dir.pwd}"
-        puts "If you want to set up cody for this project, please create a settings file via: cody init"
-        exit 1 unless ENV['TEST']
+    # Checking whether or not the config has been loaded and saving it to @@config_loaded
+    # because users can call helper methods in `.ufo/config.rb` files that rely on the config
+    # already being loaded. This would produce an infinite loop. The @@config_loaded allows
+    # methods to use this info to prevent an infinite loop.
+    # Notable methods that use this: Cody.app and Cody.logger
+    cattr_accessor :config_loaded
+    # In general, use the Cody.config instead of Config.instance.config since it guarantees the load_project_config call
+    def config
+      Config.instance.load_project_config
+      @@config_loaded = true
+      Config.instance.config
+    end
+    memoize :config
+
+    # Allow different logger when running up all or rspec-lono
+    cattr_writer :logger
+    def logger
+      if @@config_loaded
+        @@logger = config.logger
+      else
+        # When .ufo/config.rb is not yet loaded. IE: a helper method like waf
+        # gets called in the .ufo/config.rb itself and uses the logger.
+        # This avoids an infinite loop. Note: It does create a different Logger
+        @@logger ||= Logger.new(ENV['UFO_LOG_PATH'] || $stderr)
       end
     end
 

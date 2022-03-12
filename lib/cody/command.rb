@@ -28,6 +28,8 @@ module Cody
   class Command < Thor
     class << self
       def dispatch(m, args, options, config)
+        check_project!(args)
+
         # Allow calling for help via:
         #   cody command help
         #   cody command -h
@@ -52,6 +54,28 @@ module Cody
         end
 
         super
+      end
+
+      def help_flags
+        Thor::HELP_MAPPINGS + ["help"]
+      end
+      private :help_flags
+
+      def subcommand?
+        !!caller.detect { |l| l.include?('in subcommand') }
+      end
+
+      def check_project!(args)
+        command_name = args.first
+        return if subcommand?
+        return if command_name.nil?
+        return if help_flags.include?(args.last) # IE: -h help
+        return if %w[-h -v --version central init version].include?(command_name)
+        return if File.exist?("#{Cody.root}/.cody")
+
+        logger.error "ERROR: It doesnt look like this project has cody set up.".color(:red)
+        logger.error "Are you sure you are in a project with .cody files?".color(:red)
+        ENV['CODY_TEST'] ? raise : exit(1)
       end
 
       # Override command_help to include the description at the top of the

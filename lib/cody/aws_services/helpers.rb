@@ -40,7 +40,7 @@ module Cody::AwsServices
 
     def project_name_convention(name_base)
       items = [@project_name, @options[:type], Cody.extra]
-      items.insert(2, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
+      items.insert(2, Cody.env) if Cody.config.names.append_env
       items.reject(&:blank?).compact.join("-")
     end
 
@@ -56,9 +56,9 @@ module Cody::AwsServices
     #     myapp-ci-deploy-development-2
     #
     def inferred_stack_name(project_name)
-      append_stack_name = Cody.settings.dig(:stack_naming, :append_stack_name) || "cody"
+      append_stack_name = Cody.config.names.append_stack_name # IE: cody
       items = [project_name, @options[:type], Cody.extra, append_stack_name]
-      items.insert(3, Cody.env) if Cody.settings.dig(:stack_naming, :append_env)
+      items.insert(3, Cody.env) if Cody.config.names.append_env
       items.reject(&:blank?).reject {|i| i == false}.compact.join("-")
     end
 

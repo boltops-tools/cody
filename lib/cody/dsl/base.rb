@@ -11,7 +11,7 @@ module Cody::Dsl
 
     # In v1.0.0 defaults to not auto-camelize
     def auto_camelize(data)
-      if Cody.settings[:auto_camelize]
+      if Cody.config.auto_camelize
         CfnCamelizer.transform(data)
       else
         data.deep_stringify_keys!

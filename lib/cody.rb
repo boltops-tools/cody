@@ -17,5 +17,3 @@ module Cody
   class Error < StandardError; end
   extend Core
 end
-
-Cody.set_aws_profile!

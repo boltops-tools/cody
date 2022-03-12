@@ -20,13 +20,7 @@ class Cody::Stack
         project_name: @project_name,
         full_project_name: @full_project_name,
       )
-      project_builder = Cody::Project.new(options)
-      unless project_builder.exist?
-        puts "ERROR: Cody project does not exist: #{project_builder.project_path}".color(:red)
-        exit 1
-        return
-      end
-      project = project_builder.run
+      project = Cody::CLI::Build.new(@options).run
       @template["Resources"].merge!(project)
 
       if project["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
