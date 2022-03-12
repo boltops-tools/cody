@@ -1,5 +1,8 @@
 module Cody::Dsl
   class Base < Cody::CLI::Base
+    include Evaluate
+    include Variables
+
     attr_reader :options, :project_name, :full_project_name, :type
     def initialize(options={})
       super

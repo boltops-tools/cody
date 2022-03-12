@@ -1,7 +1,5 @@
 class Cody::Builder
   class Role < Cody::Dsl::Base
-    include Evaluate
-    include Variables
     include Cody::Dsl::Role
 
     def initialize(options={})

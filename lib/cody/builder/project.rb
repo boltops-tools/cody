@@ -1,9 +1,6 @@
 class Cody::Builder
   class Project < Cody::Dsl::Base
-    include Evaluate
-    include Variables
     include Cody::Dsl::Project
-    include Cody::Names::Conventions
 
     def initialize(options={})
       super

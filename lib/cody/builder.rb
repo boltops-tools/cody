@@ -9,8 +9,14 @@ module Cody
     end
 
     def template
+      source_credential = SourceCredential.new(@options).build
+      @template["Resources"].merge!(source_credential) if source_credential
+
       project_resource = Project.new(@options).build
       @template["Resources"].merge!(project_resource)
+      if source_credential
+        @template["Resources"]["CodeBuild"]["DependsOn"] = "SourceCredential"
+      end
 
       if project_resource["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
         role_resource = Role.new(@options).build

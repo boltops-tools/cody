@@ -1,4 +1,4 @@
-module Cody::Builder::Evaluate
+module Cody::Dsl::Evaluate
   module Interface
     # Useful interface methods if want to run more generalized code in the evaluated DSL files
     def project_name

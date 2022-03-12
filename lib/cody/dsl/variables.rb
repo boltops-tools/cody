@@ -1,4 +1,4 @@
-class Cody::Builder
+module Cody::Dsl
   module Variables
     def load_variables
       load_variables_file("base")
