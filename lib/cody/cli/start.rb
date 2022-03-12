@@ -1,13 +1,5 @@
 class Cody::CLI
-  class Start
-    include Cody::AwsServices
-
-    def initialize(options)
-      @options = options
-      @project_name = options[:project_name] || inferred_project_name
-      @full_project_name = project_name_convention(@project_name)
-    end
-
+  class Start < Base
     def run
       source_version = @options[:branch] || @options[:source_version] || 'master'
       params = {

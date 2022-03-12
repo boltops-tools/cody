@@ -1,6 +1,8 @@
 class Cody::Stack
   class Base
     include Cody::AwsServices
+    include Cody::Utils::Logging
+    include Cody::Utils::Sure
     include Status
 
     def initialize(options={})
@@ -12,32 +14,42 @@ class Cody::Stack
     end
 
     def run
+      are_you_sure?
+
       options = @options.merge(
         project_name: @project_name,
         full_project_name: @full_project_name,
       )
-      @template = Cody::CLI::Build.new(@options).template
+      @template = Cody::Builder.new(@options).template
 
-      return if @options[:noop]
       puts "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
 
-      begin
+      # begin
         perform
         url_info
         return unless @options[:wait]
         status.wait
         exit 2 unless status.success?
-      rescue Aws::CloudFormation::Errors::ValidationError => e
-        if e.message.include?("No updates") # No updates are to be performed.
-          puts "WARN: #{e.message}".color(:yellow)
-        else
-          puts "ERROR ValidationError: #{e.message}".color(:red)
-          exit 1
-        end
-      end
+      # rescue Aws::CloudFormation::Errors::ValidationError => e
+      #   if e.message.include?("No updates") # No updates are to be performed.
+      #     puts "WARN: #{e.message}".color(:yellow)
+      #   else
+      #     puts "ERROR ValidationError: #{e.message}".color(:red)
+      #     exit 1
+      #   end
+      # end
     end
 
   private
+    def are_you_sure?
+      message = "Will deploy stack #{@stack_name.color(:green)}"
+      if @options[:yes]
+        logger.info message
+      else
+        sure?(message)
+      end
+    end
+
     def url_info
       stack = cfn.describe_stacks(stack_name: @stack_name).stacks.first
       region = `aws configure get region`.strip rescue "us-east-1"

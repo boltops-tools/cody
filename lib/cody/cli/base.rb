@@ -3,6 +3,7 @@ class Cody::CLI
   class Base
     extend Memoist
     include Cody::AwsServices
+    include Cody::Names::Conventions
     include Cody::Utils::Logging
     include Cody::Utils::Pretty
 

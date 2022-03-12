@@ -3,8 +3,8 @@ class Cody::Builder
     include Evaluate
     include Variables
     include Cody::Dsl::Project
+    include Cody::Names::Conventions
 
-    attr_reader :project_path
     def initialize(options={})
       super
       @project_path = options[:project_path] || get_project_path

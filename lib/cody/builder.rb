@@ -21,6 +21,7 @@ module Cody
       @template["Resources"].merge!(schedule_resource) if schedule_resource
 
       write
+      @template
     end
     alias_method :run, :template
 

@@ -1,13 +1,9 @@
 module Cody::Dsl
-  class Base
-    include Cody::Utils::Logging
-
+  class Base < Cody::CLI::Base
     attr_reader :options, :project_name, :full_project_name, :type
     def initialize(options={})
-      @options = options
-      @project_name = options[:project_name]
+      super
       @type = options[:type]
-      @full_project_name = options[:full_project_name] # includes -development at the end
       @properties = default_properties # defaults make project.rb simpler
     end
 

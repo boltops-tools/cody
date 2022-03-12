@@ -31,14 +31,15 @@ module Cody
     desc "deploy", "Deploy codebuild project"
     long_desc Help.text(:deploy)
     common_options.call
+    yes_option.call
     def deploy(project_name=nil)
       Deploy.new(options.merge(project_name: project_name)).run
     end
 
     desc "delete", "Delete codebuild project"
     long_desc Help.text(:delete)
-    option :yes, aliases: %w[y], desc: "Bypass are you sure prompt"
     common_options.call
+    yes_option.call
     def delete(project_name=nil)
       Delete.new(options.merge(project_name: project_name)).run
     end
