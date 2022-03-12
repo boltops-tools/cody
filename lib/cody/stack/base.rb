@@ -2,20 +2,9 @@ class Cody::Stack
   class Base < Cody::CLI::Base
     include Status
 
-    def initialize(options={})
-      super
-      @stack_name = normalize_stack_name(options[:stack_name] || inferred_stack_name(@project_name))
-    end
-
     def run
       are_you_sure?
-
-      options = @options.merge(
-        project_name: @project_name,
-        full_project_name: @full_project_name,
-      )
       @template = Cody::Builder.new(@options).template
-
       logger.info "Deploying stack #{@stack_name.color(:green)} with CodeBuild project #{@full_project_name.color(:green)}"
       begin
         perform

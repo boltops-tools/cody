@@ -23,5 +23,9 @@ module Cody::Names
       items.insert(3, Cody.env) if Cody.config.names.append_env
       items.reject(&:blank?).reject {|i| i == false}.compact.join("-")
     end
+
+    def normalize_stack_name(name)
+      name.gsub('_','-') # cloudformation stack names dont allow _
+    end
   end
 end
