@@ -25,7 +25,7 @@ module Cody
     long_desc Help.text(:build)
     common_options.call
     def build(project_name=nil)
-      Build.new(options.merge(project_name: project_name)).run
+      Cody::Builder.new(options.merge(project_name: project_name)).run
     end
 
     desc "deploy", "Deploy codebuild project"

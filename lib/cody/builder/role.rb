@@ -1,10 +1,8 @@
-require "yaml"
-
-module Cody
-  class Role < Dsl::Base
+class Cody::Builder
+  class Role < Cody::Dsl::Base
     include Evaluate
     include Variables
-    include Dsl::Role
+    include Cody::Dsl::Role
 
     def initialize(options={})
       super

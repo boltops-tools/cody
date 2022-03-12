@@ -1,4 +1,4 @@
-module Cody
+class Cody::Builder
   module Evaluate
     include DslEvaluator
     include Interface

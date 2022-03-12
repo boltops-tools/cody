@@ -1,10 +1,8 @@
-require "yaml"
-
-module Cody
-  class Project < Dsl::Base
-    include Dsl::Project
+class Cody::Builder
+  class Project < Cody::Dsl::Base
     include Evaluate
     include Variables
+    include Cody::Dsl::Project
 
     attr_reader :project_path
     def initialize(options={})

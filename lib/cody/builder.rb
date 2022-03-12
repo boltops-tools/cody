@@ -1,5 +1,5 @@
-class Cody::CLI
-  class Build < Base
+module Cody
+  class Builder < Cody::CLI::Base
     def initialize(options={})
       super
       @template = {
@@ -9,20 +9,20 @@ class Cody::CLI
     end
 
     def template
-      project_resource = Cody::Project.new(@options).build
+      project_resource = Project.new(@options).build
       @template["Resources"].merge!(project_resource)
       puts "template1:"
       pp @template
 
       if project_resource["CodeBuild"]["Properties"]["ServiceRole"] == {"Ref"=>"IamRole"}
-        role_resource = Cody::Role.new(@options).build
+        role_resource = Role.new(@options).build
         @template["Resources"].merge!(role_resource)
       end
 
       puts "template2:"
       pp @template
 
-      schedule_resource = Cody::Schedule.new(@options).build
+      schedule_resource = Schedule.new(@options).build
       @template["Resources"].merge!(schedule_resource) if schedule_resource
 
       puts "template3:"

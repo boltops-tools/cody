@@ -1,8 +1,8 @@
-module Cody
-  class Schedule < Dsl::Base
-    include Cody::Dsl::Schedule
+class Cody::Builder
+  class Schedule < Cody::Dsl::Base
     include Evaluate
     include Variables
+    include Cody::Dsl::Schedule
 
     def initialize(options={})
       super

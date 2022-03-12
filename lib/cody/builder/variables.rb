@@ -1,4 +1,4 @@
-module Cody
+class Cody::Builder
   module Variables
     def load_variables
       load_variables_file("base")
