@@ -44,7 +44,7 @@ module Cody
       config.vpc.subnets = nil
 
       config.auto_camelize = false # so cody doesnt mess up special AWS properties casing
-      config.names.append_env = true
+      config.names.append_env = false # true
       config.names.append_stack_name = "cody"
 
       config

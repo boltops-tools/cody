@@ -1,7 +1,6 @@
 module Cody::AwsServices
   module Helpers
     def find_stack(stack_name)
-      puts "stack_name #{stack_name}"
       resp = cfn.describe_stacks(stack_name: stack_name)
       resp.stacks.first
     rescue Aws::CloudFormation::Errors::ValidationError => e
