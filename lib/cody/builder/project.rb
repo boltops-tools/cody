@@ -4,7 +4,7 @@ class Cody::Builder
 
     def initialize(options={})
       super
-      @project_path = options[:project_path] || get_project_path
+      @project_path = lookup_cody_file("project.rb")
     end
 
     def build
@@ -53,10 +53,6 @@ class Cody::Builder
           # },
         }
       }
-    end
-
-    def get_project_path
-      lookup_cody_file("project.rb")
     end
 
     def build_spec

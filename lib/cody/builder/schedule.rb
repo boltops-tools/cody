@@ -5,7 +5,7 @@ class Cody::Builder
 
     def initialize(options={})
       super
-      @schedule_path = options[:schedule_path] || get_schedule_path
+      @schedule_path = lookup_cody_file("schedule.rb")
       @iam_policy = {}
     end
 
@@ -61,10 +61,6 @@ class Cody::Builder
     end
 
   private
-    def get_schedule_path
-      lookup_cody_file("schedule.rb")
-    end
-
     def events_rule_role
       {
         Type: "AWS::IAM::Role",
