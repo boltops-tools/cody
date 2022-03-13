@@ -37,7 +37,7 @@ class Cody::CLI
       if @options[:mode] == "light"
         excludes += %w[
           settings.yml
-          variables
+          vars
         ]
       end
       pattern = Regexp.new(excludes.join('|'))
@@ -59,6 +59,18 @@ class Cody::CLI
       pattern = Regexp.new(excludes.join('|'))
       directory "project", dest, exclude_pattern: pattern
     end
+
+    def update_gitignore
+      text =<<~EOL
+        .cody/output
+      EOL
+      if File.exist?(".gitignore")
+        append_to_file ".gitignore", text
+      else
+        create_file ".gitignore", text
+      end
+    end
+
 
   private
     def project_name
@@ -104,7 +116,7 @@ class Cody::CLI
     end
 
     def fallback_image
-      "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
+      "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
     end
   end
 end
