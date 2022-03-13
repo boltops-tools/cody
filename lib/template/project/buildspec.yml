@@ -8,4 +8,4 @@ phases:
       ruby: latest
   build:
     commands:
-      - uptime
+      - cat /etc/os-release

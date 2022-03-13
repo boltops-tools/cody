@@ -1,6 +1,5 @@
 class Cody::CLI
-  class Init < Sequence
-    # Ugly, this is how I can get the options from to match with this Thor::Group
+  class Setup < Sequence
     def self.cli_options
       [
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files"],

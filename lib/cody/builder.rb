@@ -32,10 +32,10 @@ module Cody
     alias_method :run, :template
 
     def write
-      template_path = "#{ENV['HOME']}/.cody/output/template.yml"
+      template_path = ".cody/output/template.yml"
       FileUtils.mkdir_p(File.dirname(template_path))
       IO.write(template_path, YAML.dump(@template))
-      logger.info "Template built: #{pretty_home(template_path)}"
+      logger.info "Template built: #{pretty_path(template_path)}"
     end
   end
 end

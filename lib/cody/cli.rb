@@ -7,12 +7,12 @@ module Cody
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 
-    desc "init", "Generate initial .cody files"
-    long_desc Help.text(:init)
-    Init.cli_options.each do |args|
+    desc "setup", "Generate initial .cody files"
+    long_desc Help.text(:setup)
+    Setup.cli_options.each do |args|
       option(*args)
     end
-    register(Init, "init", "init", "Generate initial .cody files")
+    register(Setup, "setup", "setup", "Generate initial .cody files")
 
     common_options = Proc.new do
       option :type, aliases: "t", desc: "folder to use within .cody folder for different build types"

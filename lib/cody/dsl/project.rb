@@ -113,6 +113,7 @@ module Cody::Dsl
       @properties[:Environment] ||= {}
       @properties[:Environment][:EnvironmentVariables] = @mapped_env_vars
     end
+    alias_method :env_vars, :environment_variables
 
     def local_cache(enable=true)
       cache = if enable
