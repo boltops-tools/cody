@@ -1,5 +1,6 @@
 class Cody::Builder
   class Schedule < Cody::Dsl::Base
+    include Cody::AwsServices::Concerns
     include Cody::Dsl::Schedule
 
     def initialize(options={})
@@ -84,16 +85,12 @@ class Cody::Builder
               Statement: [{
                 Action: "codebuild:StartBuild",
                 Effect: "Allow",
-                Resource: "arn:aws:codebuild:#{aws_data.region}:#{aws_data.account}:project/#{@options[:full_project_name]}"
+                Resource: "arn:aws:codebuild:#{aws_region}:#{aws_account}:project/#{@options[:full_project_name]}"
               }]
             }
           }]
         }
       }
-    end
-
-    def aws_data
-      @aws_data ||= AwsData.new
     end
   end
 end

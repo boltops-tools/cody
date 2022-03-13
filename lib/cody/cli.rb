@@ -2,6 +2,8 @@ require 'cli-format'
 
 module Cody
   class CLI < Command
+    include Help
+
     class_option :verbose, type: :boolean
     class_option :noop, type: :boolean
 

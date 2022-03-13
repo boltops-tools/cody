@@ -3,7 +3,7 @@ module Cody::Utils
     include Pretty
 
     def ufo_config_call_line
-      call_line = caller.find { |l| l.include?('.ufo/') }
+      call_line = caller.find { |l| l.include?('.cody/') }
       pretty_path(call_line)
     end
   end

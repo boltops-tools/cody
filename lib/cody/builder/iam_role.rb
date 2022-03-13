@@ -4,7 +4,7 @@ class Cody::Builder
 
     def initialize(options={})
       super
-      @role_path = options[:role_path] || get_role_path
+      @role_path = lookup_cody_file("iam_role.rb")
       @iam_policy = {}
     end
 
@@ -36,10 +36,6 @@ class Cody::Builder
     def evaluate_definitions
       @iam_statements = Registry.iam_statements if Registry.iam_statements
       @managed_policy_arns = Registry.managed_policy_arns if Registry.managed_policy_arns
-    end
-
-    def get_role_path
-      lookup_cody_file("role.rb")
     end
 
     def default_properties

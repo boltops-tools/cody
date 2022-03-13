@@ -67,7 +67,7 @@ module Cody
       env  = layer_levels(".cody/config/env")
       layers = root + env
       # Dont use Cody.app or that'll cause infinite loop since it loads Cody.config
-      if ENV['UFO_APP']
+      if ENV['CODY_APP']
         root = layer_levels(".cody/config/#{Cody.app}")
         env  = layer_levels(".cody/config/#{Cody.app}/env")
         layers += root + env

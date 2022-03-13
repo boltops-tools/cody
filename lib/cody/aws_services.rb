@@ -5,7 +5,7 @@ require "aws_mfa_secure/ext/aws" # add MFA support
 
 module Cody
   module AwsServices
-    include Helpers
+    include Concerns
 
     def codebuild
       @codebuild ||= Aws::CodeBuild::Client.new

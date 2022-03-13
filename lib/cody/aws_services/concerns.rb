@@ -1,5 +1,18 @@
 module Cody::AwsServices
-  module Helpers
+  module Concerns
+    extend ActiveSupport::Concern
+
+    included do
+      delegate :region, :account, to: :aws
+      alias_method :aws_region, :region
+      alias_method :current_region, :region
+      alias_method :aws_account, :account
+    end
+
+    def aws
+      @aws_data ||= AwsData.new
+    end
+
     def find_stack(stack_name)
       resp = cfn.describe_stacks(stack_name: stack_name)
       resp.stacks.first
