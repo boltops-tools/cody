@@ -1,5 +1,5 @@
 class Cody::CLI
-  class Delete < Base
+  class Down < Base
     include Cody::AwsServices
 
     def run
@@ -23,6 +23,5 @@ class Cody::CLI
         sure?(message)
       end
     end
-
   end
 end

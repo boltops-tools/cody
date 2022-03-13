@@ -30,20 +30,20 @@ module Cody
       Cody::Builder.new(options.merge(project_name: project_name)).run
     end
 
-    desc "deploy", "Deploy codebuild project"
-    long_desc Help.text(:deploy)
+    desc "up", "Deploy CodeBuild CloudFormation Template"
+    long_desc Help.text(:up)
     common_options.call
     yes_option.call
-    def deploy(project_name=nil)
-      Deploy.new(options.merge(project_name: project_name)).run
+    def up(project_name=nil)
+      Cody::Stack.new(options.merge(project_name: project_name)).run
     end
 
-    desc "delete", "Delete codebuild project"
-    long_desc Help.text(:delete)
+    desc "down", "down codebuild project"
+    long_desc Help.text(:down)
     common_options.call
     yes_option.call
-    def delete(project_name=nil)
-      Delete.new(options.merge(project_name: project_name)).run
+    def down(project_name=nil)
+      Down.new(options.merge(project_name: project_name)).run
     end
 
     desc "start", "start codebuild project"
