@@ -1,5 +1,5 @@
 module Cody::CLI::New
-  class Setup < Sequence
+  class Init < Sequence
     def self.cli_options
       [
         [:force, type: :boolean, desc: "Bypass overwrite are you sure prompt for existing files"],

@@ -1,7 +1,5 @@
 class Cody::CLI
   class Down < Base
-    include Cody::AwsServices
-
     def run
       are_you_sure?
 
