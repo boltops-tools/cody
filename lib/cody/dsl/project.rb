@@ -1,5 +1,6 @@
 module Cody::Dsl
   module Project
+    include Git
     include Ssm
 
     PROPERTIES = %w[
@@ -27,66 +28,17 @@ module Cody::Dsl
       end
     end
 
-    # Convenience wrapper methods
-    def github_url(url)
-      @properties[:Source][:Location] = url
-    end
-
-    # Convenience wrapper methods
-    def git_provider(type="GITHUB")
-      @properties[:Source][:Type] = type
-    end
-
-    # Convenience wrapper methods
-    def branch(branch_or_tag)
-      @properties[:SourceVersion] = branch_or_tag
-    end
-    alias_method :git_branch, :branch
-
     def buildspec(file=".cody/buildspec.yaml")
       @properties[:Source][:BuildSpec] = file
     end
     alias_method :build_spec, :buildspec
 
-    # So it looks like the auth resource property doesnt really get used.
-    # Instead an account level credential is worked.  Refer to:
-    # https://github.com/tongueroo/cody/blob/master/readme/github_oauth.md
-    #
-    # Keeping this method around in case the CloudFormation method works one day,
-    # or end up figuring out to use it properly.
-    def github_token(token)
-      @properties[:Source][:Auth][:Resource] = token
+    def image(name)
+      environment(Image: name)
     end
 
-    def github_source(options={})
-      source = {
-        Type: options[:Type] || "GITHUB",
-        Location: options[:Location],
-        GitCloneDepth: 1,
-        GitSubmodulesConfig: { fetch_submodules: true },
-        BuildSpec: options[:BuildSpec] || ".cody/buildspec.yml", # options[:Buildspec] accounts for type already
-      }
-
-      if source[:Type] =~ /GITHUB/
-        source[:ReportBuildStatus] = true
-      end
-
-      if options[:OauthToken]
-        source[:Auth] = {
-          Type: "OAUTH",
-          Resource: options[:OauthToken],
-        }
-      end
-
-      @properties[:Source] = source
-    end
-
-    def linux_image(name)
-      linux_environment(Image: name)
-    end
-
-    def linux_environment(options={})
-      image = options[:Image] || "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
+    def environment(options={})
+      image = options[:Image] || Cody::DEFAULT_IMAGE
       env = {
         ComputeType: options[:ComputeType] || "BUILD_GENERAL1_SMALL",
         ImagePullCredentialsType: "CODEBUILD", # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-imagepullcredentialstype
@@ -121,9 +73,9 @@ module Cody::Dsl
         {
           Type: "LOCAL",
           Modes: [
-              "LOCAL_DOCKER_LAYER_CACHE",
-              "LOCAL_SOURCE_CACHE",
-              "LOCAL_CUSTOM_CACHE"
+            "LOCAL_DOCKER_LAYER_CACHE",
+            "LOCAL_SOURCE_CACHE",
+            "LOCAL_CUSTOM_CACHE"
           ]
         }
       else
@@ -133,7 +85,7 @@ module Cody::Dsl
     end
 
     def type
-      @options[:type] # should be lowercase
+      @options[:type] # :type is lowercase since it's a CLI option
     end
   end
 end

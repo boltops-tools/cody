@@ -77,14 +77,6 @@ module Cody::CLI::New
       @options[:name] || inferred_name
     end
 
-    def project_github_url
-      git.url
-    end
-
-    def project_default_branch
-      git.default_branch
-    end
-
     def lookup_managed_image(pattern=/amazonlinux2-x86_64-standard/)
       resp = codebuild.list_curated_environment_images
 
@@ -109,12 +101,8 @@ module Cody::CLI::New
         # aws/codebuild/amazonlinux2-x86_64-standard:2.0 ->
         latest_version.split('-')[0..-2].join('-')
       else
-        fallback_image
+        Cody::DEFAULT_IMAGE # fallback_image
       end
-    end
-
-    def fallback_image
-      "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
     end
   end
 end

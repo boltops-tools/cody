@@ -9,9 +9,13 @@
 # based on parent folder name.
 # name("example-project-name")
 
-github_url("<%= project_github_url %>")
-branch "<%= project_default_branch %>" # Can be overridden with `cody start --branch BRANCH` option
-linux_image("<%= lookup_managed_image(/amazonlinux2-x86_64-standard/) %>")
+<% if git.github? -%>
+github("<%= git.github_name %>")
+<% else -%>
+git("<%= git.url %>")
+<% end -%>
+branch "<%= git.default_branch %>" # Can be overridden with `cody start --branch BRANCH` option
+image("<%= lookup_managed_image(/amazonlinux2-x86_64-standard/) %>")
 env_vars(
   JETS_ENV: Cody.env,
   # API_KEY: "ssm:/codebuild/demo/api_key" # Example of ssm parameter

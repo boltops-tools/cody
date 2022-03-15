@@ -18,6 +18,14 @@ module Cody::CLI::New
       main_found ? "main" : "master"
     end
 
+    def github?
+      url.include?('github.com')
+    end
+
+    def github_name
+      url.split('/')[-2..-1].join('/').sub('.git','')
+    end
+
     # public method used by cody setup
     def installed?
       system("type git > /dev/null")
