@@ -1,5 +1,8 @@
+require "cfn_status"
+
 module Cody::AwsServices
   module Concerns
+    extend Memoist
     extend ActiveSupport::Concern
 
     included do
@@ -10,8 +13,9 @@ module Cody::AwsServices
     end
 
     def aws
-      @aws_data ||= AwsData.new
+      AwsData.new
     end
+    memoize :aws
 
     def find_stack(stack_name)
       resp = cfn.describe_stacks(stack_name: stack_name)
@@ -47,5 +51,10 @@ module Cody::AwsServices
       end
       exist
     end
+
+    def status
+      CfnStatus.new(@stack_name) # NOTE: @stack_name must be set in the including Class
+    end
+    memoize :status
   end
 end

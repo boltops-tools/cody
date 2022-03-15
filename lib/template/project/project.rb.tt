@@ -5,9 +5,12 @@
 # * https://cody.run/docs/dsl/project/
 # * https://cody.run/docs/docs/dsl/helpers/
 #
+# CodeBuild Project Name. Leaving unset means Cody will use conventional name
+# based on parent folder name.
+# name("example-project-name")
 
-# name("example-project-name") # recommend leaving unset and codebuild will use a conventional name
 github_url("<%= project_github_url %>")
+branch "<%= project_default_branch %>" # Can be overridden with `cody start --branch BRANCH` option
 linux_image("<%= lookup_managed_image(/amazonlinux2-x86_64-standard/) %>")
 env_vars(
   JETS_ENV: Cody.env,

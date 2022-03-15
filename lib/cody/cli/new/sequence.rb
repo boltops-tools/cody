@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'thor'
 
-class Cody::CLI
+module Cody::CLI::New
   class Sequence < Thor::Group
     include Cody::AwsServices
     include Thor::Actions
@@ -10,7 +10,7 @@ class Cody::CLI
       # https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb#L49
 
     def self.source_paths
-      [File.expand_path("../../../template", __FILE__)]
+      [File.expand_path("../../../template", __dir__)]
     end
 
   private
@@ -25,7 +25,7 @@ class Cody::CLI
     end
 
     def sync_template_repo
-      unless git_installed?
+      unless git.installed?
         abort "Unable to detect git installation on your system.  Git needs to be installed in order to use the --template option."
       end
 
@@ -54,13 +54,14 @@ class Cody::CLI
       end
     end
 
-    def git_installed?
-      system("type git > /dev/null")
-    end
-
     def sh(command)
       puts "=> #{command}"
       system(command)
+    end
+
+    def git
+      # not using memoize :git because Thor::Group private methods are hidden from memoist
+      @@git ||= Git.new
     end
   end
 end

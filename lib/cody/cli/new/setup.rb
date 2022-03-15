@@ -1,4 +1,4 @@
-class Cody::CLI
+module Cody::CLI::New
   class Setup < Sequence
     def self.cli_options
       [
@@ -71,7 +71,6 @@ class Cody::CLI
       end
     end
 
-
   private
     def project_name
       inferred_name = File.basename(Dir.pwd).gsub('_','-').gsub(/[^0-9a-zA-Z,-]/, '')
@@ -79,12 +78,11 @@ class Cody::CLI
     end
 
     def project_github_url
-      default = "https://github.com/user/repo"
-      return default unless File.exist?(".git/config") && git_installed?
+      git.url
+    end
 
-      url = `git config --get remote.origin.url`.strip
-      url = url.sub('git@github.com:','https://github.com/')
-      url == '' ? default : url
+    def project_default_branch
+      git.default_branch
     end
 
     def lookup_managed_image(pattern=/amazonlinux2-x86_64-standard/)

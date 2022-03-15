@@ -1,9 +1,0 @@
-base:
-  # stack_naming:
-  #   append_env: true # default false
-
-development:
-  # aws_profile: dev_profile
-
-production:
-  # aws_profile: prod_profile

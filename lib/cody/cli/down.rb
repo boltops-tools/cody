@@ -5,23 +5,27 @@ class Cody::CLI
     def run
       are_you_sure?
 
-      unless stack_exists?(@stack_name)
-        logger.info "#{@stack_name.inspect} stack does not exist".color(:red)
+      stack = find_stack(@stack_name)
+      unless stack
+        puts "Stack #{@stack_name.color(:green)} does not exist."
         exit 1
       end
 
+      if stack.stack_status =~ /_IN_PROGRESS$/
+        puts "Cannot delete stack #{@stack_name.color(:green)} in this state: #{stack.stack_status.color(:green)}"
+        return
+      end
+
       cfn.delete_stack(stack_name: @stack_name)
-      logger.info "Deleted #{@stack_name} stack."
+      puts "Deleting stack #{@stack_name.color(:green)}"
+
+      return unless @options[:wait]
+      status.wait
     end
 
   private
     def are_you_sure?
-      message = "Will delete stack #{@stack_name.color(:green)}"
-      if @options[:yes]
-        logger.info message
-      else
-        sure?(message)
-      end
+      sure?("You are about to delete the #{@stack_name.color(:green)} stack")
     end
   end
 end

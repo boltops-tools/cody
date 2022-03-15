@@ -38,9 +38,10 @@ module Cody::Dsl
     end
 
     # Convenience wrapper methods
-    def git_branch(branch_or_tag)
+    def branch(branch_or_tag)
       @properties[:SourceVersion] = branch_or_tag
     end
+    alias_method :git_branch, :branch
 
     def buildspec(file=".cody/buildspec.yaml")
       @properties[:Source][:BuildSpec] = file

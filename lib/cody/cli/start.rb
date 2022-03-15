@@ -1,18 +1,19 @@
 class Cody::CLI
   class Start < Base
     def run
-      source_version = @options[:branch] || @options[:source_version] || 'master'
-      params = {
-        project_name: project_name,
-        source_version: source_version
-      }
+      are_you_sure?
+
+      params = { project_name: project_name }
+      source_version = @options[:branch]
+      params[:source_version] = source_version if source_version # when nil. uses branch configured on CodeBuild project settings
       params[:environment_variables_override] = environment_variables_override if @options[:env_vars]
       params.merge!(@options[:overrides]) if @options[:overrides]
+      logger.debug("params: #{params}")
       resp = codebuild.start_build(params)
 
-      puts "Build started for project: #{project_name}"
-      puts "Here's the CodeBuild Console Log url:"
-      puts codebuild_log_url(resp.build.id)
+      logger.info "Build started for project #{project_name}"
+      logger.info "Console Log Url:"
+      logger.info codebuild_log_url(resp.build.id)
       tail_logs(resp.build.id) if @options[:wait]
     end
 
@@ -51,17 +52,31 @@ class Cody::CLI
         if @options[:raise_error]
           raise(message)
         else
-          puts message.color(:red)
+          logger.info message.color(:red)
           exit 1
         end
       end
     end
 
   private
+    def are_you_sure?
+      message = "Will start build for project #{project_name.color(:green)}#{stack_message}"
+      if @options[:yes]
+        logger.info message
+      else
+        sure?(message)
+      end
+    end
+
+    # In case cody start is used with CodeBuild projects not created by Cody and CloudFormation
+    def stack_message
+      # Will start build for stack CodeBuild-4X23QbVjeWuo-cody project CodeBuild-4X23QbVjeWuo
+      stack = find_stack(@stack_name)
+      " stack #{@stack_name.color(:green)}" if stack
+    end
+
     def codebuild_log_url(build_id)
       build_id = build_id.split(':').last
-      region = `aws configure get region`.strip rescue "us-east-1"
-      region ||= "us-east-1"
       "https://#{region}.console.aws.amazon.com/codesuite/codebuild/projects/#{project_name}/build/#{project_name}%3A#{build_id}/log"
     end
 

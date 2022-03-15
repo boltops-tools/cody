@@ -9,10 +9,10 @@ module Cody
 
     desc "setup", "Generate initial .cody files"
     long_desc Help.text(:setup)
-    Setup.cli_options.each do |args|
+    New::Setup.cli_options.each do |args|
       option(*args)
     end
-    register(Setup, "setup", "setup", "Generate initial .cody files")
+    register(New::Setup, "setup", "setup", "Generate initial .cody files")
 
     common_options = Proc.new do
       option :type, aliases: "t", desc: "folder to use within .cody folder for different build types"
@@ -48,10 +48,10 @@ module Cody
 
     desc "start", "start codebuild project"
     long_desc Help.text(:start)
-    option :source_version, default: "master", desc: "git branch"
-    option :branch, aliases: "b", default: "master", desc: "git branch"
+    option :branch, aliases: "b", desc: "git branch" # Default is nil. Will use what's configured on AWS CodeBuild project settings.
     option :env_vars, aliases: "e", type: :array, desc: "env var overrides. IE: KEY1=VALUE1 KEY2=VALUE2"
     common_options.call
+    yes_option.call
     def start(project_name=nil)
       Start.new(options.merge(project_name: project_name)).run
     end

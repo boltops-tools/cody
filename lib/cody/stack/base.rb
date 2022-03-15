@@ -34,7 +34,6 @@ class Cody::Stack
 
     def url_info
       stack = cfn.describe_stacks(stack_name: @stack_name).stacks.first
-      region = `aws configure get region`.strip rescue "us-east-1"
       url = "https://console.aws.amazon.com/cloudformation/home?region=#{region}#/stacks"
       logger.info "Stack name #{@stack_name.color(:yellow)} status #{stack["stack_status"].color(:yellow)}"
       logger.info "Here's the CloudFormation url to check for more details #{url}"

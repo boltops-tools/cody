@@ -1,18 +1,18 @@
 # Cody Files
 
-The files in folder are used by cody to build AWS CodeBuild projects.  For more info, check out the [cody docs](https://cody.run). Here's a quick start.
+The files in folder are used by cody for AWS CodeBuild projects.  For more info: [Cody Docs](https://cody.run)
 
 ## Deploy CodeBuild Project
 
-To deploy the CodeBuild project. IE: Ereate or update the CloudFormation stack.
+To deploy the CodeBuild project. IE: Create or update the CloudFormation stack.
 
 Main services:
 
-    cody deploy demo
+    cody up demo
 
 If you have multiple codebuild projects associated with the same repo, you can use the `--type` option.  Example:
 
-    cody deploy demo --type deploy
+    cody up demo --type deploy
 
 ## Start a Deploy
 
@@ -23,4 +23,4 @@ To start a CodeBuild build:
 
 To specify a branch:
 
-    cody start demo --type deploy -b feature
+    cody start demo --type deploy --branch feature
