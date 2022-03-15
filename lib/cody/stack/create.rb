@@ -7,7 +7,7 @@ class Cody::Stack
         template_body: template_body,
         capabilities: ["CAPABILITY_IAM"]
       )
-      puts "Creating stack #{@stack_name}. Check CloudFormation console for status."
+      puts "Creating stack #{@stack_name}"
     end
   end
 end

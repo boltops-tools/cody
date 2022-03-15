@@ -6,7 +6,7 @@ class Cody::Stack
         template_body: YAML.dump(@template),
         capabilities: ["CAPABILITY_IAM"]
       )
-      puts "Updating stack #{@stack_name}. Check CloudFormation console for status."
+      puts "Updating stack #{@stack_name}"
     end
   end
 end
