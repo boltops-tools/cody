@@ -8,13 +8,15 @@
 # CodeBuild Project Name. Leaving unset means Cody will use conventional name
 # based on parent folder name.
 # name("example-project-name")
+#
+# Note: branch can be overridden at CLI runtime with: cody start --branch BRANCH
 
 <% if git.github? -%>
 github("<%= git.github_name %>")
 <% else -%>
 git("<%= git.url %>")
 <% end -%>
-branch "<%= git.default_branch %>" # Can be overridden with `cody start --branch BRANCH` option
+branch("<%= git.default_branch %>")
 image("<%= lookup_managed_image(/amazonlinux2-x86_64-standard/) %>")
 env_vars(
   JETS_ENV: Cody.env,
