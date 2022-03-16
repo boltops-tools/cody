@@ -62,30 +62,39 @@ class Cody::Builder
 
   private
     def events_rule_role
+      text =<<~EOL
+        AssumeRolePolicyDocument:
+          Statement:
+          - Action:
+            - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+              - events.amazonaws.com
+          Version: '2012-10-17'
+        Path: "/"
+        Policies:
+        - PolicyName: CodeBuildAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Action: codebuild:StartBuild
+              Effect: Allow
+              Resource: arn:aws:codebuild:#{aws_region}:#{aws_account}:project/#{@options[:full_project_name]}
+        # So Amazon EventsBridge / Rules / Monitoring Tab can report Invocations and TriggeredRules
+        - PolicyName: CloudWatchAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Action: cloudwatch:*
+              Effect: Allow
+              Resource: '*'
+      EOL
+      props = YAML.load(text)
+
       {
         Type: "AWS::IAM::Role",
-        Properties: {
-          AssumeRolePolicyDocument: {
-            Statement: [{
-              Action: [ "sts:AssumeRole" ],
-              Effect: "Allow",
-              Principal: { Service: [ "events.amazonaws.com" ] }
-            }],
-            Version: "2012-10-17"
-          },
-          Path: "/",
-          Policies: [{
-            PolicyName: "CodeBuildAccess",
-            PolicyDocument: {
-              Version: "2012-10-17",
-              Statement: [{
-                Action: "codebuild:StartBuild",
-                Effect: "Allow",
-                Resource: "arn:aws:codebuild:#{aws_region}:#{aws_account}:project/#{@options[:full_project_name]}"
-              }]
-            }
-          }]
-        }
+        Properties: props
       }
     end
   end
