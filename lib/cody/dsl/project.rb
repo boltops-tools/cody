@@ -84,6 +84,12 @@ module Cody::Dsl
       @properties[:Cache] = cache
     end
 
+    def secondary_source(source)
+      secondary_sources = @properties[:SecondarySources] ||= []
+      secondary_sources << source
+      @properties[:SecondarySources] = secondary_sources
+    end
+
     def type
       @options[:type] # :type is lowercase since it's a CLI option
     end
