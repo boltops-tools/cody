@@ -49,6 +49,7 @@ module Cody
     desc "start", "start codebuild project"
     long_desc Help.text(:start)
     option :branch, aliases: "b", desc: "git branch" # Default is nil. Will use what's configured on AWS CodeBuild project settings.
+    option :secondary_branches, type: :hash, desc: "secondary git branches. IE: App:feature1"
     option :env_vars, aliases: "e", type: :array, desc: "env var overrides. IE: KEY1=VALUE1 KEY2=VALUE2"
     common_options.call
     yes_option.call

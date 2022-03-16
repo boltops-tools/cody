@@ -44,7 +44,7 @@ class Cody::Builder
     end
 
     def default_properties
-      description = "Cody #{@options[:full_project_name]}"
+      description = "Cody #{@full_project_name}"
       name = description.gsub(" ", "-").downcase
       {
         Description: "#{description} CodeBuild project",

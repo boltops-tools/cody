@@ -6,8 +6,10 @@ class Cody::CLI
       params = { project_name: project_name }
       source_version = @options[:branch]
       params[:source_version] = source_version if source_version # when nil. uses branch configured on CodeBuild project settings
+      params[:secondary_sources_version_override] = secondary_sources_version_override if secondary_sources_version_override # when nil. uses branch configured on CodeBuild project settings
       params[:environment_variables_override] = environment_variables_override if @options[:env_vars]
       params.merge!(@options[:overrides]) if @options[:overrides]
+      branch_info
       logger.debug("params: #{params}")
       resp = codebuild.start_build(params)
 
@@ -35,6 +37,27 @@ class Cody::CLI
           value: v,
           type: ssm ? "PARAMETER_STORE" : "PLAINTEXT"
         }
+      end
+    end
+
+    def branch_info
+      if @options[:branch]
+        logger.info "Branch: #{@options[:branch]}"
+      end
+      if @options[:secondary_branches]
+        logger.info "Branches: #{@options[:secondary_branches]}"
+      end
+    end
+
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/CodeBuild/Client.html#start_build-instance_method
+    # Map Hash to secondary_sources_version_override Structure. IE:
+    # From: {Main: "feature1"}
+    # To: [{source_identifier: "Main", source_version: "feature"}]
+    def secondary_sources_version_override
+      secondary_branches = @options[:secondary_branches]
+      return unless secondary_branches
+      secondary_branches.map do |id, version|
+        {source_identifier: id, source_version: version}
       end
     end
 
