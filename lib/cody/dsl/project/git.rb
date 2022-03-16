@@ -6,16 +6,17 @@ module Cody::Dsl::Project
     end
     alias_method :git_branch, :branch
 
-    # name: org/repo
-    def github(name)
+    # source: org/repo
+    def github(source)
       # Change to https format that CodeBuild requires if use accidentally provides incorrect form
-      name.sub!('git@github.com:', 'https://github.com/')
-      name = "https://github.com/#{name}" unless name.include?('http')
-      git(name) # name has been transformed to url
+      source.sub!('git@github.com:', 'https://github.com/')
+      source = "https://github.com/#{source}" unless source.include?('http')
+      git(source) # source has been transformed to url
     end
 
     # Convenience wrapper methods
     def git(url)
+      url.sub!('.git','')
       @properties[:Source][:Location] = url
     end
     alias_method :source_url, :git

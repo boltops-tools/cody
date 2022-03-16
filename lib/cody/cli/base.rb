@@ -26,9 +26,15 @@ class Cody::CLI
 
     def build_id
       return @options[:build_id] if @options[:build_id]
+      find_build
+    end
 
+    def find_build
       resp = codebuild.list_builds_for_project(project_name: @full_project_name)
       resp.ids.first # most recent build_id
+    rescue Aws::CodeBuild::Errors::ResourceNotFoundException => e
+      logger.error "ERROR: #{e.class} #{e.message}".color(:red)
+      exit 1
     end
 
     def check_build_id!
