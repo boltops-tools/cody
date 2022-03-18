@@ -69,13 +69,19 @@ class Cody::CLI
         resource = resp.stack_resources.find do |r|
           r.logical_resource_id == "CodeBuild"
         end
-        resource.physical_resource_id # codebuild project name
+        if resource
+          resource.physical_resource_id # codebuild project name
+        else
+          logger.error "ERROR: A CloudFormation stack with project #{@project} was found but it doesnt look like a Cody made stack.".color(:red)
+          logger.error "Please double-check the stack."
+          exit 1
+        end
       else
         message = "ERROR: Unable to find the codebuild project with either full_project_name: #{@full_project_name} or project_name: #{@project_name}"
         if @options[:raise_error]
           raise(message)
         else
-          logger.info message.color(:red)
+          logger.error message.color(:red)
           exit 1
         end
       end
