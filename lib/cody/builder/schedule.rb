@@ -45,11 +45,10 @@ class Cody::Builder
 
     def default_properties
       description = "Cody #{@full_project_name}"
-      name = description.gsub(" ", "-").downcase
       {
+        # Name: name, # Better not to set name so dont have to deal with multiple stack conflicts
         Description: "#{description} CodeBuild project",
         # EventPattern: ,
-        Name: name,
         # ScheduleExpression: ,
         State: "ENABLED",
         Targets: [{
