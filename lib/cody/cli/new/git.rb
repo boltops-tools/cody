@@ -14,7 +14,7 @@ module Cody::CLI::New
     def default_branch
       branch = git_symbolic_ref
       return branch if branch
-      main_found = system "git branch --list -- 'main'"
+      main_found = system "git branch --list -- 'main' > /dev/null"
       main_found ? "main" : "master"
     end
 

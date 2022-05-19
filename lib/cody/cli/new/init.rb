@@ -61,11 +61,9 @@ module Cody::CLI::New
     end
 
     def update_gitignore
-      text =<<~EOL
-        .cody/output
-      EOL
+      text = ".cody/output\n"
       if File.exist?(".gitignore")
-        append_to_file ".gitignore", text
+        append_to_file ".gitignore", text, verbose: false
       else
         create_file ".gitignore", text
       end
