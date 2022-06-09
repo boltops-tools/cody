@@ -9,6 +9,7 @@ class Cody::Builder
     end
 
     def build
+      deprecated_role_rb_check
       load_variables
       evaluate_file(@role_path) if File.exist?(@role_path) # registers definitions to registry
       evaluate_definitions # build definitions from registry. can set: @iam_statements and @managed_policy_arns
@@ -32,6 +33,14 @@ class Cody::Builder
     end
 
   private
+    def deprecated_role_rb_check
+      path = lookup_cody_file("role.rb")
+      if File.exist?(path)
+        puts "WARN: The role.rb path has been deprecated".color(:yellow)
+        puts "Instead rename it to iam_role.rb"
+      end
+    end
+
     Registry = Cody::Dsl::IamRole::Registry
     def evaluate_definitions
       @iam_statements = Registry.iam_statements if Registry.iam_statements

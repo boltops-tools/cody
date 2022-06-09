@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [2.0.0] - unreleased
+- .cody/role.rb renamed to .cody/iam_role.rb
+- project dsl methods changed: new methods: github, image, env_vars
+- cody up instead of cody deploy command
+- CODY_ENV=dev default instead of CODY_ENV=development
+
 ## [1.1.0] - 2022-03-03
 - [#33](https://github.com/tongueroo/cody/pull/33) fix cfn status when auto deleting rollback completed stack
 - [#34](https://github.com/tongueroo/cody/pull/34) iam roles: support multiple calls
