@@ -93,5 +93,15 @@ module Cody::Dsl
     def type
       @options[:type] # :type is lowercase since it's a CLI option
     end
+
+    def github_url(name)
+      puts "ERROR: The github_url method has been removed. Use github instead.".color(:yellow)
+      exit 1
+    end
+
+    def linux_image(name)
+      puts "ERROR: The linux_image method has been removed. Use image instead.".color(:yellow)
+      exit 1
+    end
   end
 end
