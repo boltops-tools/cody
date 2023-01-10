@@ -16,5 +16,6 @@ Cody::Autoloader.setup
 module Cody
   DEFAULT_IMAGE = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
   class Error < StandardError; end
+  class DeprecationError < StandardError; end
   extend Core
 end

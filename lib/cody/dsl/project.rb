@@ -53,12 +53,14 @@ module Cody::Dsl
       @properties[:Environment] = env
     end
 
-    def environment_variables(vars)
+    def env_vars(vars)
       # Storing @mapped_env_vars as instance variable for later usage in linux_environment
       @mapped_env_vars = vars.map { |k,v|
         k, v = k.to_s, v.to_s
         if v =~ /^ssm:/
           { Type: "PARAMETER_STORE", Name: k, Value: v.sub('ssm:','') }
+        elsif v =~ /^secret:/
+          { Type: "PARAMETER_STORE", Name: k, Value: v.sub('secret:','') }
         else
           { Type: "PLAINTEXT", Name: k, Value: v }
         end
@@ -66,7 +68,7 @@ module Cody::Dsl
       @properties[:Environment] ||= {}
       @properties[:Environment][:EnvironmentVariables] = @mapped_env_vars
     end
-    alias_method :env_vars, :environment_variables
+    alias_method :environment_variables, :env_vars
 
     def local_cache(enable=true)
       cache = if enable
@@ -95,13 +97,13 @@ module Cody::Dsl
     end
 
     def github_url(name)
-      puts "ERROR: The github_url method has been removed. Use github instead.".color(:yellow)
-      exit 1
+      puts "ERROR: The github_url method has been removed. Use github instead.".color(:red)
+      raise Cody::DeprecationError
     end
 
     def linux_image(name)
-      puts "ERROR: The linux_image method has been removed. Use image instead.".color(:yellow)
-      exit 1
+      puts "ERROR: The linux_image method has been removed. Use image instead.".color(:red)
+      raise Cody::DeprecationError
     end
   end
 end

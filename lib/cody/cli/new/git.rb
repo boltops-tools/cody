@@ -13,7 +13,7 @@ module Cody::CLI::New
     # Based on https://github.com/LucasLarson/git-default-branch/blob/main/bin/git-default-branch
     def default_branch
       branch = git_symbolic_ref
-      return branch if branch
+      return branch.strip if branch
       main_found = system "git branch --list -- 'main' > /dev/null"
       main_found ? "main" : "master"
     end
