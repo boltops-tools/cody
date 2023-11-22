@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project *tries* to adhere to [Semantic Versioning](http://semver.org/), even before v1.0.
 
+## [1.2.1] - 2023-11-22
+- Actually include changes from 1.2.0
+
 ## [1.2.0] - 2023-11-22
 - [#35](https://github.com/tongueroo/cody/pull/35) fix eager load by specifying do not eager load for template files
 - add github funding
