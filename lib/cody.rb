@@ -10,6 +10,8 @@ require "memoist"
 require "rainbow/ext/string"
 require "yaml"
 
+require "cody/core_ext/file"
+
 require "cody/autoloader"
 Cody::Autoloader.setup
 

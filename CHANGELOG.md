@@ -8,6 +8,7 @@ This project *tries* to adhere to [Semantic Versioning](http://semver.org/), eve
 - project dsl methods changed: new methods: github, image, env_vars
 - cody up instead of cody deploy command
 - CODY_ENV=dev default instead of CODY_ENV=development
+- CloudFromation written to `.cody/output/template.yml`. User should add to `.cody/output` to `.gitignore`
 - CloudFormation schedule event logical id changed. Results in the schedule event resource just being recreated.
 
 ## [1.1.0] - 2022-03-03

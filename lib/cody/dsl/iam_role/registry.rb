@@ -3,9 +3,9 @@ require "set"
 module Cody::Dsl::IamRole
   class Registry
     class_attribute :iam_statements
-    self.iam_statements = nil # nil to allow fallback to default_iam_statements in cody/role.rb
+    self.iam_statements = nil # nil to allow fallback to default_iam_statements in cody/iam_role.rb
     class_attribute :managed_policy_arns
-    self.managed_policy_arns = nil # nil to allow fallback to default_managed_policy_arns in cody/role.rb
+    self.managed_policy_arns = nil # nil to allow fallback to default_managed_policy_arns in cody/iam_role.rb
 
     class << self
       def register_policy(*statements)
