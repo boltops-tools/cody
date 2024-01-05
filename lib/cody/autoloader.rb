@@ -16,7 +16,6 @@ module Cody
         lib = File.dirname(__dir__) # lib
         loader.push_dir(lib)
         loader.do_not_eager_load("#{lib}/template")
-        loader.log!
         loader.setup
       end
     end
